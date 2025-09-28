@@ -17,7 +17,7 @@
         <div class="container-xl">
             <div class="card">
                 <div class="row g-0">
-                    <div class="col-3 d-none d-md-block border-end">
+                    <div class="col-3 d-none d-md-block border-end mt-3">
                         <!-- Sidebar content goes here -->
                         <h2 style="text-align: center"> My Account</h2><hr>
                         <h3 style="margin-left: 20px;">Change Password</h3>

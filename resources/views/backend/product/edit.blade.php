@@ -6,13 +6,13 @@
         @csrf
         @method('PUT')
         <div class="card-body p-3">
-            <h3 class="text-center mb-3">Edit Product</h3>
+            <h3 class="text-center mb-3">Edit Service</h3>
 
             <div class="row g-3">
                 <!-- Product Name -->
                 <div class="col-md-6">
-                    <label class="form-label fw-semibold">Product Name</label>
-                    <input type="text" class="form-control" name="name" value="{{ old('name', $product->name) }}" placeholder="Enter product name" required>
+                    <label class="form-label fw-semibold">Title</label>
+                    <input type="text" class="form-control" name="name" value="{{ old('name', $product->name) }}" placeholder="Enter service title" required>
                 </div>
 
                 <!-- Category -->

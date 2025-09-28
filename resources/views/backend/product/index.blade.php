@@ -1,20 +1,20 @@
 @extends('backend.layout.app')
 @section('content')
 
-<div class="container">
-    <br>
-    <h2 style="text-align: center">Product</h2>
+<div class="container mt-5">
+
+    <h2 style="text-align: center">Service</h2>
     <div style="text-align: right">
         <a href="{{ route('product.create') }}" class="btn btn-info" style="margin-right: 10px;">+ Add</a>
-    </div><br><br>
-    <div class="col-12">
+    </div>
+    <div class="col-12 mt-5">
         <div class="card">
             <div class="table-responsive">
                 <table class="table table-vcenter table-mobile-md card-table">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
+                        <th>Title</th>
                         <th>Price &#2547;</th>
                         <th>Actions</th>
                     </tr>

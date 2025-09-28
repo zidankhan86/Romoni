@@ -10,8 +10,8 @@
             <div class="row g-3">
                 <!-- Product Name -->
                 <div class="col-md-6">
-                    <label class="form-label fw-semibold">Product Name</label>
-                    <input type="text" class="form-control" name="name" placeholder="Enter product name" required>
+                    <label class="form-label fw-semibold">Title</label>
+                    <input type="text" class="form-control" name="name" placeholder="Enter service title" required>
                 </div>
 
                 <!-- Category -->

@@ -182,12 +182,9 @@
 
                 @auth
                     <!-- Show Logout as red icon for authenticated users -->
-                    <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn text-danger border-0 p-0" title="Logout">
+                      <a href="{{ route('user.logout') }}" class="text-danger" title="Logout">
                             <i class="fas fa-sign-out-alt fa-lg"></i>
-                        </button>
-                    </form>
+                        </a>
                 @endauth
 
             </div>

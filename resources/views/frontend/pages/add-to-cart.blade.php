@@ -1,3 +1,7 @@
+@extends('frontend.layout.app')
+
+@section('content')
+
 <div class="container py-5">
     <div class="text-center mb-4">
         <h1 class="fw-bold">🛒 Cart Product</h1>
@@ -90,3 +94,6 @@
         </div>
     </div>
 </div>
+
+
+@endsection

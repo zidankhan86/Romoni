@@ -16,7 +16,6 @@ use App\Http\Controllers\Auth\GithubController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\frontend\BannerController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\OrderController as FrontendOrderController;
@@ -84,7 +83,7 @@ Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clea
 Route::get('/checkout', [FrontendOrderController::class, 'checkout'])->name('checkout');
 Route::post('/checkout/process', [FrontendOrderController::class, 'processOrder'])->name('checkout.process');
 Route::get('/banner/click', [BannerController::class, 'click'])->name('banner.click');
-Route::get('/order/index', [OrderController::class, 'index'])->name('order.index');
+
 });
 
 //Middleware
@@ -122,7 +121,7 @@ Route::prefix('product')->name('product.')->group(function () {
 
 
 
-
+Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('orderIndex');
 
 
 

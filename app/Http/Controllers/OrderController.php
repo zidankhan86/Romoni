@@ -7,8 +7,12 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function index(){
+    public function orderIndex(){
+
+        // dd('');
+
         $data['orders']= Order::get();
+
         return view('backend.order.index',$data);
     }
 }

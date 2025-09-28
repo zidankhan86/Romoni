@@ -17,13 +17,18 @@
           </a>
           <div class="nav-item dropdown d-none d-md-flex me-3">
 
-            
+
           </div>
         </div>
         <div class="nav-item dropdown">
           <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
 
-            <img height="50" width="50" src="{{ asset('/uploads/' . auth()->user()->image) }}" alt="">
+            <img height="50" width="50"
+     src="{{ auth()->user()->image ? asset('uploads/' . auth()->user()->image) : asset('default.webp') }}"
+     alt="User Image"
+     class="rounded-circle border"
+     style="object-fit: cover;">
+
             <div class="d-none d-xl-block ps-2">
               <div>{{ auth()->user()->name }}</div>
 

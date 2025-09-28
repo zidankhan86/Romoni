@@ -76,7 +76,7 @@
 
         <hr class="border-dark">
         <div class="d-flex justify-content-between pb-3 small">
-            <span>Copyright © 2024 Romoni. All rights reserved.</span>
+            <span>Copyright © 2025 Romoni. All rights reserved.</span>
             <div>
                 <a href="#" class="text-dark text-decoration-none me-2">Privacy Policy</a>
                 <a href="#" class="text-dark text-decoration-none me-2">FAQs</a>

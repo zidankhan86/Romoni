@@ -1,4 +1,3 @@
-
 <div class="page">
     <!-- Page header -->
     <div class="page-header d-print-none">
@@ -18,7 +17,7 @@
             <div class="card">
                 <div class="row g-0">
 
-                    <div class="col-3 d-none d-md-block border-end">
+                    <div class="col-3 d-none d-md-block border-end mt-3">
                         <!-- Sidebar content goes here -->
                         <h2 style="text-align: center"> My Account</h2>
                         <hr>
@@ -30,54 +29,59 @@
                     <div class="col d-flex flex-column">
                         <div class="card-body">
                             <h2 class="mb-4">My Account</h2>
-                            <h3 class="card-title">Profile Details</h3>
-                            <form action="{{ route('registration.update', auth()->user()->id) }}" method="post" enctype="multipart/form-data">
+                            <h3 class="card-title mb-3">Profile Details</h3>
+
+                            <form action="{{ route('registration.update', auth()->user()->id) }}" method="post"
+                                enctype="multipart/form-data">
                                 @csrf
 
-                                <div class="row align-items-center">
+                                <!-- Profile Image -->
+                                <div class="mb-4 text-center">
                                     <label for="image-upload" style="cursor: pointer;">
-                                        <p class="label-txt">Choose Image</p>
-                                        <img height="100px" width="100px" id="image-preview" src="{{ asset('/uploads/' . auth()->user()->image) }}" alt="Student Image">
-                                        <input type="file" id="image-upload" name="image">
+                                        <p class="label-txt mb-2">Choose Image</p>
+                                        <img id="image-preview"
+                                            src="{{ auth()->user()->image ? asset('uploads/' . auth()->user()->image) : asset('default.webp') }}"
+                                            alt="Profile Image" class="rounded-circle border"
+                                            style="height: 120px; width: 120px; object-fit: cover;">
+
+                                        <input type="file" id="image-upload" name="image" class="d-none">
                                     </label>
                                 </div>
 
-                                <h3 class="card-title mt-4">Profile</h3>
-                                <div class="row g-3">
-                                    <div class="col-md">
-                                        <div class="form-label">Name</div>
-                                        <input type="text" name="name" class="form-control" value="{{ auth()->user()->name }}">
-                                    </div>
-                                    <div class="col-md">
-                                        <div class="form-label">Email</div>
-                                        <input type="text" class="form-control" name="email" value="{{ auth()->user()->email }}">
-                                    </div>
-                                    <div class="col-md">
-                                        <div class="form-label">Mobile</div>
-                                        <input type="text" class="form-control" value="{{ auth()->user()->phone }}" name="phone">
-                                    </div>
+                                <!-- Name -->
+                                <div class="mb-3">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" name="name" class="form-control"
+                                        value="{{ auth()->user()->name }}">
                                 </div>
 
-                                <!-- User Role (no changes allowed) -->
+                                <!-- Email -->
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" name="email" class="form-control"
+                                        value="{{ auth()->user()->email }}">
+                                </div>
 
+                                <!-- Mobile -->
+                                <div class="mb-3">
+                                    <label class="form-label">Mobile</label>
+                                    <input type="text" name="phone" class="form-control"
+                                        value="{{ auth()->user()->phone }}">
+                                </div>
 
-
-                                <div class="card-footer bg-transparent mt-auto">
-                                    <div class="btn-list justify-content-end">
-                                        <a href="#" class="btn">
-                                            Cancel
-                                        </a>
-                                        <button type="submit" class="btn btn-primary">
-                                            Submit
-                                        </button>
+                                <!-- Footer -->
+                                <div class="card-footer bg-transparent mt-4 px-0">
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <a href="#" class="btn btn-light">Cancel</a>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-
