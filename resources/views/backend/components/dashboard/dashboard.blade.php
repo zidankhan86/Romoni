@@ -10,12 +10,12 @@
                  <div class="card">
                      <div class="card-body">
                          <div class="d-flex align-items-center">
-                             <div class="subheader">Sales</div>
+                             <div class="subheader">Services</div>
                              <div class="ms-auto lh-1">
 
                              </div>
                          </div>
-                         <div class="h1 mb-3">75%</div>
+                         <div class="h1 mb-3">75</div>
                      </div>
                  </div>
              </div>
@@ -29,7 +29,7 @@
                              </div>
                          </div>
                          <div class="d-flex align-items-baseline">
-                             <div class="h1 mb-0 me-2">$4,300</div>
+                             <div class="h1 mb-0 me-2"> ৳4,300</div>
                              <div class="me-auto">
 
                              </div>
@@ -59,7 +59,7 @@
                  <div class="card">
                      <div class="card-body">
                          <div class="d-flex align-items-center">
-                             <div class="subheader">Active users</div>
+                             <div class="subheader">Orders</div>
                              <div class="ms-auto lh-1">
 
                              </div>
@@ -80,51 +80,54 @@
 
              </div>
 
-           <!-- New Card 12 -->
-<div class="col-sm-12 col-lg-12">
-    <div class="card">
-        <div class="card-body">
-            <div class="d-flex align-items-center">
-                <div class="subheader">Product Information</div>
-            </div>
+             <!-- New Card 12 -->
+             <div class="col-sm-12 col-lg-12">
+                 <div class="card">
+                     <div class="card-body">
+                         <div class="d-flex align-items-center">
+                             <div class="subheader">Service Information</div>
+                         </div>
 
-            <!-- Table to display product details -->
-            <div class="table-responsive mt-3">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($products as $product)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $product->name }}</td>
-                            <td>{{ $product->price }} $</td>
-                            <td>
-                                <!-- Edit Button -->
-                                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                         <!-- Table to display product details -->
+                         <div class="table-responsive mt-3">
+                             <table class="table table-bordered table-striped">
+                                 <thead>
+                                     <tr>
+                                         <th>#</th>
+                                         <th>Name</th>
+                                         <th>Price</th>
+                                         <th>Actions</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                     @foreach ($products as $product)
+                                         <tr>
+                                             <td>{{ $loop->iteration }}</td>
+                                             <td>{{ $product->name }}</td>
+                                             <td>{{ $product->price }} $</td>
+                                             <td>
+                                                 <!-- Edit Button -->
+                                                 <a href="{{ route('product.edit', $product->id) }}"
+                                                     class="btn btn-warning btn-sm">Edit</a>
 
-                                <!-- Delete Button -->
-                                <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+                                                 <!-- Delete Button -->
+                                                 <form action="{{ route('product.destroy', $product->id) }}"
+                                                     method="POST" style="display:inline;">
+                                                     @csrf
+                                                     @method('DELETE')
+                                                     <button type="submit"
+                                                         class="btn btn-danger btn-sm">Delete</button>
+                                                 </form>
+                                             </td>
+                                         </tr>
+                                     @endforeach
+                                 </tbody>
+                             </table>
+                         </div>
 
-        </div>
-    </div>
-</div>
+                     </div>
+                 </div>
+             </div>
 
 
 
@@ -134,4 +137,3 @@
      </div>
 
  </div>
-

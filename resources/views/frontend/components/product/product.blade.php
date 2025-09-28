@@ -303,12 +303,12 @@
 </div>
 
 <!-- Ad Banner -->
-<div class="mb-5 text-center">
+{{-- <div class="mb-5 text-center">
     <a href="{{ route('banner.click') }}">
         <img src="{{ asset('image.png') }}" alt="Ad Banner" class="img-fluid rounded shadow-sm"
             style="max-height: 300px;">
     </a>
-</div>
+</div> --}}
 <section class="">
     <div class="container px-4 px-lg-5">
         <h2 class="text-center fw-bold mb-4">Our Services</h2>
@@ -423,80 +423,30 @@
                 <h2 class="text-center mb-4" style="color: #6a0dad;">Trending Services</h2>
                 <div class="row row-cols-1 row-cols-md-4 g-4">
 
-                    <!-- Service Card 1 -->
-                    <div class="col">
-                        <div class="card h-100 service-card">
-                            <img src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400"
-                                class="card-img-top" alt="Manicure and Pedicure">
-                            <div class="card-body d-flex flex-column">
-                                <h6 class="card-subtitle mb-1 text-muted">MANICURE AND PEDICURE</h6>
-                                <h5 class="card-title">Spa Manicure and Pedicure</h5>
-                                <div class="d-flex justify-content-between mt-2 mb-2">
-                                    <small><i class="fas fa-clock"></i> 85 min</small>
-                                    <small><i class="fas fa-user"></i> 17,892 orders</small>
-                                </div>
-                                <h5 class="text-dark mb-3">৳ 1,199</h5>
-                                <a href="#" class="btn btn-purple mt-auto w-100">ADD TO CART</a>
-                            </div>
-                        </div>
-                    </div>
+                    @forelse ($products as $item)
+                        <!-- Service Card 1 -->
+                        <div class="col">
+                            <div class="card h-100 service-card">
+                                <img src="{{ url($item->image) }}" class="card-img-top quick-view-btn"
+                                    alt="{{ $item->name }}" style="cursor: pointer;" data-id="{{ $item->id }}"
+                                    data-name="{{ $item->name }}" data-price="{{ number_format($item->price, 2) }}"
+                                    data-image="{{ url($item->image) }}" data-description="{{ $item->description }}"
+                                    title="Quick View of {{ $item->name }}">
 
-                    <!-- Service Card 2 -->
-                    <div class="col">
-                        <div class="card h-100 service-card">
-                            <img src="https://images.pexels.com/photos/4150799/pexels-photo-4150799.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400"
-                                class="card-img-top" alt="Threading">
-                            <div class="card-body d-flex flex-column">
-                                <h6 class="card-subtitle mb-1 text-muted">THREADING</h6>
-                                <h5 class="card-title">Eye Brows Threading</h5>
-                                <div class="d-flex justify-content-between mt-2 mb-2">
-                                    <small><i class="fas fa-clock"></i> 15 min</small>
-                                    <small><i class="fas fa-user"></i> 16,339 orders</small>
+                                <div class="card-body d-flex flex-column">
+                                    <h6 class="card-subtitle mb-1 text-muted">MANICURE AND PEDICURE</h6>
+                                    <h5 class="card-title">{{ $item->name }}</h5>
+                                    <div class="d-flex justify-content-between mt-2 mb-2">
+                                        <small><i class="fas fa-clock"></i> 85 min</small>
+                                        <small><i class="fas fa-user"></i> 17,892 orders</small>
+                                    </div>
+                                    <h5 class="text-dark mb-3">৳ {{ number_format($item->price, 2) }}</h5>
+                                    <a href="{{ route('cart.add', $item->id) }}" class="btn btn-purple mt-auto w-100">ADD TO CART</a>
                                 </div>
-                                <h5 class="text-dark mb-3">৳ 100</h5>
-                                <a href="#" class="btn btn-danger mt-auto w-100">REMOVE FROM CART</a>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
 
-                    <!-- Service Card 3 -->
-                    <div class="col">
-                        <div class="card h-100 service-card">
-                            <img src="https://images.pexels.com/photos/5069389/pexels-photo-5069389.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400"
-                                class="card-img-top" alt="Manicure and Pedicure Pack">
-                            <div class="card-body d-flex flex-column">
-                                <span class="badge bg-pink mb-2">7% off</span>
-                                <h6 class="card-subtitle mb-1 text-muted">MANICURE AND PEDICURE</h6>
-                                <h5 class="card-title">Spa Pedicure with Pack</h5>
-                                <div class="d-flex justify-content-between mt-2 mb-2">
-                                    <small><i class="fas fa-clock"></i> 45 min</small>
-                                    <small><i class="fas fa-user"></i> 10,671 orders</small>
-                                </div>
-                                <h5 class="text-dark mb-3">
-                                    <span class="text-decoration-line-through text-muted">৳ 810</span> ৳ 750
-                                </h5>
-                                <a href="#" class="btn btn-purple mt-auto w-100">ADD TO CART</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Card 4 -->
-                    <div class="col">
-                        <div class="card h-100 service-card">
-                            <img src="https://images.pexels.com/photos/6620920/pexels-photo-6620920.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=200&w=400"
-                                class="card-img-top" alt="Threading Upper Lip">
-                            <div class="card-body d-flex flex-column">
-                                <h6 class="card-subtitle mb-1 text-muted">THREADING</h6>
-                                <h5 class="card-title">Upper Lip Threading</h5>
-                                <div class="d-flex justify-content-between mt-2 mb-2">
-                                    <small><i class="fas fa-clock"></i> 10 min</small>
-                                    <small><i class="fas fa-user"></i> 10,526 orders</small>
-                                </div>
-                                <h5 class="text-dark mb-3">৳ 100</h5>
-                                <a href="#" class="btn btn-purple mt-auto w-100">ADD TO CART</a>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -510,14 +460,15 @@
 
 
         <!-- Product Grid -->
-        <div class="row gx-4 gx-lg-5 mt-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {{-- <div class="row gx-4 gx-lg-5 mt-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @forelse ($products as $item)
                 <div class="col mb-5">
                     <div class="card h-100 shadow-sm border-0">
                         <!-- Product image-->
                         <div class="product-image-container position-relative">
                             <a href="{{ route('product.details', $item->slug) }}">
-                                <img class="card-img-top" src="{{ url($item->image) }}" alt="{{ $item->name }}" />
+                                <img class="card-img-top" src="{{ url($item->image) }}"
+                                    alt="{{ $item->name }}" />
                             </a>
                             <div class="position-absolute top-50 start-50 translate-middle">
                                 <button class="btn btn-dark btn-sm quick-view-btn rounded-pill px-3 shadow-sm"
@@ -527,7 +478,7 @@
                                     data-description="{{ $item->description }}" title="Quick View"
                                     aria-label="Quick view of {{ $item->name }}"
                                     style="display: inline-flex; align-items: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                    <i class="bi bi-eye-fill me-1"></i> Quick View
+                                    <h5 class="card-title">{{ $item->name }}</h5>
                                 </button>
 
                             </div>
@@ -556,7 +507,7 @@
             @empty
                 <h3 class="text-center text-danger">No Data Found</h3>
             @endforelse
-        </div>
+        </div> --}}
 
 
     </div>
@@ -742,7 +693,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="quickViewModalLabel">Product Quick View</h5>
+                <h5 class="modal-title" id="quickViewModalLabel">Service Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
