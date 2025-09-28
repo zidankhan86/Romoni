@@ -19,6 +19,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\frontend\BannerController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\OrderController as FrontendOrderController;
+use App\Http\Controllers\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,6 +118,16 @@ Route::prefix('product')->name('product.')->group(function () {
     Route::put('/update/{id}', [ProductController::class,'update'])->name('update');
     Route::get('/edit/{id}', [ProductController::class,'edit'])->name('edit');
     Route::delete('/delete/{id}', [ProductController::class,'store'])->name('destroy');
+});
+
+
+Route::prefix('testimonial')->name('testimonial.')->group(function () {
+    Route::get('/create', [TestimonialController::class,'create'])->name('create');
+    Route::post('/store', [TestimonialController::class,'store'])->name('store');
+    Route::get('/index', [TestimonialController::class,'index'])->name('index');
+    Route::put('/update/{id}', [TestimonialController::class,'update'])->name('update');
+    Route::get('/edit/{id}', [TestimonialController::class,'edit'])->name('edit');
+    Route::delete('/delete/{id}', [TestimonialController::class,'destroy'])->name('destroy');
 });
 
 
