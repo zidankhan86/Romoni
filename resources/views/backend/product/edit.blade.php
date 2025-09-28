@@ -38,7 +38,7 @@
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">Thumbnail Image</label>
                     <input type="file" name="image" class="form-control" accept="image/*">
-                    <small class="text-muted">JPEG, PNG formats recommended. Current: <img src="{{ asset('public/uploads/' . $product->image) }}" style="max-width: 100px;" alt="Product Thumbnail"></small>
+                    <small class="text-muted">JPEG, PNG formats recommended. Current: <img src="{{ asset($product->image) }}" style="max-width: 100px;" alt="Product Thumbnail"></small>
                 </div>
 
                 <!-- Product Images -->

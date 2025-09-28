@@ -30,7 +30,7 @@
      style="object-fit: cover;">
 
             <div class="d-none d-xl-block ps-2">
-              <div>{{ auth()->user()->name }}</div>
+              {{-- <div>{{ auth()->user()->name }}</div> --}}
 
             </div>
           </a>
