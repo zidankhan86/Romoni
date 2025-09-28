@@ -147,11 +147,11 @@
             <!-- Nav Links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">About</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('about.page') ? 'active' : '' }}" href="{{ route('about.page') }}">Services</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('product.page') ? 'active' : '' }}" href="{{ route('product.page') }}">Services</a></li>
                 <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('product.page') ? 'active' : '' }}" href="{{ route('product.page') }}">Offers</a></li>
                 <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('product.page') ? 'active' : '' }}" href="{{ route('product.page') }}">Romoni Studio</a></li>
                 <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('product.page') ? 'active' : '' }}" href="{{ route('product.page') }}">Career</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('product.page') ? 'active' : '' }}" href="{{ route('product.page') }}">Blog</a></li>
+
             </ul>
 
             <!-- Right-side -->
