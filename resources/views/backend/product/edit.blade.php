@@ -1,5 +1,6 @@
 @extends('backend.layout.app')
-
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 @section('content')
 <br><div class="col-12">
     <form class="card shadow-sm border border-secondary" method="POST" action="{{ route('product.update', $product->id) }}" enctype="multipart/form-data" style="max-width: 1000px; margin: 0 auto;">
@@ -33,6 +34,17 @@
                     <label class="form-label fw-semibold">Price (৳)</label>
                     <input type="number" name="price" class="form-control" value="{{ old('price', $product->price) }}" placeholder="Enter price" step="0.01" min="0" required>
                 </div>
+
+               <!-- Time -->
+<div class="col-md-6">
+    <label class="form-label fw-semibold">Time (minutes)</label>
+    <input type="text" id="timepicker"
+           name="time"
+           value="{{ old('time', $product->time) }}"
+           class="form-control"
+           placeholder="Enter time" required>
+</div>
+
 
                 <!-- Thumbnail -->
                 <div class="col-md-6">
@@ -79,36 +91,7 @@
                     </select>
                 </div>
 
-                <!-- Variants -->
-                <div class="col-md-12">
-                    <hr>
-                    <h5 class="fw-bold">Product Variants</h5>
-                    <div id="variant-container">
-                        @foreach($product->variants as $index => $variant)
-                            <div class="row variant-group g-3 mb-3">
-                                <div class="col-md-3">
-                                    <input type="text" name="variants[{{ $index }}][color]" class="form-control"
-                                           value="{{ old('variants.' . $index . '.color', $variant->color) }}"
-                                           placeholder="Color (e.g. Red)" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="text" name="variants[{{ $index }}][size]" class="form-control"
-                                           value="{{ old('variants.' . $index . '.size', $variant->size) }}"
-                                           placeholder="Size (e.g. M)" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <input type="number" name="variants[{{ $index }}][stock]" class="form-control"
-                                           value="{{ old('variants.' . $index . '.stock', $variant->stock) }}"
-                                           placeholder="Stock" min="0" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-outline-danger w-100 remove-variant">Remove</button>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                    <button type="button" id="add-variant" class="btn btn-outline-secondary mt-2">+ Add Variant</button>
-                </div>
+
             </div>
         </div>
 
@@ -120,36 +103,19 @@
 @endsection
 
 @push('scripts')
+
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-    let variantIndex = {{ count($product->variants) }};
-
-    document.getElementById('add-variant').addEventListener('click', function () {
-        const container = document.getElementById('variant-container');
-
-        const newGroup = document.createElement('div');
-        newGroup.classList.add('row', 'variant-group', 'g-3', 'mb-3');
-        newGroup.innerHTML = `
-            <div class="col-md-3">
-                <input type="text" name="variants[${variantIndex}][color]" class="form-control" placeholder="Color" required>
-            </div>
-            <div class="col-md-3">
-                <input type="text" name="variants[${variantIndex}][size]" class="form-control" placeholder="Size" required>
-            </div>
-            <div class="col-md-3">
-                <input type="number" name="variants[${variantIndex}][stock]" class="form-control" placeholder="Stock" min="0" required>
-            </div>
-            <div class="col-md-3">
-                <button type="button" class="btn btn-outline-danger w-100 remove-variant">Remove</button>
-            </div>
-        `;
-        container.appendChild(newGroup);
-        variantIndex++;
-    });
-
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('remove-variant')) {
-            e.target.closest('.variant-group').remove();
-        }
+    $("#timepicker").TouchSpin({
+        min: 0,
+        max: 500,   // you can adjust max minutes
+        step: 5,    // increases in 5-minute steps
+        boostat: 20,
+        maxboostedstep: 30,
+        postfix: 'min'
     });
 </script>
+
+
 @endpush

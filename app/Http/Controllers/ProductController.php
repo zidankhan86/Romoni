@@ -119,28 +119,8 @@ class ProductController extends Controller
             }
         }
 
-        // ✅ Save Variants with color and size IDs
-        if ($request->has('variants')) {
-            foreach ($request->variants as $variant) {
-                // Find or create the color
-                $color = ProductColor::firstOrCreate(
-                    ['product_id' => $product->id, 'color' => $variant['color']]
-                );
 
-                // Find or create the size
-                $size = ProductSize::firstOrCreate(
-                    ['size' => $variant['size']]
-                );
 
-                // Create the product variant
-                ProductVariant::create([
-                    'product_id' => $product->id,
-                    'product_color_id' => $color->id,
-                    'product_size_id' => $size->id,
-                    'stock' => $variant['stock'],
-                ]);
-            }
-        }
 
         return redirect()->route('product.index')->with('success', 'Product created successfully');
     }

@@ -17,10 +17,11 @@
             <!-- Slide 1 -->
             <div class="carousel-item active">
                 <div class="bg-dark py-5 d-flex align-items-center"
-                    style="background-image: url('https://images.unsplash.com/photo-1500835556837-99ac94a94552?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; height: 80vh;">
-                    <div class="container px-4 px-lg-5 my-5 text-center text-white">
+                    style="background-image: url('{{ asset('h1.webp') }}'); background-size: cover; background-position: center; height: 80vh;">
+                    <div class="container px-4 px-lg-5 my-5 text-center text-black">
                         <h1 class="display-4 fw-bolder">Romoni</h1>
-                        <p class="lead fw-normal text-white-50 mb-0">We Make , We Build , We Create</p>
+                        <p class="lead fw-normal mb-4">Your Beauty, Our Passion</p>
+                        <a href="#booking" class="btn btn-dark btn-lg rounded-pill px-4 shadow-sm">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -28,10 +29,11 @@
             <!-- Slide 2 -->
             <div class="carousel-item">
                 <div class="bg-dark py-5 d-flex align-items-center"
-                    style="background-image: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; height: 80vh;">
-                    <div class="container px-4 px-lg-5 my-5 text-center text-white">
+                    style="background-image: url('{{ asset('h2.webp') }}'); background-size: cover; background-position: center; height: 80vh;">
+                    <div class="container px-4 px-lg-5 my-5 text-center text-black">
                         <h1 class="display-4 fw-bolder">Our Services</h1>
-                        <p class="lead fw-normal text-white-50 mb-0">Discover beauty & wellness near you</p>
+                        <p class="lead fw-normal mb-4">Redefining Beauty & Wellness</p>
+                        <a href="#booking" class="btn btn-dark btn-lg rounded-pill px-4 shadow-sm">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -39,10 +41,11 @@
             <!-- Slide 3 -->
             <div class="carousel-item">
                 <div class="bg-dark py-5 d-flex align-items-center"
-                    style="background-image: url('https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; height: 80vh;">
-                    <div class="container px-4 px-lg-5 my-5 text-center text-white">
+                    style="background-image: url('{{ asset('h3.jpg') }}'); background-size: cover; background-position: center; height: 80vh;">
+                    <div class="container px-4 px-lg-5 my-5 text-center text-black">
                         <h1 class="display-4 fw-bolder">Exclusive Offers</h1>
-                        <p class="lead fw-normal text-white-50 mb-0">Up to 20% off on facial treatments</p>
+                        <p class="lead fw-normal mb-4">Save More, Glow More</p>
+                        <a href="#booking" class="btn btn-dark btn-lg rounded-pill px-4 shadow-sm">Book Now</a>
                     </div>
                 </div>
             </div>
@@ -67,4 +70,12 @@
         </div>
     </div>
 </header>
+
+<!-- Custom CSS for Black Arrows -->
+<style>
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1); /* turns white icons to black */
+}
+</style>
 

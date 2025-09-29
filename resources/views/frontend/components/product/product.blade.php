@@ -283,9 +283,10 @@
 @endpush
 
 
-<div class="mb-5 text-center">
+<div class="mb-5 text-center mt-5">
     <section class="categories-section">
-        <h1 class="text-center mb-4">Popular Services</h1>
+
+         <h1 class="text-center fw-bold mb-4">Popular Services</h1>
         <div class="categories-grid">
             @forelse ($categories as $category)
                 <div class="category-card">

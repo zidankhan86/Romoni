@@ -1,11 +1,15 @@
 @extends('backend.layout.app')
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
 
 @section('content')
 <br><div class="col-12">
     <form class="card shadow-sm border border-secondary" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data" style="max-width: 1000px; margin: 0 auto;">
         @csrf
         <div class="card-body p-3">
-            <h3 class="text-center mb-3">Create a New Product</h3>
+            <h3 class="text-center mb-3">Create a New Service</h3>
 
             <div class="row g-3">
                 <!-- Product Name -->
@@ -31,6 +35,13 @@
                     <input type="number" name="price" class="form-control" placeholder="Enter price" step="0.01" min="0" required>
                 </div>
 
+                <!-- Time -->
+            <div class="col-md-6">
+                <label class="form-label fw-semibold">Select Time</label>
+                <input type="text" id="timepicker" name="time" class="form-control" placeholder="Select time" required>
+            </div>
+
+
                 <!-- Thumbnail -->
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">Thumbnail Image</label>
@@ -47,7 +58,7 @@
 
                 <!-- Description -->
                 <div class="col-md-12">
-                    <label class="form-label fw-semibold">Product Description</label>
+                    <label class="form-label fw-semibold"> Description</label>
                     <textarea name="description" rows="3" class="form-control" placeholder="Write a short description..." required></textarea>
                 </div>
 
@@ -63,7 +74,7 @@
 
                 <!-- Is Popular -->
                 <div class="col-md-6">
-                    <label class="form-label fw-semibold">Popular Product?</label>
+                    <label class="form-label fw-semibold">Popular ?</label>
                     <select name="is_popular" class="form-control" required>
                         <option value="" disabled selected>Select option</option>
                         <option value="1">Yes</option>
@@ -71,28 +82,7 @@
                     </select>
                 </div>
 
-                <!-- Variants -->
-                <div class="col-md-12">
-                    <hr>
-                    <h5 class="fw-bold">Product Variants</h5>
-                    <div id="variant-container">
-                        <div class="row variant-group g-3 mb-3">
-                            <div class="col-md-3">
-                                <input type="text" name="variants[0][color]" class="form-control" placeholder="Color (e.g. Red)" required>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" name="variants[0][size]" class="form-control" placeholder="Size (e.g. M)" required>
-                            </div>
-                            <div class="col-md-3">
-                                <input type="number" name="variants[0][stock]" class="form-control" placeholder="Stock" min="0" required>
-                            </div>
-                            <div class="col-md-3">
-                                <button type="button" class="btn btn-outline-danger w-100 remove-variant">Remove</button>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" id="add-variant" class="btn btn-outline-secondary mt-2">+ Add Variant</button>
-                </div>
+
             </div>
         </div>
 
@@ -104,36 +94,16 @@
 @endsection
 
 @push('scripts')
+
+<!-- Flatpickr JS -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-    let variantIndex = 1;
-
-    document.getElementById('add-variant').addEventListener('click', function () {
-        const container = document.getElementById('variant-container');
-
-        const newGroup = document.createElement('div');
-        newGroup.classList.add('row', 'variant-group', 'g-3', 'mb-3');
-        newGroup.innerHTML = `
-            <div class="col-md-3">
-                <input type="text" name="variants[${variantIndex}][color]" class="form-control" placeholder="Color" required>
-            </div>
-            <div class="col-md-3">
-                <input type="text" name="variants[${variantIndex}][size]" class="form-control" placeholder="Size" required>
-            </div>
-            <div class="col-md-3">
-                <input type="number" name="variants[${variantIndex}][stock]" class="form-control" placeholder="Stock" min="0" required>
-            </div>
-            <div class="col-md-3">
-                <button type="button" class="btn btn-outline-danger w-100 remove-variant">Remove</button>
-            </div>
-        `;
-        container.appendChild(newGroup);
-        variantIndex++;
-    });
-
-    document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('remove-variant')) {
-            e.target.closest('.variant-group').remove();
-        }
+    flatpickr("#timepicker", {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i", // 24-hour format
+        time_24hr: true
     });
 </script>
+
 @endpush
