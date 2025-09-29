@@ -28,64 +28,17 @@ class ProductController extends Controller
         return view('backend.product.index', $data);
      }
 
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|max:255',
-    //         'price' => 'required|numeric',
-    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif',
-    //         'description' => 'required',
-    //         'status'=>'required',
-    //         'is_popular' =>'required'
-    //     ]);
-
-    //     $imageName = null;
-    //     if ($request->hasFile('image')) {
-    //         $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
-    //         $request->file('image')->storeAs('uploads', $imageName, 'public');
-    //     }
-
-    //     // Create a new Product instance
-    //     $product = new Product;
-    //     $product->name = $request->name;
-    //     $product->category_id = $request->category_id;
-    //     $product->slug = Str::slug($request->name);
-    //     $product->price = $request->price;
-    //     $product->image = '/public/uploads/' .$imageName;
-    //     $product->description = $request->description;
-    //     $product->is_popular = $request->is_popular;
-    //     $product->status = $request->status;
-
-    //     $product->save();
-
-    //     if ($request->hasFile('images')) {
-    //         foreach ($request->file('images') as $file) {
-    //             if ($file->isValid()) {
-    //                 $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-    //                 $filePath = $file->storeAs('uploads', $filename, 'public');
-    //                 ImageGallery::create([
-    //                     'product_id' => $product->id,
-    //                     'images' => '/public/uploads/' . $filename,
-    //                 ]);
-    //             }
-    //         }
-    //     }
-
-    //     return redirect()->route('product.index')->with('success', 'Product created successfully');
-
-    // }
-
-
-
     public function store(Request $request)
-    {
+{
+    try {
         $request->validate([
             'name' => 'required|max:255',
             'price' => 'required|numeric',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'image' => 'required',
             'description' => 'required',
             'status' => 'required',
             'is_popular' => 'required',
+            'time' => 'required',
         ]);
 
         $imageName = null;
@@ -103,9 +56,10 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->is_popular = $request->is_popular;
         $product->status = $request->status;
+        $product->time = $request->time;
         $product->save();
 
-        // ✅ Save image gallery
+        // ✅ Save multiple gallery images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $file) {
                 if ($file->isValid()) {
@@ -113,17 +67,64 @@ class ProductController extends Controller
                     $file->storeAs('uploads', $filename, 'public');
                     ImageGallery::create([
                         'product_id' => $product->id,
-                        'images' => '/public/uploads/' . $filename,
+                       'images' => '/public/uploads/' . $filename,
                     ]);
                 }
             }
         }
 
-
-
-
-        return redirect()->route('product.index')->with('success', 'Product created successfully');
+        return redirect()->route('product.index')->with('success', '✅ Product created successfully!');
+    } catch (\Exception $e) {
+        dd($e);
+        return redirect()->back()->withInput()->with('error', '❌ Something went wrong: ' . $e->getMessage());
     }
+}
+
+
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => 'required|max:255',
+    //         'price' => 'required|numeric',
+    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+    //         'description' => 'required',
+    //         'status' => 'required',
+    //         'is_popular' => 'required',
+    //     ]);
+
+    //     $imageName = null;
+    //     if ($request->hasFile('image')) {
+    //         $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+    //         $request->file('image')->storeAs('uploads', $imageName, 'public');
+    //     }
+
+    //     $product = new Product;
+    //     $product->name = $request->name;
+    //     $product->category_id = $request->category_id;
+    //     $product->slug = Str::slug($request->name);
+    //     $product->price = $request->price;
+    //     $product->image = '/public/uploads/' . $imageName;
+    //     $product->description = $request->description;
+    //     $product->is_popular = $request->is_popular;
+    //     $product->status = $request->status;
+    //     $product->save();
+
+    //     // ✅ Save image gallery
+    //     if ($request->hasFile('images')) {
+    //         foreach ($request->file('images') as $file) {
+    //             if ($file->isValid()) {
+    //                 $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+    //                 $file->storeAs('uploads', $filename, 'public');
+    //                 ImageGallery::create([
+    //                     'product_id' => $product->id,
+    //                     'images' => '/public/uploads/' . $filename,
+    //                 ]);
+    //             }
+    //         }
+    //     }
+
+    //     return redirect()->route('product.index')->with('success', 'Product created successfully');
+    // }
 
 
 

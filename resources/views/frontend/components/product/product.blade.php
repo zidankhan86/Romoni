@@ -435,10 +435,10 @@
                                     title="Quick View of {{ $item->name }}">
 
                                 <div class="card-body d-flex flex-column">
-                                    <h6 class="card-subtitle mb-1 text-muted">MANICURE AND PEDICURE</h6>
+                                    <h6 class="card-subtitle mb-1 text-muted">{{ $item->category->name }}</h6>
                                     <h5 class="card-title">{{ $item->name }}</h5>
                                     <div class="d-flex justify-content-between mt-2 mb-2">
-                                        <small><i class="fas fa-clock"></i> 85 min</small>
+                                        <small><i class="fas fa-clock"></i> {{ $item->time }} min</small>
                                         <small><i class="fas fa-user"></i> 17,892 orders</small>
                                     </div>
                                     <h5 class="text-dark mb-3">৳ {{ number_format($item->price, 2) }}</h5>
