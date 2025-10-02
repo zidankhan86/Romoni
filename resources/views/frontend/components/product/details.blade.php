@@ -1,124 +1,206 @@
 @extends('frontend.layout.app')
 @push('styles')
 <style>
-    .product-image {
-            max-height: 400px;
-            object-fit: cover;
-        }
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-        .thumbnail:hover, .thumbnail.active {
-            opacity: 1;
-        }
-</style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    .thumb-img {
+        cursor: pointer;
+        border: 2px solid transparent;
+        border-radius: 6px;
+    }
 
+    .thumb-img.active {
+        border-color: #7c3aed;
+        /* purple */
+    }
+
+    .main-img {
+        border-radius: 10px;
+        object-fit: cover;
+    }
+
+    .rating-stars {
+        color: #7c3aed;
+    }
+
+    .qty-btn {
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .qty-input {
+        width: 40px;
+        text-align: center;
+        border: none;
+        font-weight: bold;
+    }
+
+    .service-card {
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+</style>
 @endpush
 @section('content')
-
-
 <div class="container mt-5">
     <div class="row">
-        <!-- Product Images -->
-        <div class="col-md-6 mb-4">
+        <div class="container py-5">
+            <div class="row g-4">
 
-            {{-- @dd(url('/public/uploads/', $product->image)) --}}
-            <img src="{{url('/public/uploads/', $product->image)}}" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage">
+                <!-- Left Side Gallery -->
+                <div class="col-md-6 d-flex">
+                    <div class="d-flex flex-column me-3">
+                        @foreach ($product->images as $image)
+                        <img src="{{ asset($image->images) }}" alt="Thumbnail"
+                            class="thumb-img mb-2 {{ $loop->first ? 'active' : '' }}" onclick="changeImage(this)">
+                        @endforeach
+                    </div>
 
+                    <div>
+                        <img src="{{ url($product->image) }}" alt="Product" class="img-fluid rounded mb-3 product-image"
+                            id="mainImage">
+                    </div>
 
-            <div class="d-flex justify-content-between">
-                @foreach ($product->images as $image)
+                </div>
 
-                {{-- @dd(asset($image->images)) --}}
-                <img src="{{asset($image->images)}}" alt="Thumbnail 1" class="thumbnail rounded active" onclick="changeImage(event, this.src)">
-                @endforeach
+                <!-- Right Side Service Info -->
+                <div class="col-md-6">
+                    <div class="service-card">
+                        <small class="text-uppercase fw-bold text-secondary">{{ $product->category->name }}</small>
+                        <h3 class="mt-1">{{ $product->name }}</h3>
+
+                        <!-- Rating -->
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="rating-stars me-2">
+                                ★★★★★
+                            </div>
+                            <span class="text-muted">1,629 Reviews</span>
+                        </div>
+
+                        <!-- Time & Orders -->
+                        <div class="d-flex gap-3 mb-3">
+                            <span class="badge bg-light text-dark">
+                                ⏱ {{ $product->time }} MIN
+                            </span>
+                            <span class="badge bg-light text-dark">
+                                👤 16,399 orders
+                            </span>
+                        </div>
+
+                        <!-- Price -->
+                        <h4 class="fw-bold mb-3">৳{{ $product->price }}</h4>
+
+                        <!-- Quantity -->
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="qty-btn" onclick="decreaseQty()">−</div>
+                            <input type="text" id="qty" class="qty-input mx-2" value="1" readonly>
+                            <div class="qty-btn" onclick="increaseQty()">+</div>
+                        </div>
+
+                        <a href="{{ route('cart.add', $product->id) }}" class="btn btn-lg w-100 text-white"
+                            style="background:#7c3aed;">
+                            ADD TO CART
+                        </a>
+
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <!-- Product Details -->
-        <div class="col-md-6">
-            <h2 class="mb-3">{{$product->name}}</h2>
-            <p class="text-muted mb-4">SKU: WH1000XM4</p>
-            <div class="mb-3">
-                <span class="h4 me-2">BDT {{$product->price}}</span>
-                <span class="text-muted"><s>BDT 399.99</s></span>
-            </div>
+    </div>
+   <div class="mb-5">
+     <!-- Bootstrap Tabs -->
+    <ul class="nav nav-tabs" id="productTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="steps-tab" data-bs-toggle="tab" data-bs-target="#steps" type="button"
+                role="tab" aria-controls="steps" aria-selected="true">Steps</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="benefits-tab" data-bs-toggle="tab" data-bs-target="#benefits" type="button"
+                role="tab" aria-controls="benefits" aria-selected="false">Benefits</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="product-tab" data-bs-toggle="tab" data-bs-target="#product" type="button"
+                role="tab" aria-controls="product" aria-selected="false">Product</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="things-tab" data-bs-toggle="tab" data-bs-target="#things" type="button"
+                role="tab" aria-controls="things" aria-selected="false">Things To Know</button>
+        </li>
+    </ul>
 
-            <p class="mb-4">
-                {{nl2br($product->description)}}
-            </p>
-            <div class="mb-4">
-                <h5>Color:</h5>
-                <div class="row g-2">
-                    @foreach($product->colors as $color)
-                        <div class="col-4 col-md-2">
-                            <input type="radio" class="btn-check" name="color" id="color_{{ $color->id }}" autocomplete="off" {{ $loop->first ? 'checked' : '' }}>
-                            <label class="btn d-flex align-items-center justify-content-center"
-                                   for="color_{{ $color->id }}"
-                                   style="background-color: {{ $color->color_code }}; height: 50px; border-radius: 5px;
-                                          border: 2px solid black; color: black; font-weight: bold; text-transform: uppercase;
-                                          transition: all 0.3s ease-in-out; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-                                {{ $color->color }}
-                            </label>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-
-
-            <div class="mb-4">
-                <label for="quantity" class="form-label">Variants Available:</label>
-                <div class="d-flex flex-column">
-                    @foreach($product->variants as $variant)
-                        @php
-                            // Assuming the color is stored as a JSON string, decode it
-                            $colorData = json_decode($variant->color);
-                        @endphp
-                        <!-- Display Variant Color and Stock -->
-                        <div class="d-flex justify-content-between align-items-center mb-2 border p-2 rounded">
-                            <div>
-                                <strong>{{ $colorData->color ?? $variant->color }}</strong>
-                            </div>
-                            <div class="text-muted">
-                                Stock: <span class="badge bg-primary">{{ $variant->stock }}</span>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-
-
-
-
-            <a class="btn btn-dark btn-sm flex-grow-1 me-2"
-            href="{{ route('cart.add', $product->id) }}">
-            <i class="bi bi-cart-check-fill"></i> Add TO CART
-        </a><br><br>
-            {{-- <button class="btn btn-outline-secondary btn-lg mb-3">
-                    <i class="bi bi-heart"></i> Add to Wishlist
-                </button> --}}
-
+    <div class="tab-content p-3 border border-top-0 rounded-bottom" id="productTabContent">
+        <div class="tab-pane fade show active" id="steps" role="tabpanel" aria-labelledby="steps-tab">
+            <ul class="list-unstyled mb-0">
+                <li class="mb-2">• Step 1: Prepare the surface</li>
+                <li class="mb-2">• Step 2: Apply the product evenly</li>
+                <li class="mb-2">• Step 3: Let it dry for 10 minutes</li>
+                <li class="mb-2">• Step 4: Finish and clean up</li>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="benefits" role="tabpanel" aria-labelledby="benefits-tab">
+            <ul class="list-unstyled mb-0">
+                <li class="mb-2">• Provides long-lasting results</li>
+                <li class="mb-2">• Easy to apply</li>
+                <li class="mb-2">• Safe for all surfaces</li>
+                <li class="mb-2">• Cost-effective solution</li>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
+            <p>This is a high-quality product designed to make your life easier. It comes with full instructions and all
+                necessary tools included.</p>
+        </div>
+        <div class="tab-pane fade" id="things" role="tabpanel" aria-labelledby="things-tab">
+            <ul class="list-unstyled mb-0">
+                <li class="mb-2">• Keep away from children</li>
+                <li class="mb-2">• Store in a cool, dry place</li>
+                <li class="mb-2">• Avoid direct sunlight</li>
+                <li class="mb-2">• Use gloves while applying</li>
+            </ul>
         </div>
     </div>
+   </div>
 </div>
-
-
-
+</div>
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    function changeImage(event, src) {
-            document.getElementById('mainImage').src = src;
-            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
-            event.target.classList.add('active');
+    function changeImage(el) {
+            document.getElementById('mainImage').src = el.src;
+            document.querySelectorAll('.thumb-img').forEach(img => img.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function increaseQty() {
+            let qty = document.getElementById('qty');
+            qty.value = parseInt(qty.value) + 1;
+        }
+
+        function decreaseQty() {
+            let qty = document.getElementById('qty');
+            if (parseInt(qty.value) > 1) {
+                qty.value = parseInt(qty.value) - 1;
+            }
+        }
+</script>
+<script>
+    function changeImage(element) {
+            // Remove active class from all thumbnails
+            document.querySelectorAll('.thumb-img').forEach(img => img.classList.remove('active'));
+
+            // Add active class to clicked thumbnail
+            element.classList.add('active');
+
+            // Change main image
+            document.getElementById('mainImage').src = element.src;
         }
 </script>
 @endpush

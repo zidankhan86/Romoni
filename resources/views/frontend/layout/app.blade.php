@@ -19,9 +19,7 @@
 
         @include('frontend.components.fixed.header')
 
-                {{-- hero --}}
 
-        @include('frontend.components.fixed.hero')
 
 
         @yield('content')

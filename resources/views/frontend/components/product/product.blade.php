@@ -436,7 +436,7 @@
 
                                 <div class="card-body d-flex flex-column">
                                     <h6 class="card-subtitle mb-1 text-muted">{{ $item->category->name }}</h6>
-                                    <h5 class="card-title">{{ $item->name }}</h5>
+                                    <h5 class="card-title"><a href="{{ route('product.details', $item->slug) }}">{{ $item->name }}</a></h5>
                                     <div class="d-flex justify-content-between mt-2 mb-2">
                                         <small><i class="fas fa-clock"></i> {{ $item->time }} min</small>
                                         <small><i class="fas fa-user"></i> 17,892 orders</small>
