@@ -15,7 +15,7 @@
 
                              </div>
                          </div>
-                         <div class="h1 mb-3">75</div>
+                         <div class="h1 mb-3">{{$total_service}}</div>
                      </div>
                  </div>
              </div>
@@ -65,7 +65,7 @@
                              </div>
                          </div>
                          <div class="d-flex align-items-baseline">
-                             <div class="h1 mb-3 me-2">2,986</div>
+                             <div class="h1 mb-3 me-2">{{$total_order}}</div>
                              <div class="me-auto">
 
                              </div>
