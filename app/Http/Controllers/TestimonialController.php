@@ -12,17 +12,16 @@ class TestimonialController extends Controller
     public function index()
     {
         $data['testimonials'] = Testimonial::get();
-       return view('backend.testiominal.index',$data);
+        return view('backend.testiominal.index', $data);
     }
 
     // Store new testimonial
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'        => 'required|string|max:255',
-            'review'      => 'required|string',
+            'name'        => 'required',
+            'review'      => 'required',
             'rating'      => 'required|integer|between:1,5',
-            'created_at'  => 'required|date',
             'image'       => 'required',
             'is_verified' => 'required|boolean',
         ]);
@@ -52,9 +51,8 @@ class TestimonialController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name'        => 'required|string|max:255',
-            'review'      => 'required|string',
+            'review'      => 'required',
             'rating'      => 'required|integer|between:1,5',
-            'created_at'  => 'required|date',
             'image'       => 'required',
             'is_verified' => 'required',
         ]);
@@ -83,7 +81,7 @@ class TestimonialController extends Controller
     }
 
 
-      public function create()
+    public function create()
     {
 
         return view('backend.testiominal.create');
@@ -99,18 +97,16 @@ class TestimonialController extends Controller
     }
 
     public function destroy($id)
-{
-    $testimonial = Testimonial::findOrFail($id);
+    {
+        $testimonial = Testimonial::findOrFail($id);
 
-    // Delete image if exists
-    if ($testimonial->image && file_exists(public_path('uploads/testimonials/'.$testimonial->image))) {
-        unlink(public_path('uploads/testimonials/'.$testimonial->image));
+        // Delete image if exists
+        if ($testimonial->image && file_exists(public_path('uploads/testimonials/' . $testimonial->image))) {
+            unlink(public_path('uploads/testimonials/' . $testimonial->image));
+        }
+
+        $testimonial->delete();
+
+        return redirect()->route('testimonial.index')->with('success', 'Testimonial deleted successfully.');
     }
-
-    $testimonial->delete();
-
-    return redirect()->route('testimonial.index')->with('success', 'Testimonial deleted successfully.');
-}
-
-
 }

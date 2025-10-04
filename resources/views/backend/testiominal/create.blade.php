@@ -17,11 +17,6 @@
                     </div>
 
                     <div class="mb-3 col-md-6">
-                        <label class="form-label">Created At</label>
-                        <input type="date" name="created_at" class="form-control">
-                    </div>
-
-                    <div class="mb-3 col-md-6">
                         <label class="form-label">Upload Image</label>
                         <input type="file" name="image" class="form-control">
                     </div>

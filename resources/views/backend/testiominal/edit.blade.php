@@ -16,12 +16,6 @@
                         <label class="form-label">Name</label>
                         <input type="text" name="name" value="{{ old('name', $testimonial->name) }}" class="form-control" placeholder="Enter name">
                     </div>
-
-                    <div class="mb-3 col-md-6">
-                        <label class="form-label">Created At</label>
-                        <input type="date" name="created_at" value="{{ old('created_at', $testimonial->created_at->format('Y-m-d')) }}" class="form-control">
-                    </div>
-
                     <div class="mb-3 col-md-6">
                         <label class="form-label">Upload Image</label>
                         <input type="file" name="image" class="form-control">
