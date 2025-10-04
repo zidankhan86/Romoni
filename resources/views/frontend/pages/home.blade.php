@@ -311,27 +311,10 @@
     </section>
 </div>
 
-<!-- Ad Banner -->
-{{-- <div class="mb-5 text-center">
-    <a href="{{ route('banner.click') }}">
-        <img src="{{ asset('image.png') }}" alt="Ad Banner" class="img-fluid rounded shadow-sm"
-            style="max-height: 300px;">
-    </a>
-</div> --}}
+
 <section class="">
     <div class="container px-4 px-lg-5">
         <h2 class="text-center fw-bold mb-4">Our Services</h2>
-        <!-- Search Bar -->
-        <div class="mb-4">
-            <form method="GET" action="{{ route('product.page') }}" class="d-flex justify-content-center">
-                <input type="text" class="form-control me-2 w-50 shadow-sm" name="query"
-                    placeholder="Search for Services..." value="{{ request('query') }}">
-                <button type="submit" class="btn btn-dark">
-                    <i class="bi-search"></i> Search
-                </button>
-            </form>
-        </div>
-
 
         <section class="hero-section">
             <div class="container">
@@ -537,60 +520,9 @@
 
 
 
-{{-- Quick View Modal --}}
-<div class="modal fade" id="productQuickViewModal" tabindex="-1" aria-labelledby="quickViewModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="quickViewModalLabel">Service Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <img id="quickViewImage" src="" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-md-6">
-                        <h4 id="quickViewName"></h4>
-                        <h5 class="text-success mb-3">BDT <span id="quickViewPrice"></span></h5>
-                        <p id="quickViewDescription"></p>
-                        <button class="btn btn-dark mt-3">
-                            <i class="fa fa-shopping-cart"></i> Add to Cart
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 
 @push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const quickViewButtons = document.querySelectorAll('.quick-view-btn');
-            const modal = new bootstrap.Modal(document.getElementById('productQuickViewModal'));
 
-            quickViewButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const name = this.dataset.name;
-                    const price = this.dataset.price;
-                    const image = this.dataset.image;
-                    const description = this.dataset.description;
-
-                    document.getElementById('quickViewName').textContent = name;
-                    document.getElementById('quickViewPrice').textContent = price;
-                    document.getElementById('quickViewImage').src = image;
-                    document.getElementById('quickViewDescription').textContent = description;
-
-                    modal.show();
-                });
-            });
-        });
-    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const carouselElement = document.getElementById('testimonialCarousel');

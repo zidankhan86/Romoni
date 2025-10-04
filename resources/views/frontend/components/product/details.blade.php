@@ -88,9 +88,7 @@
                             <span class="badge bg-light text-dark">
                                 ⏱ {{ $product->time }} MIN
                             </span>
-                            <span class="badge bg-light text-dark">
-                                👤 16,399 orders
-                            </span>
+
                         </div>
 
                         <!-- Price -->
