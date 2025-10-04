@@ -20,14 +20,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($products as $product)
+                    @forelse($products as $product)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->price }} &#2547;</td>
                             <td>
                                 <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <!-- Add Delete Button if necessary -->
                                 <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
@@ -35,7 +34,13 @@
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center text-muted py-4">
+                                No data available.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
@@ -43,6 +48,5 @@
 </div>
 
 </div>
-
 
 @endsection

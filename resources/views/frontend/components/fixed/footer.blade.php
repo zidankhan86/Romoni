@@ -1,106 +1,81 @@
-<footer class="bg-purple text-dark pt-5">
+<footer class="bg-dark text-light pt-5 pb-4">
     <div class="container">
         <div class="row">
 
-            <!-- Company Info -->
-            <div class="col-md-3 mb-4">
-                <h5 class="fw-bold">Priyoz</h5>
-                <p><i class="bi bi-telephone-fill"></i> +880 9613224433</p>
-                <p><i class="bi bi-telephone-fill"></i> +880 9638224433</p>
-                <p><i class="bi bi-envelope-fill"></i> support@</div>.com.bd</p>
-                <p><i class="bi bi-geo-alt-fill"></i> House# 1263, Road# 10, Avenue# 02, MirpurDOHS, Dhaka, Bangladesh</p>
-                <div class="d-flex gap-2 mt-2">
-                    <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-dark"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-dark"><i class="bi bi-x"></i></a>
-                    <a href="#" class="text-dark"><i class="bi bi-tiktok"></i></a>
-                    <a href="#" class="text-dark"><i class="bi bi-linkedin"></i></a>
-                    <a href="#" class="text-dark"><i class="bi bi-whatsapp"></i></a>
-                    <a href="#" class="text-dark"><i class="bi bi-youtube"></i></a>
-                </div>
-            </div>
-
-            <!-- Discover -->
-            <div class="col-md-2 mb-4">
-                <h6 class="fw-bold">DISCOVER</h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-dark text-decoration-none">About</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Blog</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Career</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Offers</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Priyoz Studio</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">FAQs</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Join as Service Provider</a></li>
-                </ul>
-            </div>
-
-            <!-- Services -->
-            <div class="col-md-3 mb-4">
-                <h6 class="fw-bold">SERVICES</h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-dark text-decoration-none">Body Care</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Hair Care</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Packages</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Makeover</a></li>
-                    <li><a href="#" class="text-pink text-decoration-none">Premium</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Hairstyle</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Hair Removal</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Henna Art</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Bridal</a></li>
-                </ul>
-            </div>
-
-            <!-- Newsletter -->
+            <!-- Brand & Contact -->
             <div class="col-md-4 mb-4">
-                <h6 class="fw-bold">STAY IN TOUCH</h6>
-                <p>Subscribe to our newsletter so we can send you offers and discounts</p>
-                <form class="d-flex mb-3">
-                    <input type="email" class="form-control me-2" placeholder="Enter your email">
-                    <button class="btn btn-dark-purple text-white" type="submit">YES! I LOVE A GOOD DEAL</button>
+                <h4 class="fw-bold text-uppercase mb-3">Priyoz</h4>
+                <ul class="list-inline small mb-3">
+                    <li class="list-inline-item me-3"><a href="#" class="footer-link">Careers</a></li>
+                    <li class="list-inline-item me-3"><a href="#" class="footer-link">Blog</a></li>
+                    <li class="list-inline-item"><a href="#" class="footer-link">Support</a></li>
+                </ul>
+                <p class="mb-0"><i class="bi bi-telephone-fill me-2"></i> Call: +880 1234 567 890</p>
+            </div>
+
+            <!-- About / Services / Company -->
+            <div class="col-md-4 mb-4">
+                <h6 class="fw-bold text-uppercase">Services</h6>
+                <ul class="list-unstyled mt-3">
+
+                    <li><a href="#" class="footer-link">Haircut</a></li>
+                    <li><a href="#" class="footer-link">Facial</a></li>
+                    <li><a href="#" class="footer-link">Makeup</a></li>
+                    <li><a href="#" class="footer-link">Nails</a></li>
+
+                </ul>
+            </div>
+
+            <!-- Stay in Touch -->
+            <div class="col-md-4 mb-4">
+                <h6 class="fw-bold text-uppercase">Stay in Touch</h6>
+                <form class="d-flex mt-3">
+                    <input type="email" class="form-control me-2" placeholder="Email address">
+                    <button type="submit" class="btn btn-purple text-white fw-semibold">Subscribe</button>
                 </form>
 
-                <!-- Payment methods -->
-                <div class="d-flex flex-wrap gap-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" width="50">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Mastercard-logo.svg" alt="MasterCard" width="50">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/Paypal_Logo.svg" alt="PayPal" width="50">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/AMEX_logo.svg" alt="Amex" width="50">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/SSL_commerz_logo.svg" alt="SSLCommerz" width="50">
-                </div>
-
-                <div class="mt-3">
-                    <span>Verified By <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/SSL_commerz_logo.svg" alt="SSLCommerz" width="80"></span>
+                <div class="d-flex gap-3 mt-4">
+                    <a href="https://facebook.com" target="_blank" class="social-icon"><i class="bi bi-facebook"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="social-icon"><i class="bi bi-youtube"></i></a>
                 </div>
             </div>
         </div>
 
-        <hr class="border-dark">
-        <div class="d-flex justify-content-between pb-3 small">
-            <span>Copyright © 2025 Priyoz. All rights reserved.</span>
-            <div>
-                <a href="#" class="text-dark text-decoration-none me-2">Privacy Policy</a>
-                <a href="#" class="text-dark text-decoration-none me-2">FAQs</a>
-                <a href="#" class="text-dark text-decoration-none me-2">Terms of Service</a>
-                <a href="#" class="text-dark text-decoration-none">Order Cancellation</a>
-            </div>
+        <hr class="border-secondary">
+        <div class="text-center small text-secondary mt-3">
+            © 2025 Priyoz. All Rights Reserved.
         </div>
     </div>
 </footer>
 
 <style>
-.bg-purple {
-    background-color: #c3a9e2;
+footer {
+    font-size: 14px;
+    line-height: 1.8;
 }
-.text-pink {
-    color: #ff69b4;
+.footer-link {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
-.btn-dark-purple {
-    background-color: #6a0dad;
-}
-.btn-dark-purple:hover {
-    background-color: #4b007d;
-}
-footer a:hover {
+.footer-link:hover {
+    color: #fff;
     text-decoration: underline;
+}
+.btn-purple {
+    background-color: #6a0dad;
+    border: none;
+}
+.btn-purple:hover {
+    background-color: #520a9c;
+}
+.social-icon {
+    color: #ccc;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+}
+.social-icon:hover {
+    color: #fff;
 }
 </style>

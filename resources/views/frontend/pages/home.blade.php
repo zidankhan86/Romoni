@@ -447,7 +447,7 @@
                                     <h5 class="card-title"><a href="{{ route('product.details', $item->slug) }}">{{ $item->name }}</a></h5>
                                     <div class="d-flex justify-content-between mt-2 mb-2">
                                         <small><i class="fas fa-clock"></i> {{ $item->time }} min</small>
-                                        <small><i class="fas fa-user"></i> 17,892 orders</small>
+
                                     </div>
                                     <h5 class="text-dark mb-3">৳ {{ number_format($item->price, 2) }}</h5>
                                     <a href="{{ route('cart.add', $item->id) }}" class="btn btn-purple mt-auto w-100">ADD TO CART</a>
@@ -467,58 +467,6 @@
         </section>
 
 
-
-        <!-- Product Grid -->
-        {{-- <div class="row gx-4 gx-lg-5 mt-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            @forelse ($products as $item)
-                <div class="col mb-5">
-                    <div class="card h-100 shadow-sm border-0">
-                        <!-- Product image-->
-                        <div class="product-image-container position-relative">
-                            <a href="{{ route('product.details', $item->slug) }}">
-                                <img class="card-img-top" src="{{ url($item->image) }}"
-                                    alt="{{ $item->name }}" />
-                            </a>
-                            <div class="position-absolute top-50 start-50 translate-middle">
-                                <button class="btn btn-dark btn-sm quick-view-btn rounded-pill px-3 shadow-sm"
-                                    data-id="{{ $item->id }}" data-name="{{ $item->name }}"
-                                    data-price="{{ number_format($item->price, 2) }}"
-                                    data-image="{{ url('/public/uploads/', $item->image) }}"
-                                    data-description="{{ $item->description }}" title="Quick View"
-                                    aria-label="Quick view of {{ $item->name }}"
-                                    style="display: inline-flex; align-items: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                    <h5 class="card-title">{{ $item->name }}</h5>
-                                </button>
-
-                            </div>
-                        </div>
-                        <!-- Product details-->
-                        <div class="card-body p-4 text-center">
-                            <!-- Product name-->
-                            <h5 class="fw-bolder text-truncate" title="{{ $item->name }}">{{ $item->name }}</h5>
-                            <!-- Product price-->
-                            <p class="text-success fs-5 mb-1">BDT {{ number_format($item->price, 2) }}</p>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="text-center">
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="d-flex justify-content-between">
-                                    <a class="btn btn-dark btn-sm flex-grow-1 me-2"
-                                        href="{{ route('cart.add', $item->id) }}">
-                                        <i class="bi bi-cart-check-fill"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @empty
-                <h3 class="text-center text-danger">No Data Found</h3>
-            @endforelse
-        </div> --}}
-
-
     </div>
 </section>
 
@@ -526,159 +474,54 @@
     <div class="container">
         <h2 class="text-center mb-5" style="color: #800080; font-weight: bold;">What Our Customers Are Saying</h2>
 
-        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner">
-                <!-- First slide with 3 cards -->
-                <div class="carousel-item active">
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <div class="card border-0 shadow-sm rounded-3 p-3" style="height: 100%;">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title mb-0">Afrin Khan</h5>
-                                    <span class="badge bg-secondary rounded-pill"><i
-                                            class="bi bi-check-circle me-1"></i>VERIFIED</span>
-                                </div>
-                                <div class="text-warning mt-1">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <small class="text-muted">13 SEP, 2024</small>
-                                <p class="mt-2">I had an excellent experience with Priyoz's full body waxing service.
-                                    The results were outstanding, and Tumpa Apu was incredibly kind and made me feel at
-                                    ease throughout the process. I will definitely return for their services. A special
-                                    thanks to Shaila Apu for recommending Priyoz to me, much appreciated!</p>
-                                <div class="mt-auto d-flex align-items-center">
-                                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User"
-                                        class="rounded-circle me-2" style="width: 40px; height: 40px;">
-                                    <small class="text-muted">Full Body Waxing(with Bikini Wax)</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card border-0 shadow-sm rounded-3 p-3" style="height: 100%;">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title mb-0">Sania Ahmed</h5>
-                                    <span class="badge bg-secondary rounded-pill"><i
-                                            class="bi bi-check-circle me-1"></i>VERIFIED</span>
-                                </div>
-                                <div class="text-warning mt-1">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <small class="text-muted">17 SEP, 2024</small>
-                                <p class="mt-2">I took full body waxing service. Tumpa did it very well. She is so
-                                    humble and well behaved also expert in her work. Thanks for this very good service.
-                                </p>
-                                <div class="mt-auto d-flex align-items-center">
-                                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="User"
-                                        class="rounded-circle me-2" style="width: 40px; height: 40px;">
-                                    <small class="text-muted">Full Body Waxing(No Bikini Wax)</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card border-0 shadow-sm rounded-3 p-3" style="height: 100%;">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title mb-0">Nisha Tushi</h5>
-                                    <span class="badge bg-secondary rounded-pill"><i
-                                            class="bi bi-check-circle me-1"></i>VERIFIED</span>
-                                </div>
-                                <div class="text-warning mt-1">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <small class="text-muted">19 SEP, 2024</small>
-                                <p class="mt-2">This is my 3rd time service that I'm taking from Priyoz. I took milk
-                                    protein facial for my ammu. Lucky apu provided the service. Apu ato shundor koreche.
-                                    Thank you Priyoz and lucky apu ❤️</p>
-                                <div class="mt-auto d-flex align-items-center">
-                                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="User"
-                                        class="rounded-circle me-2" style="width: 40px; height: 40px;">
-                                    <small class="text-muted">Milk Protein Facial</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Second slide with next 3 cards -->
-                <div class="carousel-item">
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <div class="card border-0 shadow-sm rounded-3 p-3" style="height: 100%;">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title mb-0">John Doe</h5>
-                                    <span class="badge bg-secondary rounded-pill"><i
-                                            class="bi bi-check-circle me-1"></i>VERIFIED</span>
+                @php
+                    $chunks = $testimonials->chunk(3); // 3 testimonials per slide
+                @endphp
+
+                @foreach($chunks as $key => $chunk)
+                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                        <div class="row">
+                            @foreach($chunk as $testimonial)
+                                <div class="col-md-4 mb-4">
+                                    <div class="card border-0 shadow-sm rounded-3 p-3" style="height: 100%;">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h5 class="card-title mb-0">{{ $testimonial->name }}</h5>
+                                            @if($testimonial->is_verified)
+                                                <span class="badge bg-secondary rounded-pill">
+                                                    <i class="bi bi-check-circle me-1"></i>VERIFIED
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="text-warning mt-1">
+                                            @for($i = 1; $i <= 5; $i++)
+                                                <i class="bi {{ $i <= $testimonial->rating ? 'bi-star-fill' : 'bi-star' }}"></i>
+                                            @endfor
+                                        </div>
+
+                                        <small class="text-muted">{{ \Carbon\Carbon::parse($testimonial->created_at)->format('d M, Y') }}</small>
+                                        <p class="mt-2">{{ $testimonial->review }}</p>
+
+                                        <div class="mt-auto d-flex align-items-center">
+                                            <img src="{{ $testimonial->image ? asset('uploads/testimonials/'.$testimonial->image) : 'https://via.placeholder.com/40' }}"
+                                                 alt="User" class="rounded-circle me-2" style="width: 40px; height: 40px;">
+                                            <small class="text-muted">{{ $testimonial->service ?? '' }}</small>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="text-warning mt-1">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <small class="text-muted">20 SEP, 2024</small>
-                                <p class="mt-2">Excellent service and very professional staff. Highly recommended!
-                                </p>
-                                <div class="mt-auto d-flex align-items-center">
-                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User"
-                                        class="rounded-circle me-2" style="width: 40px; height: 40px;">
-                                    <small class="text-muted">Facial Treatment</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card border-0 shadow-sm rounded-3 p-3" style="height: 100%;">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title mb-0">Jane Smith</h5>
-                                    <span class="badge bg-secondary rounded-pill"><i
-                                            class="bi bi-check-circle me-1"></i>VERIFIED</span>
-                                </div>
-                                <div class="text-warning mt-1">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <small class="text-muted">21 SEP, 2024</small>
-                                <p class="mt-2">The best beauty experience I've had. Will come back soon.</p>
-                                <div class="mt-auto d-flex align-items-center">
-                                    <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="User"
-                                        class="rounded-circle me-2" style="width: 40px; height: 40px;">
-                                    <small class="text-muted">Hair Styling</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-4">
-                            <div class="card border-0 shadow-sm rounded-3 p-3" style="height: 100%;">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title mb-0">Alice Johnson</h5>
-                                    <span class="badge bg-secondary rounded-pill"><i
-                                            class="bi bi-check-circle me-1"></i>VERIFIED</span>
-                                </div>
-                                <div class="text-warning mt-1">
-                                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                                        class="bi bi-star-fill"></i>
-                                </div>
-                                <small class="text-muted">22 SEP, 2024</small>
-                                <p class="mt-2">Amazing results and friendly service. Thank you!</p>
-                                <div class="mt-auto d-flex align-items-center">
-                                    <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="User"
-                                        class="rounded-circle me-2" style="width: 40px; height: 40px;">
-                                    <small class="text-muted">Makeover Package</small>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
-                </div>
+                @endforeach
+
             </div>
 
             <!-- Controls -->
             <div class="text-center mt-4">
-                <a href="#" class="btn btn-primary rounded-pill px-4"
-                    style="background-color: #800080; border-color: #800080;">VIEW ALL REVIEWS</a>
+
                 <button class="btn btn-outline-secondary mx-2 rounded-circle" type="button"
                     data-bs-target="#testimonialCarousel" data-bs-slide="prev">
                     <i class="bi bi-chevron-left"></i>
@@ -691,8 +534,6 @@
         </div>
     </div>
 </section>
-
-
 
 
 
@@ -747,6 +588,15 @@
 
                     modal.show();
                 });
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const carouselElement = document.getElementById('testimonialCarousel');
+            const carousel = new bootstrap.Carousel(carouselElement, {
+                interval: 5000,
+                ride: 'carousel'
             });
         });
     </script>

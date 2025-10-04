@@ -29,14 +29,25 @@
                     <div class="row g-2 border rounded p-3" style="max-height: 240px; overflow-y: auto;">
                         @php
                             $icons = [
-                                'bi-house', 'bi-person', 'bi-gear', 'bi-book', 'bi-camera',
-                                'bi-cart', 'bi-heart', 'bi-star', 'bi-bell', 'bi-envelope',
-                                'bi-cup', 'bi-music-note', 'bi-laptop', 'bi-phone', 'bi-globe',
-                                'bi-award', 'bi-calendar', 'bi-lightning', 'bi-palette', 'bi-puzzle',
-                                // New icons added
-                                'bi-tree', 'bi-shield-lock', 'bi-cloud-sun', 'bi-truck'
+                                'bi-scissors',        // Haircut / Barber
+                                'bi-brush',           // Makeup / Hair brush
+                                'bi-droplet',         // Hair or skin care
+                                'bi-paint-bucket',    // Nail polish / beauty color
+                                'bi-gem',             // Premium / Jewelry / Glam
+                                'bi-stars',           // Highlight / Shine
+                                'bi-moon-stars',      // Relax / Spa
+                                'bi-person',          // Customer / Profile
+                                'bi-hand-thumbs-up',  // Services / Approval
+                                'bi-heart',           // Favorite / Wellness
+                                'bi-emoji-smile',     // Happy clients
+                                'bi-handbag',         // Beauty products
+                                'bi-bucket',          // Hair wash / treatment
+                                'bi-calendar',        // Appointments
+                                'bi-bell',            // Notifications
+                                'bi-droplet-half',    // Skin / Moisturizer
                             ];
-                        @endphp
+                            @endphp
+
                         @foreach($icons as $icon)
                             <div class="col-2 text-center">
                                 <div class="icon-item p-2 border rounded" style="cursor: pointer;" data-icon="{{ $icon }}">

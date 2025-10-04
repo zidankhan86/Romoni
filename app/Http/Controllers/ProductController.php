@@ -81,61 +81,6 @@ class ProductController extends Controller
 }
 
 
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|max:255',
-    //         'price' => 'required|numeric',
-    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif',
-    //         'description' => 'required',
-    //         'status' => 'required',
-    //         'is_popular' => 'required',
-    //     ]);
-
-    //     $imageName = null;
-    //     if ($request->hasFile('image')) {
-    //         $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
-    //         $request->file('image')->storeAs('uploads', $imageName, 'public');
-    //     }
-
-    //     $product = new Product;
-    //     $product->name = $request->name;
-    //     $product->category_id = $request->category_id;
-    //     $product->slug = Str::slug($request->name);
-    //     $product->price = $request->price;
-    //     $product->image = '/public/uploads/' . $imageName;
-    //     $product->description = $request->description;
-    //     $product->is_popular = $request->is_popular;
-    //     $product->status = $request->status;
-    //     $product->save();
-
-    //     // ✅ Save image gallery
-    //     if ($request->hasFile('images')) {
-    //         foreach ($request->file('images') as $file) {
-    //             if ($file->isValid()) {
-    //                 $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-    //                 $file->storeAs('uploads', $filename, 'public');
-    //                 ImageGallery::create([
-    //                     'product_id' => $product->id,
-    //                     'images' => '/public/uploads/' . $filename,
-    //                 ]);
-    //             }
-    //         }
-    //     }
-
-    //     return redirect()->route('product.index')->with('success', 'Product created successfully');
-    // }
-
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -143,7 +88,6 @@ class ProductController extends Controller
     {
         $data['product'] = Product::find($id);
         $data['categories'] =Category::get();
-        $data['variants'] = ProductVariant::get();
         return view('backend.product.edit', $data);
     }
 

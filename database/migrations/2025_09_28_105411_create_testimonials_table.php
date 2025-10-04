@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('review');
+            $table->unsignedTinyInteger('rating');
+            $table->string('image')->nullable();
+            $table->boolean('is_verified')->default(0);
             $table->timestamps();
         });
     }

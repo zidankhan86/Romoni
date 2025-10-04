@@ -2,23 +2,15 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
 
-    //     $products = Product::where('status','active')->get();
-    //     $categories = Category::latest()->take(12)->get();
-    //     return view('frontend.pages.home',compact('products','categories'));
-    // }
 
     public function index(Request $request)
     {
@@ -33,13 +25,14 @@ class HomeController extends Controller
                                    ->where('status', 'active')
                                    ->get();
             } else {
-                $products = collect(); // Empty collection if invalid category
+                $products = collect();
             }
         } else {
-            $products = Product::where('status', 'active')->get(); // Show all products when no filter
+            $products = Product::where('status', 'active')->get();
         }
 
-        return view('frontend.pages.home', compact('products', 'categories'));
+        $testimonials = Testimonial::where('is_verified', true)->get();
+        return view('frontend.pages.home', compact('products', 'categories', 'testimonials'));
     }
 
 

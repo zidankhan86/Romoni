@@ -103,10 +103,10 @@ Route::post('/update/{id}', [CustomPageController::class,'update'])->name('page.
 Route::prefix('category')->name('category.')->group(function () {
     Route::get('/index', [CategoryController::class, 'index'])->name('index');
     Route::get('/create', [CategoryController::class, 'create'])->name('create');
-    Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit'); // Should be GET
-    Route::put('/update/{id}', [CategoryController::class, 'update'])->name('update'); // Use PUT/PATCH
-    Route::post('/store', [CategoryController::class, 'store'])->name('store'); // Added store route
-    Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('destroy'); // For delete
+    Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
+    Route::put('/update/{id}', [CategoryController::class, 'update'])->name('update');
+    Route::post('/store', [CategoryController::class, 'store'])->name('store');
+    Route::get('/destroy/{id}', [CategoryController::class, 'delete'])->name('destroy');
 });
 
 
@@ -127,7 +127,7 @@ Route::prefix('testimonial')->name('testimonial.')->group(function () {
     Route::get('/index', [TestimonialController::class,'index'])->name('index');
     Route::put('/update/{id}', [TestimonialController::class,'update'])->name('update');
     Route::get('/edit/{id}', [TestimonialController::class,'edit'])->name('edit');
-    Route::delete('/delete/{id}', [TestimonialController::class,'destroy'])->name('destroy');
+    Route::get('/delete/{id}', [TestimonialController::class,'destroy'])->name('destroy');
 });
 
 
