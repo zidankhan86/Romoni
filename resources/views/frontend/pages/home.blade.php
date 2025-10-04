@@ -291,30 +291,12 @@
 @endpush
 
 
-<div class="mb-5 text-center mt-5">
-    <section class="categories-section">
 
-         <h1 class="text-center fw-bold mb-4">Popular Services</h1>
-        <div class="categories-grid">
-            @forelse ($categories as $category)
-                <div class="category-card">
-                    <a href="{{ route('home', ['category' => $category->slug]) }}" class="text-decoration-none">
-                        <i class="{{ $category->icon }} fs-1 text-dark"></i>
-                        <p class="mt-2" style="color: black">{{ Str::limit($category->name, 15) }}</p>
-                    </a>
-
-                </div>
-            @empty
-                <h3 class="text-center">No Category Found</h3>
-            @endforelse
-        </div>
-    </section>
-</div>
 
 
 <section class="">
-    <div class="container px-4 px-lg-5">
-        <h2 class="text-center fw-bold mb-4">Our Services</h2>
+    <div class="container px-4 px-lg-5 mt-5">
+        {{-- <h2 class="text-center fw-bold mb-4">Our Services</h2> --}}
 
         <section class="hero-section">
             <div class="container">
@@ -404,9 +386,6 @@
                 </div>
             </div>
         </section>
-
-
-
 
 
 
