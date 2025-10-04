@@ -4,7 +4,7 @@
 
 <div class="container py-5">
     <div class="text-center mb-4">
-        <h1 class="fw-bold">🛒 Cart Product</h1>
+        <h1 class="fw-bold">🛒 Cart Services</h1>
     </div>
 
     @if (session('success'))
@@ -33,52 +33,52 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($cartContents as $item)
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        {{-- <img src="{{ asset('public/uploads/' . $item->image) }}" alt="Product" class="me-3" width="60"> --}}
-                                        <div>
-                                            <h6 class="mb-1">{{ $item->name }}</h6>
-                                            {{-- <small class="text-muted">Size: {{ $item->attributes->size }}, Color: {{ $item->attributes->color }}</small> --}}
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <form action="{{route('cart.update',$item->id)}}" method="POST">
-                                        @csrf
-                                        @method('PATCH')
-                                        <select class="form-select form-select-sm w-auto mx-auto" name="quantity" onchange="this.form.submit()">
-                                            @for ($i = 1; $i <= 10; $i++)
-                                                <option value="{{ $i }}" @if($i == $item->quantity) selected @endif>{{ $i }}</option>
-                                            @endfor
-                                        </select>
-                                    </form>
-                                </td>
-                                <td class="text-center fw-semibold">BDT {{ number_format($item->price * $item->quantity, 2) }}</td>
-                                <td class="text-center">BDT {{ number_format($item->discount, 2) }}</td>
-                                <td class="text-center">
-                                    <form action="{{ route('cart.remove', ['product' => $item->id]) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <a href="{{ route('cart.remove', $item->id) }}" class="btn btn-sm btn-outline-danger">
-                                            Remove
-                                        </a>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
+    @forelse($cartContents as $item)
+        <tr>
+            <td>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h6 class="mb-1">{{ $item->name }}</h6>
+                    </div>
+                </div>
+            </td>
+            <td class="text-center">
+                <form action="{{ route('cart.update', $item->id) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
+                    <select class="form-select form-select-sm w-auto mx-auto" name="quantity" onchange="this.form.submit()">
+                        @for ($i = 1; $i <= 10; $i++)
+                            <option value="{{ $i }}" @if($i == $item->quantity) selected @endif>{{ $i }}</option>
+                        @endfor
+                    </select>
+                </form>
+            </td>
+            <td class="text-center fw-semibold">BDT {{ number_format($item->price * $item->quantity, 2) }}</td>
+            <td class="text-center">BDT {{ number_format($item->discount, 2) }}</td>
+            <td class="text-center">
+                <form action="{{ route('cart.remove', ['product' => $item->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
+                </form>
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="5" class="text-center py-3">
+                No products in the cart.
+            </td>
+        </tr>
+    @endforelse
+</tbody>
+
                 </table>
             </div>
         </div>
     </div>
 
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <form class="d-flex gap-2" method="post">
-            <input class="form-control form-control-sm" type="text" placeholder="Coupon code" required>
-            <button class="btn btn-outline-primary btn-sm" type="submit">Apply Coupon</button>
-        </form>
+
         <h5 class="mb-0">Subtotal: <span class="fw-bold text-primary">BDT {{ number_format($totalPrice, 2) }}</span></h5>
     </div>
 

@@ -94,7 +94,7 @@ class CartController extends Controller
             $image = $item->image;
         }
 
-       return view('frontend.pages.addToCart', compact('cartContents','userId','subTotal','total','totalPrice'));
+       return view('frontend.pages.add-to-cart', compact('cartContents','userId','subTotal','total','totalPrice'));
    }
 
 
