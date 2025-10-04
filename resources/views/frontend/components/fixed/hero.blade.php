@@ -19,7 +19,7 @@
                 <div class="bg-dark py-5 d-flex align-items-center"
                     style="background-image: url('{{ asset('h1.webp') }}'); background-size: cover; background-position: center; height: 80vh;">
                     <div class="container px-4 px-lg-5 my-5 text-center text-black">
-                        <h1 class="display-4 fw-bolder">Romoni</h1>
+                        <h1 class="display-4 fw-bolder">Priyoz</h1>
                         <p class="lead fw-normal mb-4">Your Beauty, Our Passion</p>
                         <a href="#booking" class="btn btn-dark btn-lg rounded-pill px-4 shadow-sm">Book Now</a>
                     </div>

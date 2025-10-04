@@ -8,7 +8,7 @@
           <ul class="list-inline list-inline-dots mb-0">
             <li class="list-inline-item">
               
-              <a href="." class="link-secondary">Copyright © 2025 Romoni</a>.
+              <a href="." class="link-secondary">Copyright © 2025 Priyoz</a>.
               All rights reserved.
             </li>
 

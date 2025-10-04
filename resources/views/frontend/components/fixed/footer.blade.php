@@ -4,10 +4,10 @@
 
             <!-- Company Info -->
             <div class="col-md-3 mb-4">
-                <h5 class="fw-bold">Romoni</h5>
+                <h5 class="fw-bold">Priyoz</h5>
                 <p><i class="bi bi-telephone-fill"></i> +880 9613224433</p>
                 <p><i class="bi bi-telephone-fill"></i> +880 9638224433</p>
-                <p><i class="bi bi-envelope-fill"></i> support@romoni.com.bd</p>
+                <p><i class="bi bi-envelope-fill"></i> support@</div>.com.bd</p>
                 <p><i class="bi bi-geo-alt-fill"></i> House# 1263, Road# 10, Avenue# 02, MirpurDOHS, Dhaka, Bangladesh</p>
                 <div class="d-flex gap-2 mt-2">
                     <a href="#" class="text-dark"><i class="bi bi-facebook"></i></a>
@@ -28,7 +28,7 @@
                     <li><a href="#" class="text-dark text-decoration-none">Blog</a></li>
                     <li><a href="#" class="text-dark text-decoration-none">Career</a></li>
                     <li><a href="#" class="text-dark text-decoration-none">Offers</a></li>
-                    <li><a href="#" class="text-dark text-decoration-none">Romoni Studio</a></li>
+                    <li><a href="#" class="text-dark text-decoration-none">Priyoz Studio</a></li>
                     <li><a href="#" class="text-dark text-decoration-none">FAQs</a></li>
                     <li><a href="#" class="text-dark text-decoration-none">Join as Service Provider</a></li>
                 </ul>
@@ -76,7 +76,7 @@
 
         <hr class="border-dark">
         <div class="d-flex justify-content-between pb-3 small">
-            <span>Copyright © 2025 Romoni. All rights reserved.</span>
+            <span>Copyright © 2025 Priyoz. All rights reserved.</span>
             <div>
                 <a href="#" class="text-dark text-decoration-none me-2">Privacy Policy</a>
                 <a href="#" class="text-dark text-decoration-none me-2">FAQs</a>

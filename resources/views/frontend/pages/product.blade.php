@@ -490,10 +490,10 @@
                                         class="bi bi-star-fill"></i>
                                 </div>
                                 <small class="text-muted">13 SEP, 2024</small>
-                                <p class="mt-2">I had an excellent experience with Romoni's full body waxing service.
+                                <p class="mt-2">I had an excellent experience with Priyoz's full body waxing service.
                                     The results were outstanding, and Tumpa Apu was incredibly kind and made me feel at
                                     ease throughout the process. I will definitely return for their services. A special
-                                    thanks to Shaila Apu for recommending Romoni to me, much appreciated!</p>
+                                    thanks to Shaila Apu for recommending Priyoz to me, much appreciated!</p>
                                 <div class="mt-auto d-flex align-items-center">
                                     <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="User"
                                         class="rounded-circle me-2" style="width: 40px; height: 40px;">
@@ -537,9 +537,9 @@
                                         class="bi bi-star-fill"></i>
                                 </div>
                                 <small class="text-muted">19 SEP, 2024</small>
-                                <p class="mt-2">This is my 3rd time service that I'm taking from Romoni. I took milk
+                                <p class="mt-2">This is my 3rd time service that I'm taking from Priyoz. I took milk
                                     protein facial for my ammu. Lucky apu provided the service. Apu ato shundor koreche.
-                                    Thank you Romoni and lucky apu ❤️</p>
+                                    Thank you Priyoz and lucky apu ❤️</p>
                                 <div class="mt-auto d-flex align-items-center">
                                     <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="User"
                                         class="rounded-circle me-2" style="width: 40px; height: 40px;">
