@@ -12,11 +12,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomPageController;
-use App\Http\Controllers\Auth\GithubController;
-use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\frontend\BannerController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\TestimonialController;
@@ -55,13 +52,6 @@ Route::post('/store',[AuthController::class,'store'])->name('store');
 Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
 Route::post('/registration/store',[RegistrationController::class,'store'])->name('registration.store');
 Route::get('/admin/logout',[AuthController::class,'logoutUser'])->name('user.logout');
-// Google OAuth Routes
-Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
-
-Route::get('auth/github', [GithubController::class,'redirect'] )->name('github.login');
-Route::get('auth/github/callback', [GithubController::class,'callback'] );
-
 
 //Frontend
 Route::group(['middleware' => ['auth', 'customer']], function () {
@@ -83,7 +73,6 @@ Route::get('/remove-from-cart/{product}', [CartController::class, 'removeFromCar
 Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
 Route::get('/checkout', [FrontendOrderController::class, 'checkout'])->name('checkout');
 Route::post('/checkout/process', [FrontendOrderController::class, 'processOrder'])->name('checkout.process');
-Route::get('/banner/click', [BannerController::class, 'click'])->name('banner.click');
 
 });
 
@@ -133,8 +122,6 @@ Route::prefix('testimonial')->name('testimonial.')->group(function () {
 
 
 Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('orderIndex');
-
-
 
 Route::get('/logout',[TestController::class,'logout'])->name('logout');
 Route::get('/form',[TestController::class,'form'])->name('form');
