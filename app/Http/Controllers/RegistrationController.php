@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Rules\PasswordCheckRule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class RegistrationController extends Controller
@@ -21,44 +22,48 @@ class RegistrationController extends Controller
             /**
              * Store a newly created resource in storage.
              */
-            public function store(Request $request)
+           public function store(Request $request)
             {
-                //dd($request->all());
-            $validator = Validator::make($request->all(), [
-                'email' => 'required|email|unique:users',
-                'phone' => [
-                'required',
-                'regex:/^(?:\+?88|0088)?01[13-9]\d{8}$/'
-                ],
-                'name' => 'required',
-                'password' => 'required|min:5',
+                // Validate input
+                $validator = Validator::make($request->all(), [
+                    'email' => 'required|email|unique:users',
+                    'phone' => [
+                        'required',
+                        'regex:/^(?:\+?88|0088)?01[13-9]\d{8}$/'
+                    ],
+                    'name' => 'required',
+                    'password' => 'required|min:5',
                 ], [
-                'phone.regex' => 'The phone number should be a valid number.'
+                    'phone.regex' => 'The phone number should be a valid number.'
                 ]);
 
                 if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
+                    return redirect()->back()->withErrors($validator)->withInput();
                 }
-                // dd($request->all());
-                $imageName=null;
+
+                // Handle image upload
+                $imageName = null;
                 if ($request->hasFile('image')) {
-                    $imageName=date('Ymdhsis').'.'.$request->file('image')->getClientOriginalExtension();
+                    $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
                     $request->file('image')->storeAs('uploads', $imageName, 'public');
                 }
-                 User::create([
 
-                "email"    =>$request->email,
-                "phone"    =>$request->phone,
-                "name"     =>$request->name,
-                "password" =>bcrypt($request->password),
-                "role"     =>'customer',
-                "image"    =>$imageName
+                // Create user
+                $user = User::create([
+                    "email"    => $request->email,
+                    "phone"    => $request->phone,
+                    "name"     => $request->name,
+                    "password" => bcrypt($request->password),
+                    "role"     => 'customer',
+                    "image"    => $imageName
+                ]);
 
-           ]);
+                // Automatically log in the user
+                Auth::login($user);
 
-            return redirect()->route('login')->withSuccess('Registration Success');
-
+                return redirect()->route('home')->with('success', '✅ Registration successful. You are now logged in.');
             }
+
 
 
             public function update(Request $request, string $id)

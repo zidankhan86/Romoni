@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\ProductSize;
 use Illuminate\Support\Str;
 use App\Models\ImageGallery;
-use App\Models\ProductColor;
 use Illuminate\Http\Request;
-use App\Models\ProductVariant;
+
 
 class ProductController extends Controller
 {
@@ -19,66 +17,66 @@ class ProductController extends Controller
     public function create()
     {
         $data['categories'] = Category::get();
-       return view('backend.product.create',$data);
+        return view('backend.product.create', $data);
     }
-     public function index()
-     {
+    public function index()
+    {
         $data['products'] = Product::all();
 
         return view('backend.product.index', $data);
-     }
+    }
 
     public function store(Request $request)
-{
-    try {
-        $request->validate([
-            'name' => 'required|max:255',
-            'price' => 'required|numeric',
-            'image' => 'required',
-            'description' => 'required',
-            'status' => 'required',
-            'is_popular' => 'required',
-            'time' => 'required',
-        ]);
+    {
+        try {
+            $request->validate([
+                'name' => 'required|max:255',
+                'price' => 'required|numeric',
+                'image' => 'required',
+                'description' => 'required',
+                'status' => 'required',
+                'is_popular' => 'required',
+                'time' => 'required',
+            ]);
 
-        $imageName = null;
-        if ($request->hasFile('image')) {
-            $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->storeAs('uploads', $imageName, 'public');
-        }
+            $imageName = null;
+            if ($request->hasFile('image')) {
+                $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->storeAs('uploads', $imageName, 'public');
+            }
 
-        $product = new Product;
-        $product->name = $request->name;
-        $product->category_id = $request->category_id;
-        $product->slug = Str::slug($request->name);
-        $product->price = $request->price;
-        $product->image = '/public/uploads/' . $imageName;
-        $product->description = $request->description;
-        $product->is_popular = $request->is_popular;
-        $product->status = $request->status;
-        $product->time = $request->time;
-        $product->save();
+            $product = new Product;
+            $product->name = $request->name;
+            $product->category_id = $request->category_id;
+            $product->slug = Str::slug($request->name);
+            $product->price = $request->price;
+            $product->image = '/public/uploads/' . $imageName;
+            $product->description = $request->description;
+            $product->is_popular = $request->is_popular;
+            $product->status = $request->status;
+            $product->time = $request->time;
+            $product->save();
 
-        // ✅ Save multiple gallery images
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $file) {
-                if ($file->isValid()) {
-                    $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-                    $file->storeAs('uploads', $filename, 'public');
-                    ImageGallery::create([
-                        'product_id' => $product->id,
-                       'images' => '/public/uploads/' . $filename,
-                    ]);
+            // ✅ Save multiple gallery images
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $file) {
+                    if ($file->isValid()) {
+                        $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                        $file->storeAs('uploads', $filename, 'public');
+                        ImageGallery::create([
+                            'product_id' => $product->id,
+                            'images' => '/public/uploads/' . $filename,
+                        ]);
+                    }
                 }
             }
-        }
 
-        return redirect()->route('product.index')->with('success', '✅ Product created successfully!');
-    } catch (\Exception $e) {
-        dd($e);
-        return redirect()->back()->withInput()->with('error', '❌ Something went wrong: ' . $e->getMessage());
+            return redirect()->route('product.index')->with('success', '✅ Product created successfully!');
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect()->back()->withInput()->with('error', '❌ Something went wrong: ' . $e->getMessage());
+        }
     }
-}
 
 
     /**
@@ -87,59 +85,135 @@ class ProductController extends Controller
     public function edit($id)
     {
         $data['product'] = Product::find($id);
-        $data['categories'] =Category::get();
+        $data['categories'] = Category::get();
         return view('backend.product.edit', $data);
     }
+
+
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-{
-    $product = Product::find($id);
+    {
+        try {
+            $request->validate([
+                'name' => 'required|max:255',
+                'price' => 'required|numeric',
+                'image' => 'nullable|image',
+                'description' => 'required',
+                'status' => 'required',
+                'is_popular' => 'required',
+                'time' => 'required',
+            ]);
 
-    $request->validate([
-        'name' => 'required|max:255',
-        'price' => 'required|numeric',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif', // image is optional during update
-        'description' => 'required',
-    ]);
+            $product = Product::findOrFail($id);
 
-    // Handle image upload if a new image is provided
-    if ($request->hasFile('image')) {
-        // Generate a unique name for the new image
-        $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+            /* ---------------------------
+         ✅ Remove existing thumbnail if requested
+        ---------------------------- */
+            if ($request->remove_thumbnail == '1') {
+                if ($product->image && file_exists(public_path($product->image))) {
+                    unlink(public_path($product->image));
+                }
+                $product->image = null;
+            }
 
-        // Delete the old image if it exists
-        if ($product->image && \Storage::disk('public')->exists('uploads/' . $product->image)) {
-            \Storage::disk('public')->delete('uploads/' . $product->image);
+            /* ---------------------------
+         ✅ Update main image if a new one is uploaded
+        ---------------------------- */
+            if ($request->hasFile('image')) {
+                // delete old image if exists
+                if ($product->image && file_exists(public_path($product->image))) {
+                    unlink(public_path($product->image));
+                }
+
+                $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->storeAs('uploads', $imageName, 'public');
+                $product->image = '/public/uploads/' . $imageName;
+            }
+
+            /* ---------------------------
+         ✅ Remove selected gallery images
+        ---------------------------- */
+            if ($request->filled('remove_images')) {
+                $removeIds = explode(',', $request->remove_images);
+                foreach ($removeIds as $imgId) {
+                    $image = ImageGallery::where('id', $imgId)->where('product_id', $product->id)->first();
+                    if ($image) {
+                        $path = public_path($image->images);
+                        if (file_exists($path)) {
+                            unlink($path);
+                        }
+                        $image->delete();
+                    }
+                }
+            }
+
+            /* ---------------------------
+         ✅ Update basic product data
+        ---------------------------- */
+            $product->name = $request->name;
+            $product->category_id = $request->category_id;
+            $product->slug = Str::slug($request->name);
+            $product->price = $request->price;
+            $product->description = $request->description;
+            $product->is_popular = $request->is_popular;
+            $product->status = $request->status;
+            $product->time = $request->time;
+            $product->save();
+
+            /* ---------------------------
+         ✅ Add new gallery images
+        ---------------------------- */
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $file) {
+                    if ($file->isValid()) {
+                        $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                        $file->storeAs('uploads', $filename, 'public');
+                        ImageGallery::create([
+                            'product_id' => $product->id,
+                            'images' => '/public/uploads/' . $filename,
+                        ]);
+                    }
+                }
+            }
+
+            return redirect()->route('product.index')->with('success', '✅ Product updated successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->with('error', '❌ Something went wrong: ' . $e->getMessage());
         }
-
-        // Store the new image
-        $request->file('image')->storeAs('uploads', $imageName, 'public');
-
-        // Update the product's image field
-        $product->image = '/public/uploads/'.$imageName;
     }
 
-    // Update the product's other fields
-    $product->name = $request->input('name');
-    $product->price = $request->input('price');
-    $product->description = $request->input('description');
-    $product->status = $request->input('status');
-    $product->is_popular = $request->input('is_popular');
-    // Save the updated product to the database
-    $product->save();
-
-    return redirect()->route('product.index')->with('success', 'Product updated successfully');
-}
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy($id)
     {
-        //
+        try {
+            $product = Product::findOrFail($id);
+
+            // ✅ Delete main image from storage
+            if ($product->image && file_exists(public_path(str_replace('/public', '', $product->image)))) {
+                unlink(public_path(str_replace('/public', '', $product->image)));
+            }
+
+            // ✅ Delete gallery images
+            $galleries = ImageGallery::where('product_id', $product->id)->get();
+            foreach ($galleries as $gallery) {
+                if ($gallery->images && file_exists(public_path(str_replace('/public', '', $gallery->images)))) {
+                    unlink(public_path(str_replace('/public', '', $gallery->images)));
+                }
+                $gallery->delete();
+            }
+
+            // ✅ Delete the product itself
+            $product->delete();
+
+            return redirect()->route('product.index')->with('success', '🗑️ Product deleted successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', '❌ Something went wrong: ' . $e->getMessage());
+        }
     }
 }

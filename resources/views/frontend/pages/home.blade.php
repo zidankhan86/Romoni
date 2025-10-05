@@ -398,15 +398,15 @@
                         <!-- Service Card 1 -->
                         <div class="col">
                             <div class="card h-100 service-card">
-                                <img src="{{ url($item->image) }}" class="card-img-top quick-view-btn"
+                                <a href="{{ route('product.details', $item->slug) }}"><img src="{{ url($item->image) }}" class="card-img-top quick-view-btn"
                                     alt="{{ $item->name }}" style="cursor: pointer;" data-id="{{ $item->id }}"
                                     data-name="{{ $item->name }}" data-price="{{ number_format($item->price, 2) }}"
                                     data-image="{{ url($item->image) }}" data-description="{{ $item->description }}"
-                                    title="Quick View of {{ $item->name }}">
+                                    title="Quick View of {{ $item->name }}"></a>
 
                                 <div class="card-body d-flex flex-column">
                                     <h6 class="card-subtitle mb-1 text-muted">{{ $item->category->name }}</h6>
-                                    <h5 class="card-title"><a href="{{ route('product.details', $item->slug) }}">{{ $item->name }}</a></h5>
+                                    <h5 class="card-title"><a href="{{ route('product.details', $item->slug) }}" style="color: inherit; text-decoration: none;">{{ $item->name }}</a></h5>
                                     <div class="d-flex justify-content-between mt-2 mb-2">
                                         <small><i class="fas fa-clock"></i> {{ $item->time }} min</small>
 

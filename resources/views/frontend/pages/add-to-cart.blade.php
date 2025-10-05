@@ -92,9 +92,7 @@
                 <i class="bi bi-arrow-left"></i> Back to Shopping
             </a>
             <div class="d-flex gap-2">
-                <a class="btn btn-outline-info" href="#" data-toast data-toast-type="success"
-                    data-toast-position="topRight" data-toast-icon="bi-check-circle" data-toast-title="Your cart"
-                    data-toast-message="is updated successfully!">Update Cart</a>
+
                 <a class="btn btn-success" href="{{ route('checkout') }}">Checkout</a>
             </div>
         </div>

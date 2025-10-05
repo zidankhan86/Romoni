@@ -69,7 +69,7 @@ Route::post('/cancel', [FrontendOrderController::class, 'cancel'])->name('cancel
 Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
 Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 Route::patch('/cart/update/{productId}', [CartController::class, 'updateCart'])->name('cart.update');
-Route::get('/remove-from-cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::delete('/remove-from-cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
 Route::get('/checkout', [FrontendOrderController::class, 'checkout'])->name('checkout');
 Route::post('/checkout/process', [FrontendOrderController::class, 'processOrder'])->name('checkout.process');
@@ -106,7 +106,7 @@ Route::prefix('product')->name('product.')->group(function () {
     Route::get('/index', [ProductController::class,'index'])->name('index');
     Route::put('/update/{id}', [ProductController::class,'update'])->name('update');
     Route::get('/edit/{id}', [ProductController::class,'edit'])->name('edit');
-    Route::delete('/delete/{id}', [ProductController::class,'store'])->name('destroy');
+    Route::delete('/delete/{id}', [ProductController::class,'delete'])->name('destroy');
 });
 
 
