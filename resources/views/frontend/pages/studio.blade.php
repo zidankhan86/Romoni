@@ -83,12 +83,14 @@
         <div class="gallery-grid">
             @php
                 $galleryItems = [
-                    ['image' => 'https://images.unsplash.com/photo-1607083206968-13611e3c1c4d?auto=format&fit=crop&w=900&q=80', 'title' => 'Hair Styling'],
-                    ['image' => 'https://images.unsplash.com/photo-1607083206968-13611e3c1c4d?auto=format&fit=crop&w=900&q=80', 'title' => 'Manicure & Pedicure'],
-                    ['image' => 'https://images.unsplash.com/photo-1605086992391-4df62d4b1b1a?auto=format&fit=crop&w=900&q=80', 'title' => 'Professional Makeup'],
-                    ['image' => 'https://images.unsplash.com/photo-1594745564825-06d98d54a97d?auto=format&fit=crop&w=900&q=80', 'title' => 'Spa Treatments'],
-                    ['image' => 'https://images.unsplash.com/photo-1600180758890-6d28b43b4c7c?auto=format&fit=crop&w=900&q=80', 'title' => 'Facial Treatments'],
-                    ['image' => 'https://images.unsplash.com/photo-1612815154858-60aa4c7326f3?auto=format&fit=crop&w=900&q=80', 'title' => 'Nail Art'],
+                    ['image' => 'https://images.unsplash.com/photo-1752643720270-68796fe5f020?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'title' => 'Hair Styling'],
+                    ['image' => 'https://images.unsplash.com/photo-1752610877644-c83e616d9fd3?q=80&w=685&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'title' => 'Manicure & Pedicure'],
+                    ['image' => 'https://plus.unsplash.com/premium_photo-1661404164814-9d3c137097aa?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'title' => 'Professional Makeup'],
+                    ['image' => 'https://images.unsplash.com/photo-1506003094589-53954a26283f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'title' => 'Spa Treatments'],
+                    ['image' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'title' => 'Facial Treatments'],
+                    ['image' => 'https://plus.unsplash.com/premium_photo-1683133990522-4155deaacbbb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'title' => 'Nail Art'],
+                    ['image' => 'https://images.unsplash.com/photo-1506003094589-53954a26283f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'title' => 'Spa Treatments'],
+                    ['image' => 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'title' => 'Facial Treatments'],
                 ];
             @endphp
 

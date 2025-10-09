@@ -9,7 +9,9 @@
         border-color: #6a006a;
     }
 </style>
-
+@php
+    $settings = DB::table('settings')->first();
+@endphp
 <!-- Discount Bar (Top) -->
 <div class="bg-dark text-white p-2">
     <div class="d-flex align-items-center justify-content-between">
@@ -20,7 +22,7 @@
 
         <!-- Right Side: Phone + Language -->
         <div class="d-flex align-items-center gap-3">
-            <span class="fw-semibold">Call for Booking +880 9613224433</span>
+            <span class="fw-semibold">Call for Booking {{$settings->phone}}</span>
             <select class="form-select form-select-sm bg-dark text-white border-0 w-auto">
                 <option value="EN">EN</option>
 
