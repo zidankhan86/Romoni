@@ -136,7 +136,7 @@ Route::prefix('user')->name('user.')->group(function () {
 Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('orderIndex');
 
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
-Route::get('/setting',[SettingController::class,'index'])->name('setting');
+Route::get('/setting',[SettingsController::class,'index'])->name('setting');
 Route::get('/change-password',[ChangePasswordController::class,'index'])->name('change.password');
 Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password');
 

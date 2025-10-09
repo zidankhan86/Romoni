@@ -16,10 +16,9 @@ class ChangePasswordController extends Controller
         return view('backend.pages.changePassword');
     }
 
-    
+
     public function update(Request $request, string $id)
-    {
-        {
+    { {
 
             $rules = [
                 'old_password' => ['required', new PasswordCheckRule], // Check password
@@ -39,26 +38,23 @@ class ChangePasswordController extends Controller
             // Perform the validation
             $validatedData = $request->validate($rules, $messages);
 
-        $userUpdate= User::find($id);
-
-      
-        $userUpdate->update([
-
-            "password" => bcrypt($request->password),
+            $userUpdate = User::find($id);
 
 
-        ]);
-
-                        // Update password if a new one is provided
-        if ($request->filled('new_password')) {
             $userUpdate->update([
-                'password' => bcrypt($validatedData['new_password']),
+
+                "password" => bcrypt($request->password),
+
+
             ]);
-        }
+
+            // Update password if a new one is provided
+            if ($request->filled('new_password')) {
+                $userUpdate->update([
+                    'password' => bcrypt($validatedData['new_password']),
+                ]);
+            }
             return redirect()->back()->withSuccess('Profile Update Success');
         }
-
     }
-
-  
 }

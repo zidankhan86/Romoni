@@ -2,17 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
+
+     public function index()
+    {
+        $profile = User::get();
+        return view('backend.pages.setting',compact('profile'));
+    }
+
+
     public function edit(){
 
         $setting = Settings::first();
         return view('backend.settings.index',compact('setting'));
 
     }
+
 
 
     public function update(Request $request, $id)
@@ -45,7 +55,7 @@ class SettingsController extends Controller
             return redirect()->back()->with('success','Settings updated successfully!');
 
         } catch (\Exception $e) {
-dd($e);
+// dd($e);
             return redirect()->back()->with('error','Something went wrong');
         }
     }
