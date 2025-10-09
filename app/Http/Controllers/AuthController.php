@@ -38,10 +38,6 @@ class AuthController extends Controller
 
 
 
-    public function list()
-    {
-        return view('backend.pages.userList');
-    }
 
     public function logoutUser(){
         Auth::logout();

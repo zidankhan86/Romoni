@@ -18,6 +18,7 @@ use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,6 +129,11 @@ Route::prefix('settings')->name('settings.')->group(function () {
     Route::get('/edit', [SettingsController::class,'edit'])->name('edit');
 });
 
+Route::prefix('user')->name('user.')->group(function () {
+    Route::put('/update/{id}', [UserController::class,'update'])->name('update');
+    Route::get('/list', [UserController::class,'index'])->name('list');
+});
+
 
 Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('orderIndex');
 
@@ -136,7 +142,6 @@ Route::get('/form',[TestController::class,'form'])->name('form');
 Route::get('/setting',[SettingController::class,'index'])->name('setting');
 Route::get('/change-password',[ChangePasswordController::class,'index'])->name('change.password');
 Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password');
-Route::get('/user-list',[AuthController::class,'list'])->name('user.list');
 Route::get('/category-list',[CategoryController::class,'list'])->name('category.list');
 Route::get('/category-form',[CategoryController::class,'form'])->name('category.form');
 
