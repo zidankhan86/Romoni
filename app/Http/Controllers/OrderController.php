@@ -15,4 +15,10 @@ class OrderController extends Controller
 
         return view('backend.order.index',$data);
     }
+
+
+       public function invoice(){
+
+        return view('backend.order.invoice');
+    }
 }

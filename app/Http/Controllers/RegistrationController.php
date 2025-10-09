@@ -69,10 +69,7 @@ class RegistrationController extends Controller
             public function update(Request $request, string $id)
             {
 
-
-
             $userUpdate= User::find($id);
-
 
             $imageName = auth()->user()->image;
             if ($request->hasFile('image')) {
@@ -84,7 +81,7 @@ class RegistrationController extends Controller
                 "email"   =>  $request->email,
                 "phone"   =>  $request->phone,
                 "name"    =>  $request->name,
-                "role"    =>  'customer',
+                "role"    =>  'admin',
                 "image"   => $imageName,
             ]);
 
