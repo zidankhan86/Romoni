@@ -91,8 +91,8 @@
 
                 @auth
                     <!-- Show Logout as red icon for authenticated users -->
-                    <a href="{{ route('user.logout') }}" class="text-danger" title="Logout">
-                        <i class="fas fa-sign-out-alt fa-lg"></i>
+                    <a href="{{ route('user.logout') }}" class="btn btn-outline-danger rounded-pill px-3" title="Logout">
+                        <i class="fas fa-sign-out-alt fa-lg"></i> Logout
                     </a>
                 @endauth
 
