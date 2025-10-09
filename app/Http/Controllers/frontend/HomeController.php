@@ -71,12 +71,12 @@ class HomeController extends Controller
     //     return view('frontend.new_arrival.index',$data);
     // }
 
-    // public function popularProduct(){
+    public function popularProduct(){
 
-    //     $data['popularProducts'] = Product::where('status','active') ->where('is_popular', 1)->get();
+        $data['popularProducts'] = Product::where('status','active') ->where('is_popular', 1)->get();
 
-    //     return view('frontend.popular_product.index',$data);
-    // }
+        return view('frontend.pages.offer',$data);
+    }
 
     public function studioIndex(){
 

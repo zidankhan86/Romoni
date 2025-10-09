@@ -12,9 +12,6 @@
             padding: 0;
         }
 
-
-
-
         .feature-icons {
             display: flex;
             justify-content: center;

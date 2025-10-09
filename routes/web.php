@@ -16,6 +16,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\OrderController as FrontendOrderController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\TestimonialController;
 
 /*
@@ -35,7 +36,7 @@ use App\Http\Controllers\TestimonialController;
 Route::get('/',[FrontendHomeController::class,'index'])->name('home');
 Route::get('/studio',[FrontendHomeController::class,'studioIndex'])->name('studioIndex');
 // Route::get('/latest-product',[FrontendHomeController::class,'latestProduct'])->name('latestProduct');
-// Route::get('/popular-product',[FrontendHomeController::class,'popularProduct'])->name('popularProduct');
+Route::get('/popular-service',[FrontendHomeController::class,'popularProduct'])->name('popularService');
 Route::get('/about', [CustomPageController::class,'about'])->name('about.page');
 
 
@@ -121,6 +122,11 @@ Route::prefix('testimonial')->name('testimonial.')->group(function () {
     Route::get('/delete/{id}', [TestimonialController::class,'destroy'])->name('destroy');
 });
 
+
+Route::prefix('settings')->name('settings.')->group(function () {
+    Route::put('/update/{id}', [SettingsController::class,'update'])->name('update');
+    Route::get('/edit', [SettingsController::class,'edit'])->name('edit');
+});
 
 
 Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('orderIndex');

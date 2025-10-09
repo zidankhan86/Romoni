@@ -1,3 +1,7 @@
+@php
+    $settings = DB::table('settings')->first();
+@endphp
+
 <footer class="bg-dark text-light pt-5 pb-4">
     <div class="container">
         <div class="row">
@@ -44,7 +48,7 @@
 
         <hr class="border-secondary">
         <div class="text-center small text-secondary mt-3">
-            © 2025 Priyoz. All Rights Reserved.
+            {{$settings->copyright_text ?? ''}}
         </div>
     </div>
 </footer>

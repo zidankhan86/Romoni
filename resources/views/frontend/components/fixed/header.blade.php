@@ -1,10 +1,9 @@
-
-
 <style>
     .btn-purple {
         background-color: #800080;
         border-color: #800080;
     }
+
     .btn-purple:hover {
         background-color: #6a006a;
         border-color: #6a006a;
@@ -31,7 +30,8 @@
 </div>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg sticky-top" style="background-color: #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+<nav class="navbar navbar-expand-lg sticky-top"
+    style="background-color: #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
     <div class="container px-4 px-lg-5">
         <!-- Logo -->
         <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ route('home') }}">
@@ -48,11 +48,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Nav Links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a></li>
-                 <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('product.page') ? 'active' : '' }}" href="{{ route('product.page') }}">Services</a></li>
-                 <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('product.page') ? 'active' : '' }}" href="{{ route('product.page') }}">Offers</a></li>
-                 <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('product.page') ? 'active' : '' }}" href="{{ route('studioIndex') }}">Priyoz Studio</a></li>
-                <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('product.page') ? 'active' : '' }}" href="{{ route('contact') }}">Contact</a></li>
+                <li class="nav-item"><a class="nav-link fw-semibold {{ request()->routeIs('home') ? 'active' : '' }}"
+                        href="{{ route('home') }}">Home</a></li>
+                <li class="nav-item"><a
+                        class="nav-link fw-semibold {{ request()->routeIs('product.page') ? 'active' : '' }}"
+                        href="{{ route('product.page') }}">Services</a></li>
+                <li class="nav-item"><a
+                        class="nav-link fw-semibold {{ request()->routeIs('popularService') ? 'active' : '' }}"
+                        href="{{ route('popularService') }}">Offers</a></li>
+                <li class="nav-item"><a
+                        class="nav-link fw-semibold {{ request()->routeIs('studioIndex') ? 'active' : '' }}"
+                        href="{{ route('studioIndex') }}">Priyoz Studio</a></li>
+                <li class="nav-item"><a
+                        class="nav-link fw-semibold {{ request()->routeIs('contact') ? 'active' : '' }}"
+                        href="{{ route('contact') }}">Contact</a></li>
 
             </ul>
 
@@ -62,11 +71,12 @@
                 <!-- Cart -->
                 <a href="{{ route('cart.show') }}" class="text-dark position-relative me-4">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="badge bg-dark text-white position-absolute top-0 start-100 translate-middle rounded-pill px-1 py-0.5">
-                         @auth
-                        {{ Cart::session(auth()->user()->id)->getTotalQuantity() }}
+                    <span
+                        class="badge bg-dark text-white position-absolute top-0 start-100 translate-middle rounded-pill px-1 py-0.5">
+                        @auth
+                            {{ Cart::session(auth()->user()->id)->getTotalQuantity() }}
                         @else
-                        0
+                            0
                         @endauth
                     </span>
                 </a>
@@ -79,16 +89,12 @@
 
                 @auth
                     <!-- Show Logout as red icon for authenticated users -->
-                      <a href="{{ route('user.logout') }}" class="text-danger" title="Logout">
-                            <i class="fas fa-sign-out-alt fa-lg"></i>
-                        </a>
+                    <a href="{{ route('user.logout') }}" class="text-danger" title="Logout">
+                        <i class="fas fa-sign-out-alt fa-lg"></i>
+                    </a>
                 @endauth
 
             </div>
         </div>
     </div>
 </nav>
-
-
-
-
