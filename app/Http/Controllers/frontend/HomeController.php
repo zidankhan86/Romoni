@@ -64,18 +64,24 @@ class HomeController extends Controller
     }
 
 
-    public function latestProduct(){
+    // public function latestProduct(){
 
-        $data['latestProducts'] = Product::where('status','active')->latest()->take(12)->get();
+    //     $data['latestProducts'] = Product::where('status','active')->latest()->take(12)->get();
 
-        return view('frontend.new_arrival.index',$data);
-    }
+    //     return view('frontend.new_arrival.index',$data);
+    // }
 
-    public function popularProduct(){
+    // public function popularProduct(){
 
-        $data['popularProducts'] = Product::where('status','active') ->where('is_popular', 1)->get();
+    //     $data['popularProducts'] = Product::where('status','active') ->where('is_popular', 1)->get();
 
-        return view('frontend.popular_product.index',$data);
+    //     return view('frontend.popular_product.index',$data);
+    // }
+
+    public function studioIndex(){
+
+        return view('frontend.pages.studio');
+
     }
 
 }
