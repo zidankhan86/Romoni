@@ -32,6 +32,7 @@ class HomeController extends Controller
         }
 
         $testimonials = Testimonial::where('is_verified', true)->get();
+
         return view('frontend.pages.home', compact('products', 'categories', 'testimonials'));
     }
 
@@ -91,9 +92,9 @@ class HomeController extends Controller
 
     public function popularProduct(){
 
-        $data['popularProducts'] = Product::where('status','active') ->where('is_popular', 1)->get();
+        $data['products'] = Product::where('status','active')->where('is_popular', 1)->get();
 
-        return view('frontend.pages.offer',$data);
+        return view('frontend.pages.popular',$data);
     }
 
     public function studioIndex(){

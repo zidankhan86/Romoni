@@ -273,7 +273,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('popularService') ? 'active' : '' }}"
-                        href="{{ route('popularService') }}">Offers</a>
+                        href="{{ route('popularService') }}">Popular</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('studioIndex') ? 'active' : '' }}"
