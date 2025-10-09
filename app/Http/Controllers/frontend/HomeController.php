@@ -37,20 +37,38 @@ class HomeController extends Controller
 
 
 
-    public function product(Request $request)
-    {
-        $query = $request->input('query');
+ public function product(Request $request)
+{
+    $query = $request->input('query');
+    $categorySlug = $request->input('category');
 
-        if ($query) {
-            $products = Product::where('name', 'LIKE', "%{$query}%")
-                ->orWhere('description', 'LIKE', "%{$query}%")
-                ->get();
-        } else {
-            $products = Product::where('status','active')->get();
-        }
-        $categories = Category::latest()->take(10)->get();
-        return view('frontend.pages.product', compact('products', 'query','categories'));
+    // Base query
+    $productsQuery = Product::where('status', 'active')->with('category');
+
+    // Search filter
+    if ($query) {
+        $productsQuery->where(function ($q) use ($query) {
+            $q->where('name', 'LIKE', "%{$query}%")
+              ->orWhere('description', 'LIKE', "%{$query}%");
+        });
     }
+
+    // Category filter
+    if ($categorySlug) {
+        $productsQuery->whereHas('category', function ($q) use ($categorySlug) {
+            $q->where('slug', $categorySlug);
+        });
+    }
+
+    // Get filtered results
+    $products = $productsQuery->latest()->get();
+
+    // All categories for filter buttons
+    $categories = Category::where('status', 1)->orderBy('name')->get();
+
+    return view('frontend.pages.product', compact('products', 'query', 'categories', 'categorySlug'));
+}
+
 
     /**
      * Show the form for creating a new resource.
