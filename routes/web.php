@@ -41,6 +41,7 @@ Route::get('/about', [CustomPageController::class,'about'])->name('about.page');
 Route::get('/product/page',[FrontendHomeController::class,'product'])->name('product.page');
 Route::get('/product/details/{slug}',[FrontendHomeController::class,'details'])->name('product.details');
 Route::get('/contact',[ContactController::class,'index'])->name('contact');
+Route::post('/contact-store',[ContactController::class,'store'])->name('contact.store');
 Route::get('/category',[CategoryController::class,'index'])->name('category');
 
 Route::get('/products/cart', [ProductController::class,'cart'])->name('cart');

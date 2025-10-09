@@ -15,8 +15,6 @@ class HomeController extends Controller
     {
         $total_service = Product::count();
         $total_order = Order::count();
-        return view('backend.pages.dashboard',compact('total_service','total_order'));
+        return view('backend.pages.dashboard', compact('total_service', 'total_order'));
     }
-
-
 }
