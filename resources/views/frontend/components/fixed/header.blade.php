@@ -256,7 +256,7 @@
 
         <!-- Right Side: Phone + Language -->
         <div class="d-flex align-items-center gap-3">
-            <span class="fw-semibold">Call for Booking {{ $settings->phone }}</span>
+            <span class="fw-semibold">Call for Booking {{ $settings->phone ?? ''}}</span>
             <select class="form-select form-select-sm bg-dark text-white border-0 w-auto">
                 <option value="EN">EN</option>
 
