@@ -132,8 +132,14 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/list', [UserController::class,'index'])->name('list');
 });
 
+Route::prefix('contact')->name('contact.')->group(function () {
+    Route::get('/show-list', [ContactController::class,'showList'])->name('showList');
+});
+
+
 
 Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('orderIndex');
+Route::get('admin/order/invoice', [OrderController::class, 'invoice'])->name('invoice');
 
 // Profile
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');

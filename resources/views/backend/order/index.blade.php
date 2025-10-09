@@ -28,13 +28,13 @@
                             <td>{{ $order->id }}</td>
                             <td>{{ $order->name }}</td>
                             <td>{{ $order->email }}</td>
-                            <td>${{ number_format($order->total_price, 2) }}</td>
+                            <td>৳{{ number_format($order->total_price, 2) }}</td>
                             <td>
                                 <span class="badge {{ $order->status == 'completed' ? 'bg-success' : 'bg-warning' }}">
                                     {{ ucfirst($order->status) }}
                                 </span>
                             </td>
-
+                        <td><a href="{{route('invoice')}}" class="btn btn-info">Invoice</a></td>
                         </tr>
                         @endforeach
                 </tbody>

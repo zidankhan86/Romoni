@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
+
+    // Admin
+
+     public function showList()
+    {
+        $contacts = Contact::get();
+       return view('backend.contact.index',compact('contacts'));
+    }
     /**
      * Display a listing of the resource.
      */
