@@ -59,7 +59,7 @@ Route::get('/admin/logout',[AuthController::class,'logoutUser'])->name('user.log
 
 //Frontend
 Route::group(['middleware' => ['auth', 'customer']], function () {
-    Route::get('/checkout/process', [FrontendOrderController::class, 'processPaypalPayment'])->name('processPaypalPayment');
+Route::get('/checkout/process', [FrontendOrderController::class, 'processPaypalPayment'])->name('processPaypalPayment');
 Route::get('/paypal/success', [FrontendOrderController::class, 'paypalSuccess'])->name('paypal.success');
 Route::get('/paypal/cancel', [FrontendOrderController::class, 'paypalCancel'])->name('paypal.cancel');
 
@@ -137,14 +137,10 @@ Route::prefix('user')->name('user.')->group(function () {
 
 Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('orderIndex');
 
-Route::get('/logout',[TestController::class,'logout'])->name('logout');
-Route::get('/form',[TestController::class,'form'])->name('form');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::get('/setting',[SettingController::class,'index'])->name('setting');
 Route::get('/change-password',[ChangePasswordController::class,'index'])->name('change.password');
 Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password');
-Route::get('/category-list',[CategoryController::class,'list'])->name('category.list');
-Route::get('/category-form',[CategoryController::class,'form'])->name('category.form');
-
 
 //profile
 Route::get('/profile',[ProfileController::class,'index'])->name('profile');
