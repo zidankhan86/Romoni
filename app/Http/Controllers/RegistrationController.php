@@ -84,7 +84,7 @@ class RegistrationController extends Controller
                 "email"   =>  $request->email,
                 "phone"   =>  $request->phone,
                 "name"    =>  $request->name,
-                "role"    =>  'customer',
+                "role"    =>  'admin',
                 "image"   => $imageName,
             ]);
 

@@ -135,14 +135,12 @@ Route::prefix('user')->name('user.')->group(function () {
 
 Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('orderIndex');
 
+// Profile
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::get('/setting',[SettingsController::class,'index'])->name('setting');
 Route::get('/change-password',[ChangePasswordController::class,'index'])->name('change.password');
 Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password');
-
-//profile
 Route::get('/profile',[ProfileController::class,'index'])->name('profile');
-//post
 Route::post('/registration/update{id}',[RegistrationController::class,'update'])->name('registration.update');
 
 });
