@@ -1,18 +1,15 @@
 @extends('backend.layout.app')
-<!-- Flatpickr CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-
 
 @section('content')
-<br><div class="col-12">
+<br>
+<div class="col-12">
     <form class="card shadow-sm border border-secondary" method="POST" action="{{ route('product.store') }}" enctype="multipart/form-data" style="max-width: 1000px; margin: 0 auto;">
         @csrf
         <div class="card-body p-3">
             <h3 class="text-center mb-3">Create a New Service</h3>
 
             <div class="row g-3">
-                <!-- Product Name -->
+                <!-- Title -->
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">Title</label>
                     <input type="text" class="form-control" name="name" placeholder="Enter service title" required>
@@ -24,7 +21,7 @@
                     <select class="form-control" name="category_id" required>
                         <option value="" disabled selected>Select a category</option>
                         @foreach($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -36,11 +33,10 @@
                 </div>
 
                 <!-- Time -->
-            <div class="col-md-6">
-                <label class="form-label fw-semibold">Select Time</label>
-                <input type="text" id="timepicker" name="time" class="form-control" placeholder="Select time" required>
-            </div>
-
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Time</label>
+                    <input type="text" name="time" class="form-control" placeholder="Enter time" required>
+                </div>
 
                 <!-- Thumbnail -->
                 <div class="col-md-6">
@@ -56,10 +52,16 @@
                     <small class="text-muted">You can upload multiple images.</small>
                 </div>
 
-                <!-- Description -->
+                <!-- Short Description -->
                 <div class="col-md-12">
-                    <label class="form-label fw-semibold"> Description</label>
-                    <textarea name="description" rows="3" class="form-control" placeholder="Write a short description..." required></textarea>
+                    <label class="form-label fw-semibold">Short Description</label>
+                    <textarea name="short_description" rows="3" class="form-control text-editor" placeholder="Write a short summary..." required></textarea>
+                </div>
+
+                <!-- Full Description -->
+                <div class="col-md-12">
+                    <label class="form-label fw-semibold">Full Description</label>
+                    <textarea name="description" rows="5" class="form-control text-editor" placeholder="Write a detailed description..." required></textarea>
                 </div>
 
                 <!-- Status -->
@@ -74,15 +76,13 @@
 
                 <!-- Is Popular -->
                 <div class="col-md-6">
-                    <label class="form-label fw-semibold">Popular ?</label>
+                    <label class="form-label fw-semibold">Popular?</label>
                     <select name="is_popular" class="form-control" required>
                         <option value="" disabled selected>Select option</option>
                         <option value="1">Yes</option>
                         <option value="0">No</option>
                     </select>
                 </div>
-
-
             </div>
         </div>
 
@@ -94,16 +94,5 @@
 @endsection
 
 @push('scripts')
-
-<!-- Flatpickr JS -->
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-    flatpickr("#timepicker", {
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "H:i", // 24-hour format
-        time_24hr: true
-    });
-</script>
 
 @endpush

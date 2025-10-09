@@ -110,7 +110,50 @@ class CartController extends Controller
    }
 
 
+    // public function updateTime(Request $request, $productId)
+    // {
+    //     $userId = auth()->user()->id;
 
+    //     // Validate time format (HH:MM)
+    //     $request->validate([
+    //         'time' => ['required', 'date_format:H:i'],
+    //     ]);
+
+    //     // Get the current item from the cart
+    //     $cartItem = \Cart::session($userId)->get($productId);
+
+    //     if (!$cartItem) {
+    //         return back()->with('error', 'Item not found in your cart.');
+    //     }
+
+    //     // Update only the time in the item attributes
+    //     $attributes = $cartItem->attributes->toArray();
+    //     $attributes['time'] = $request->time;
+
+    //     \Cart::session($userId)->update($productId, [
+    //         'attributes' => $attributes,
+    //     ]);
+
+    //     return back()->with('success', 'Service time updated successfully!');
+    // }
+
+    public function updateTime(Request $request, $productId)
+{
+    $userId = auth()->user()->id;
+
+    $request->validate([
+        'time' => 'required|string',
+    ]);
+
+    // Update the cart item's 'time' attribute
+    \Cart::session($userId)->update($productId, [
+        'attributes' => [
+            'time' => $request->time,
+        ],
+    ]);
+
+    return back()->with('success', 'Time updated successfully!');
+}
 
 
 }

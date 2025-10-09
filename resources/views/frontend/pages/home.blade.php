@@ -8,7 +8,7 @@
     @push('styles')
         <style>
             /* Complete redesign with modern, elegant aesthetic */
-            
+
             :root {
                 --color-cream: #F5F1E8;
                 --color-rose: #D4A5A5;
@@ -544,7 +544,7 @@
 
                     <!-- View All Button -->
                     <div class="text-center mt-5">
-                        <a href="#" class="btn btn-outline-purple">View All Services</a>
+                        <a href="{{route('product.page')}}" class="btn btn-outline-purple">View All Services</a>
                     </div>
                 </div>
             </section>

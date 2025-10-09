@@ -238,7 +238,7 @@
 
             <!-- View All Button -->
             <div class="text-center mt-5">
-                <a href="#" class="btn btn-outline-purple">View All Services</a>
+                <a href="{{route('product.page')}}" class="btn btn-outline-purple">View All Services</a>
             </div>
         </div>
     </section>

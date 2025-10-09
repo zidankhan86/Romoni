@@ -1,6 +1,9 @@
 @php
+    use App\Models\Category;
     $settings = DB::table('settings')->first();
+    $footerCategories = Category::where('status', 1)->latest()->take(4)->get();
 @endphp
+
 <style>
     footer {
         font-size: 14px;
@@ -162,9 +165,9 @@
             <div class="col-md-4 mb-4">
                 <h4 class="footer-brand mb-3">Priyoz</h4>
                 <div class="footer-quick-links mb-3">
-                    <a href="#" class="footer-link">Careers</a>
-                    <a href="#" class="footer-link">Blog</a>
-                    <a href="#" class="footer-link">Support</a>
+                    <a href="{{route('contact')}}" class="footer-link">Contact Us</a>
+                    <a href="{{route('studioIndex')}}" class="footer-link">Studio</a>
+                    <a href="{{route('home')}}" class="footer-link">Home</a>
                 </div>
                 <p class="footer-phone mb-0">
                     <i class="bi bi-telephone-fill"></i>
@@ -176,10 +179,14 @@
             <div class="col-md-4 mb-4">
                 <h6 class="footer-heading">Services</h6>
                 <ul class="footer-service-list mt-3">
-                    <li><a href="#" class="footer-link">Haircut</a></li>
-                    <li><a href="#" class="footer-link">Facial</a></li>
-                    <li><a href="#" class="footer-link">Makeup</a></li>
-                    <li><a href="#" class="footer-link">Nails</a></li>
+
+                    @foreach ($footerCategories as $cat)
+                        <li>
+                            <a href="{{ route('product.page', ['category' => $cat->slug]) }}" class="footer-link">
+                                {{ $cat->name }}
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
 

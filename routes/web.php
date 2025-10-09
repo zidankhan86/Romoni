@@ -73,6 +73,7 @@ Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
 Route::patch('/cart/update/{productId}', [CartController::class, 'updateCart'])->name('cart.update');
 Route::delete('/remove-from-cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
+Route::patch('/time-update/{productId}', [CartController::class, 'updateTime'])->name('cart.updateTime');
 Route::get('/checkout', [FrontendOrderController::class, 'checkout'])->name('checkout');
 Route::post('/checkout/process', [FrontendOrderController::class, 'processOrder'])->name('checkout.process');
 

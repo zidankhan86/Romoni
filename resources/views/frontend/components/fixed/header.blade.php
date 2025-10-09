@@ -222,6 +222,25 @@
         }
     }
 </style>
+<style>
+    /* Updated subscribe button to match new design system */
+    .btn-customs {
+        background: white; /* Normal background */
+        border: 3px solid #FFC0CB; /* Pink border */
+        color: black;
+        font-weight: 500;
+        padding: 0.625rem 1.5rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(45, 95, 79, 0.2);
+    }
+
+    .btn-customs:hover {
+        background: linear-gradient(135deg, #2D5F4F 0%, #1F4538 100%); /* Gradient background on hover */
+        border: 3px solid #FFC0CB; /* Keep the pink border on hover */
+        color: white;
+}
+</style>
 
 @php
     $settings = DB::table('settings')->first();
@@ -232,7 +251,7 @@
     <div class="d-flex align-items-center justify-content-between">
         <!-- Running Title -->
         <marquee behavior="scroll" direction="left" scrollamount="5" class="me-3">
-            Up to 20% discounts on Facial! Limited slots left in your area today
+            {{$settings->top_var_text ?? ''}}
         </marquee>
 
         <!-- Right Side: Phone + Language -->
@@ -301,11 +320,11 @@
 
 
                 @guest
-                    <a href="{{ route('login') }}" class="btn btn-outline-dark-custom btn-auth">Sign In</a>
+                    <a href="{{ route('login') }}" class="btn btn-customs">Sign In</a>
                 @endguest
 
                 @auth
-                    <a href="{{ route('user.logout') }}" class="btn btn-outline-danger-custom btn-auth" title="Logout">
+                    <a href="{{ route('user.logout') }}" class="btn btn-customs" title="Logout">
                         <i class="fas fa-sign-out-alt me-1"></i> Logout
                     </a>
                 @endauth
