@@ -448,7 +448,7 @@
                         <!-- Body Care (First - Large) -->
                         <div class="col-12">
                             <div class="service-card position-relative">
-                                <img src="https://images.pexels.com/photos/6620920/pexels-photo-6620920.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=159&w=826"
+                                <img src="{{url('img/h.jpg')}}"
                                     alt="Body Care" class="img-fluid first-service">
                                 <h5 class="card-title-overlay">Body Care</h5>
                             </div>
@@ -457,7 +457,7 @@
                         <!-- Other Services (Smaller) -->
                         <div class="col-6 col-md-6 col-lg-6">
                             <div class="service-card position-relative">
-                                <img src="https://images.pexels.com/photos/4150799/pexels-photo-4150799.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=136&w=398"
+                                <img src="https://media.istockphoto.com/id/2172149939/photo/young-asian-woman-applying-makeup-and-giving-techniques-to-audience-while-live-streaming.jpg?s=1024x1024&w=is&k=20&c=tiLRietCRNi0LXoK541oeUab82TJBy7XgFhth0kzkFk="
                                     alt="Makeover" class="img-fluid other-service">
                                 <h5 class="card-title-overlay">Makeover</h5>
                             </div>
