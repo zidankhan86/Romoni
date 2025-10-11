@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Stuff;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -21,4 +22,27 @@ class OrderController extends Controller
 
         return view('backend.order.invoice');
     }
+
+    public function assignStaffForm($id)
+{
+    $order = Order::findOrFail($id);
+    $staffs = Stuff::where('status', '1')->get();
+
+    return view('backend.order.assign', compact('order', 'staffs'));
+}
+
+public function assignStaff(Request $request, $id)
+{
+    $request->validate([
+        'staff_id' => 'required|exists:stuffs,id',
+    ]);
+
+    $order = Order::findOrFail($id);
+    $order->staff_id = $request->staff_id;
+    $order->save();
+
+    return redirect()->route('orderIndex')->with('success', 'Staff assigned successfully!');
+}
+
+
 }

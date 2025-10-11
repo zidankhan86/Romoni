@@ -305,8 +305,8 @@
                                             <a href="{{ route('product.details', $item->slug) }}">{{ $item->name }}</a>
                                         </h5>
                                         <div class="d-flex justify-content-between mt-2 mb-2">
-                                            <small><i class="fas fa-clock"></i> {{ $item->time }} min</small>
-                                            <small><i class="fas fa-user"></i> 17,892 orders</small>
+                                            <small><i class="fas fa-clock"></i> {{ $item->time }} </small>
+                                            {{-- <small><i class="fas fa-user"></i> 17,892 orders</small> --}}
                                         </div>
                                         <h5 class="text-dark mb-3">৳ {{ number_format($item->price, 2) }}</h5>
                                         <a href="{{ route('cart.add', $item->id) }}" class="btn btn-purple mt-auto w-100">

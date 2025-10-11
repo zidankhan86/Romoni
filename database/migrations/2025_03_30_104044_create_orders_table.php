@@ -25,6 +25,7 @@ return new class extends Migration
             $table->enum('payment_method', ['cod', 'stripe', 'paypal','sslcommerze']);
             $table->decimal('total_price', 10, 2);
             $table->string('status')->default('pending');
+              $table->foreignId('staff_id')->nullable();
             $table->timestamps();
         });
     }
