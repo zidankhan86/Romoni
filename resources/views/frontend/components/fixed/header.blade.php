@@ -306,6 +306,12 @@
 
 
             <div class="d-flex align-items-center gap-3">
+                    @auth
+               <a href="{{route('userProfile')}}" class="cart-icon position-relative">
+                    <small> <i class="fas fa-user fa-lg"></i></small>
+
+                 </a>
+                    @endauth
 
                 <a href="{{ route('cart.show') }}" class="cart-icon position-relative">
                     <i class="fas fa-shopping-cart"></i>

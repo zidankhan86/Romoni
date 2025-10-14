@@ -16,6 +16,7 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\OrderController as FrontendOrderController;
+use App\Http\Controllers\Frontend\ProfileController as FrontendProfileController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\StuffController;
 use App\Http\Controllers\TestimonialController;
@@ -77,6 +78,8 @@ Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clea
 Route::patch('/time-update/{productId}', [CartController::class, 'updateTime'])->name('cart.updateTime');
 Route::get('/checkout', [FrontendOrderController::class, 'checkout'])->name('checkout');
 Route::post('/checkout/process', [FrontendOrderController::class, 'processOrder'])->name('checkout.process');
+
+Route::get('/user-profile', [FrontendProfileController::class, 'profile'])->name('userProfile');
 
 });
 

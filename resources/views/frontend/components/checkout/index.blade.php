@@ -130,23 +130,6 @@
                     <!-- Payment Method -->
                     <h5 class="mb-3">Payment Method</h5>
                     <div class="mb-3">
-                        <!-- PayPal -->
-                        <div class="payment-option d-flex align-items-center mb-2">
-                            <input class="form-check-input" type="radio" name="payment_method" id="paypal" value="paypal" checked style="display: none;">
-                            <label class="payment-label d-flex align-items-center w-100 p-3 border rounded" for="paypal">
-                                <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal" class="me-2" style="height:30px;">
-                                <span class="payment-text">Pay with PayPal</span>
-                            </label>
-                        </div>
-
-                        <!-- Stripe -->
-                        <div class="payment-option d-flex align-items-center mb-2">
-                            <input class="form-check-input" type="radio" name="payment_method" id="stripe" value="stripe" style="display: none;">
-                            <label class="payment-label d-flex align-items-center w-100 p-3 border rounded" for="stripe">
-                                <img src="https://stripe.com/img/v3/home/twitter.png" alt="Stripe" class="me-2" style="height:30px;">
-                                <span class="payment-text">Pay with Stripe</span>
-                            </label>
-                        </div>
 
                         <!-- SSLCommerz -->
                         <div class="payment-option d-flex align-items-center mb-2">
