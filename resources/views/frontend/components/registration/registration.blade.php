@@ -46,21 +46,21 @@
                 <div class="card-body">
                     <h2 class="card-title text-center mb-4">Create a new account</h2>
                     <div class="mb-3">
-                        <label class="form-label">Name</label>
+                        <label class="form-label">Name <strong class="text-danger">*</strong></label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Enter name">
                         @error('name')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Email address</label>
+                        <label class="form-label">Email address <strong class="text-danger">*</strong></label>
                         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter email">
                         @error('email')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Phone</label>
+                        <label class="form-label">Phone <strong class="text-danger">*</strong></label>
                         <input type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Enter Phone">
                         @error('phone')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -74,7 +74,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Password</label>
+                        <label class="form-label">Password <strong class="text-danger">*</strong></label>
                         <div class="input-group input-group-flat">
                             <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" autocomplete="off">
                             <span class="input-group-text">
@@ -95,8 +95,8 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-check">
-                            <input type="checkbox" class="form-check-input @error('agree_terms') is-invalid @enderror" name="agree_terms"/>
-                            <span class="form-check-label">Agree to the <a href="{{ url('/terms-of-service') }}" tabindex="-1">terms and policy</a>.</span>
+                            <input type="checkbox" class="form-check-input @error('agree_terms') is-invalid @enderror" name="agree_terms" required/>
+                            <span class="form-check-label">Agree to the <a href="{{ route('termsCondition') }}" tabindex="-1">terms and policy</a>.</span>
                         </label>
                         @error('agree_terms')
                             <div class="invalid-feedback">You must agree to the terms and conditions</div>
