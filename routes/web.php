@@ -17,6 +17,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\StuffController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\UserController;
 
@@ -102,6 +103,16 @@ Route::prefix('category')->name('category.')->group(function () {
 });
 
 
+Route::prefix('staff')->name('staff.')->group(function () {
+    Route::get('/index', [StuffController::class, 'index'])->name('index');
+    Route::get('/create', [StuffController::class, 'create'])->name('create');
+    Route::get('/edit/{id}', [StuffController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [StuffController::class, 'update'])->name('update');
+    Route::post('/store', [StuffController::class, 'store'])->name('store');
+    Route::delete('/destroy/{id}', [StuffController::class, 'destroy'])->name('destroy');
+});
+
+
 //Product
 Route::prefix('product')->name('product.')->group(function () {
     Route::get('/create', [ProductController::class,'create'])->name('create');
@@ -141,6 +152,8 @@ Route::prefix('contact')->name('contact.')->group(function () {
 
 Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('orderIndex');
 Route::get('admin/order/invoice', [OrderController::class, 'invoice'])->name('invoice');
+Route::get('/orders/{id}/assign', [OrderController::class, 'assignStaffForm'])->name('orders.assign.form');
+Route::post('/orders/{id}/assign', [OrderController::class, 'assignStaff'])->name('orders.assign');
 
 // Profile
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');

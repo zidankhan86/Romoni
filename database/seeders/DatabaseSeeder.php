@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
 
         // Call the CustomPageSeeder
         $this->call(CustomPageSeeder::class);
+        $this->call(SettingsTableSeeder::class);
     }
 }

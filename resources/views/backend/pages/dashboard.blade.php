@@ -91,51 +91,52 @@
                              <div class="subheader">Service Information</div>
                          </div>
 
-                         <!-- Table to display product details -->
-                         <div class="table-responsive mt-3">
-                             <table class="table table-bordered table-striped">
-                                 <thead>
-                                     <tr>
-                                         <th>#</th>
-                                         <th>Name</th>
-                                         <th>Price(৳)</th>
-                                         <th>Time</th>
-                                         <th>Status</th>
-                                         <th>Actions</th>
-                                     </tr>
-                                 </thead>
-                                 <tbody>
-                                     @foreach ($products as $product)
-                                         <tr>
-                                             <td>{{ $loop->iteration }}</td>
-                                             <td>{{ $product->name }}</td>
-                                             <td>৳{{ $product->price }}</td>
-                                             <td>{{$product->time}}</td>
-                                             <td>
-                                                <span class="badge {{ $product->status == 'active' ? 'bg-success' : 'bg-danger' }}">
-                                                    {{ $product->status == 'active' ? 'Active' : 'Inactive' }}
-                                                </span>
-                                            </td>
+                       <!-- Table to display product details -->
+<div class="table-responsive mt-3">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Price(৳)</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($products as $product)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $product->name }}</td>
+                    <td>৳{{ $product->price }}</td>
+                    <td>{{ $product->time }}</td>
+                    <td>
+                        <span class="badge {{ $product->status == 'active' ? 'bg-success' : 'bg-danger' }}">
+                            {{ $product->status == 'active' ? 'Active' : 'Inactive' }}
+                        </span>
+                    </td>
+                    <td>
+                        <!-- Edit Button -->
+                        <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
-                                             <td>
-                                                 <!-- Edit Button -->
-                                                 <a href="{{ route('product.edit', $product->id) }}"
-                                                     class="btn btn-warning btn-sm">Edit</a>
+                        <!-- Delete Button -->
+                        <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6" class="text-center text-muted">No data available</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
 
-                                                 <!-- Delete Button -->
-                                                 <form action="{{ route('product.destroy', $product->id) }}"
-                                                     method="POST" style="display:inline;">
-                                                     @csrf
-                                                     @method('DELETE')
-                                                     <button type="submit"
-                                                         class="btn btn-danger btn-sm">Delete</button>
-                                                 </form>
-                                             </td>
-                                         </tr>
-                                     @endforeach
-                                 </tbody>
-                             </table>
-                         </div>
 
                      </div>
                  </div>
