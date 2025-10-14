@@ -13,7 +13,7 @@
         }
 
         .thumb-img.active {
-            border-color: #7c3aed;
+            border-color: #2D5F4F;
             transform: scale(1.05);
         }
 
@@ -78,7 +78,8 @@
         }
 
         .rating-stars {
-            color: #7c3aed;
+            color: #2D5F4F;
+            
         }
 
         .qty-btn {
@@ -162,7 +163,7 @@
                             <h4 class="fw-bold mb-3">৳{{ $product->price }}</h4>
 
                             <a href="{{ route('cart.add', $product->id) }}" class="btn btn-lg w-100 text-white"
-                                style="background:#7c3aed;">
+                                style="background:#2D5F4F;">
                                 ADD TO CART
                             </a>
 
