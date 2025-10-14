@@ -27,10 +27,6 @@ class CustomPageController extends Controller
     // Validate the incoming request data
     $validatedData = $request->validate([
         'title' => 'required|string|max:255',
-        'slug' => 'nullable|string|max:255',
-        'meta_title' => 'required|string|max:255',
-        'meta_description' => 'required|string|max:255',
-        'meta_keywords' => 'required|string|max:255',
         'status' => 'required|boolean',
         'body' => 'required',
     ]);
@@ -40,11 +36,8 @@ class CustomPageController extends Controller
 
     // Assign each field explicitly
     $item->title = $validatedData['title'];
-    $item->meta_title = $validatedData['meta_title'];
-    $item->meta_description = $validatedData['meta_description'];
-    $item->meta_keywords = $validatedData['meta_keywords'];
-    $item->status = $validatedData['status'];
     $item->body = $validatedData['body'];
+    $item->status = $validatedData['status'];
 
     // Save the updated record
     $item->save();

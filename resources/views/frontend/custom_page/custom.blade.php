@@ -10,10 +10,13 @@
 @section('content')
 <section class="py-5 bg-light">
     <div class="container">
+
         <div class="card border-0 shadow-sm rounded-4 p-4">
+            <h1 class="text-center mb-4">{{$page->title}}</h1>
             <div class="page-content">
-                {!! $page->body !!}
+                {!! nl2br(e($page->body)) !!}
             </div>
+
         </div>
     </div>
 </section>
