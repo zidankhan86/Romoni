@@ -113,7 +113,7 @@
 
         if (modalElement) {
             const modal = new bootstrap.Modal(modalElement);
-            
+
             quickViewButtons.forEach(button => {
                 button.addEventListener('click', function () {
                     document.getElementById('quickViewName').textContent = this.dataset.name;

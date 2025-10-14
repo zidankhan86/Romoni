@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CustomPage;
 
 class HomeController extends Controller
 {
@@ -83,12 +84,12 @@ class HomeController extends Controller
     }
 
 
-    // public function latestProduct(){
+  public function termsCondition()
+{
+    $data['page'] = \App\Models\CustomPage::where('slug', 'terms-policy')->firstOrFail();
+    return view('frontend.custom_page.custom', $data);
+}
 
-    //     $data['latestProducts'] = Product::where('status','active')->latest()->take(12)->get();
-
-    //     return view('frontend.new_arrival.index',$data);
-    // }
 
     public function popularProduct(){
 
