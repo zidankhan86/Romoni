@@ -37,7 +37,7 @@ use App\Http\Controllers\UserController;
 //Pages
 Route::get('/',[FrontendHomeController::class,'index'])->name('home');
 Route::get('/studio',[FrontendHomeController::class,'studioIndex'])->name('studioIndex');
-// Route::get('/latest-product',[FrontendHomeController::class,'latestProduct'])->name('latestProduct');
+Route::get('/terms-condition',[FrontendHomeController::class,'termsCondition'])->name('termsCondition');
 Route::get('/popular-service',[FrontendHomeController::class,'popularProduct'])->name('popularService');
 Route::get('/about', [CustomPageController::class,'about'])->name('about.page');
 Route::get('/contact',[ContactController::class,'index'])->name('contact');
