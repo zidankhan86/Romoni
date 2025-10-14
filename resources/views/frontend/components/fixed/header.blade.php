@@ -324,9 +324,21 @@
                 @endguest
 
                 @auth
-                    <a href="{{ route('user.logout') }}" class="btn btn-customs" title="Logout">
-                        <i class="fas fa-sign-out-alt me-1"></i> Logout
-                    </a>
+                <a href="{{ route('user.logout') }}" class="btn btn-customs" title="Logout"
+                onclick="return confirmLogout(event)">
+                <i class="fas fa-sign-out-alt me-1"></i> Logout
+                </a>
+
+                <script>
+                function confirmLogout(event) {
+                    event.preventDefault(); // Prevent the default link action
+                    let confirmed = confirm('Are you sure you want to logout?');
+                    if (confirmed) {
+                        window.location.href = "{{ route('user.logout') }}";
+                    }
+                    return false; // Stop default link behavior
+                }
+                </script>
                 @endauth
             </div>
         </div>
