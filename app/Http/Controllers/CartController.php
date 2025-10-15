@@ -112,23 +112,78 @@ class CartController extends Controller
 
 
 
-    public function updateTime(Request $request, $productId)
+ public function updateTime(Request $request, $productId)
 {
     $userId = auth()->user()->id;
 
+    // Validate the time slot
     $request->validate([
-        'time' => 'required|string',
+        'time' => 'required|in:' . implode(',', array_map(fn($h) => sprintf('%02d:00', $h), range(10, 17))),
     ]);
 
-    // Update the cart item's 'time' attribute
+    // Check if the cart item exists
+    $cartItem = \Cart::session($userId)->get($productId);
+    if (!$cartItem) {
+        return redirect()->back()->with('error', 'Cart item not found.');
+    }
+
+    // Update the cart item's attributes, preserving existing ones
     \Cart::session($userId)->update($productId, [
-        'attributes' => [
+        'attributes' => array_merge($cartItem->attributes->toArray(), [
             'time' => $request->time,
+        ]),
+    ]);
+
+    return redirect()->back()->with('success', 'Time updated to ' . \Carbon\Carbon::createFromFormat('H:i', $request->time)->format('g A') . ' successfully.');
+}
+
+public function updateDate(Request $request, $id)
+{
+    $userId = auth()->user()->id;
+
+    // Validate the request
+    $request->validate([
+        'date' => [
+            'required',
+            'date',
+            function ($attribute, $value, $fail) {
+                $today = \Carbon\Carbon::today();
+
+                // Parse the date from d-m-Y format
+                try {
+                    $selectedDate = \Carbon\Carbon::createFromFormat('d-m-Y', $value);
+                } catch (\Exception $e) {
+                    $fail('Invalid date format.');
+                    return;
+                }
+
+                // Check if date is in the past
+                if ($selectedDate->lt($today)) {
+                    $fail('The selected date cannot be in the past.');
+                }
+
+                // Check if date is more than 31 days from today
+                if ($selectedDate->gt($today->copy()->addDays(31))) {
+                    $fail('The selected date cannot be more than 31 days from today.');
+                }
+            },
         ],
     ]);
 
-    return back()->with('success', 'Time updated successfully!');
-}
+    // Check if the cart item exists
+    $cartItem = \Cart::session($userId)->get($id);
+    if (!$cartItem) {
+        return redirect()->back()->with('error', 'Cart item not found.');
+    }
 
+    // Update the cart item's attributes, preserving existing ones
+    \Cart::session($userId)->update($id, [
+        'attributes' => array_merge($cartItem->attributes->toArray(), [
+            'date' => \Carbon\Carbon::createFromFormat('d-m-Y', $request->date)->format('Y-m-d'), // Store in Y-m-d format
+        ]),
+    ]);
+
+    return redirect()->back()->with('success', 'Date updated to ' . $request->date . ' successfully.');
+}
 
 }
