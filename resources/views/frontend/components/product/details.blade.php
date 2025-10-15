@@ -200,17 +200,57 @@
                 </div>
                 <div class="tab-pane fade" id="benefits" role="tabpanel" aria-labelledby="benefits-tab">
                     <ul class="list-unstyled mb-0">
-                        <li class="mb-2">• Provides long-lasting results</li>
-                        <li class="mb-2">• Easy to apply</li>
-                        <li class="mb-2">• Safe for all surfaces</li>
-                        <li class="mb-2">• Cost-effective solution</li>
+                        {{$product->short_description}}
                     </ul>
                 </div>
-                <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
+                {{-- <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
                     <p>This is a high-quality product designed to make your life easier. It comes with full instructions and
                         all
                         necessary tools included.</p>
+                </div> --}}
+
+                <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
+
+                    <h6>Reviews</h6>
+                    @forelse($product->reviews as $review)
+                        <div class="mb-2 border-bottom pb-2">
+                            <strong>{{ $review->user->name }}</strong>
+                            <span class="text-warning">
+                                @for($i=1; $i<=5; $i++)
+                                    <i class="fa fa-star{{ $i <= $review->rating ? '' : '-o' }}"></i>
+                                @endfor
+                            </span>
+                            <p>{{ $review->comment }}</p>
+                            <small class="text-muted">{{ $review->created_at->diffForHumans() }}</small>
+                        </div>
+                    @empty
+                        <p>No reviews yet.</p>
+                    @endforelse
+
+                    @auth
+                    <form action="{{ route('product.review', $product->id) }}" method="POST" class="mt-3">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating</label>
+                            <select name="rating" id="rating" class="form-select">
+                                <option value="">Select Rating</option>
+                                @for($i=1; $i<=5; $i++)
+                                    <option value="{{ $i }}">{{ $i }} Star{{ $i>1 ? 's' : '' }}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comment</label>
+                            <textarea name="comment" id="comment" class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
+                    @else
+                        <p class="mt-3"><a href="{{ route('login') }}">Login</a> to leave a review.</p>
+                    @endauth
+
                 </div>
+
 
             </div>
         </div>

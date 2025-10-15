@@ -79,13 +79,18 @@
                         <input type="hidden" name="remove_images" id="remove-images-input" value="">
                     </div>
 
-
+                <!-- Short Description -->
+                <div class="col-md-12">
+                    <label class="form-label fw-semibold">Short Description</label>
+                    <textarea name="short_description" rows="3" {{ old('short_description', $product->short_description) }} class="form-control text-editor" placeholder="Write a short summary..." required></textarea>
+                </div>
 
                     <!-- Description -->
                     <div class="col-md-12">
                         <label class="form-label fw-semibold">Product Description</label>
                         <textarea name="description" rows="3" class="form-control" placeholder="Write a short description..." required>{{ old('description', $product->description) }}</textarea>
                     </div>
+
 
                     <!-- Status -->
                     <div class="col-md-6">

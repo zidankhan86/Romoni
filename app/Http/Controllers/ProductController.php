@@ -30,13 +30,14 @@ class ProductController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|max:255',
-                'price' => 'required|numeric',
-                'image' => 'required',
-                'description' => 'required',
-                'status' => 'required',
-                'is_popular' => 'required',
-                'time' => 'required',
+                'name'          => 'required|max:255',
+                'price'         => 'required|numeric',
+                'image'         => 'required',
+                'description'   => 'required',
+                'status'        => 'required',
+                'is_popular'    => 'required',
+                'time'          => 'required',
+                'short_description' =>'nullable'
             ]);
 
             $imageName = null;
@@ -46,15 +47,16 @@ class ProductController extends Controller
             }
 
             $product = new Product;
-            $product->name = $request->name;
-            $product->category_id = $request->category_id;
-            $product->slug = Str::slug($request->name);
-            $product->price = $request->price;
-            $product->image = '/public/uploads/' . $imageName;
-            $product->description = $request->description;
-            $product->is_popular = $request->is_popular;
-            $product->status = $request->status;
-            $product->time = $request->time;
+            $product->name              = $request->name;
+            $product->category_id       = $request->category_id;
+            $product->slug              = Str::slug($request->name);
+            $product->price             = $request->price;
+            $product->image             = '/public/uploads/' . $imageName;
+            $product->description       = $request->description;
+            $product->is_popular        = $request->is_popular;
+            $product->status            = $request->status;
+            $product->time              = $request->time;
+            $product->short_description = $request->short_description;
             $product->save();
 
             // ✅ Save multiple gallery images
@@ -106,6 +108,7 @@ class ProductController extends Controller
                 'status' => 'required',
                 'is_popular' => 'required',
                 'time' => 'required',
+                'short_description' =>'nullable'
             ]);
 
             $product = Product::findOrFail($id);
@@ -162,6 +165,7 @@ class ProductController extends Controller
             $product->is_popular = $request->is_popular;
             $product->status = $request->status;
             $product->time = $request->time;
+            $product->short_description = $request->short_description;
             $product->save();
 
             /* ---------------------------

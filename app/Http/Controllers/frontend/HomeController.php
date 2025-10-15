@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\Models\Review;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\CustomPage;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\CustomPage;
 
 class HomeController extends Controller
 {
@@ -103,5 +104,23 @@ class HomeController extends Controller
         return view('frontend.pages.studio');
 
     }
+
+    public function storeReview(Request $request, $productId)
+{
+    $request->validate([
+        'rating' => 'required|integer|min:1|max:5',
+        'comment' => 'required|string|max:1000',
+    ]);
+
+    Review::create([
+        'product_id' => $productId,
+        'user_id' => auth()->id(),
+        'rating' => $request->rating,
+        'comment' => $request->comment,
+    ]);
+
+    return redirect()->back()->with('success', 'Review submitted successfully!');
+}
+
 
 }

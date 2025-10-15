@@ -50,7 +50,7 @@ Route::get('/products/cart', [ProductController::class,'cart'])->name('cart');
 
 Route::get('/category',[CategoryController::class,'index'])->name('category');
 
-//Auth//Register
+//Register
 Route::get('/login',[AuthController::class,'index'])->name('login');
 Route::post('/store',[AuthController::class,'store'])->name('store');
 Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
@@ -83,6 +83,7 @@ Route::post('/checkout/process', [FrontendOrderController::class, 'processOrder'
 Route::get('/user-profile', [FrontendProfileController::class, 'profile'])->name('userProfile');
 Route::put('/user-profile-update/{id}', [FrontendProfileController::class, 'update'])->name('profile.update');
 Route::get('/user-order', [FrontendProfileController::class, 'myOrders'])->name('user.order');
+Route::middleware('auth')->post('/products/{id}/review', [FrontendHomeController::class, 'storeReview'])->name('product.review');
 
 });
 
