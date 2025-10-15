@@ -75,7 +75,7 @@
                             <th class="text-center">Subtotal</th>
                             <th class="text-center">Date & Time</th>
                             <th class="text-center">
-                                <form action="{{ route('cart.clear') }}">
+                                <form action="{{ route('cart.clear') }}" onsubmit="return confirm('Are you sure you want to clear the cart?');">
                                     <button class="btn btn-sm btn-outline-danger" type="submit">Clear Cart</button>
                                 </form>
                             </th>
@@ -115,13 +115,12 @@
                                         <form action="{{ route('cart.updateDate', $item->id) }}" method="POST">
                                             @csrf
                                             @method('PATCH')
-                                           <input type="text" class="form-control form-control-sm flatpickr-input"
-       name="date"
-       value="{{ $item->attributes->date ? \Carbon\Carbon::parse($item->attributes->date)->format('d-m-Y') : now()->addDays(1)->format('d-m-Y') }}"
-       readonly="readonly">
+                                            <input type="text" class="form-control form-control-sm flatpickr-input"
+                                                name="date"
+                                                value="{{ $item->attributes->date ? \Carbon\Carbon::parse($item->attributes->date)->format('d-m-Y') : now()->addDays(1)->format('d-m-Y') }}"
+                                                readonly="readonly">
                                         </form>
                                         <!-- Time Slot -->
-                                        <!-- Time Slot (unchanged) -->
                                         <form action="{{ route('cart.updateTime', $item->id) }}" method="POST">
                                             @csrf
                                             @method('PATCH')
@@ -142,7 +141,7 @@
                                 </td>
                                 <!-- Remove Button -->
                                 <td class="text-center">
-                                    <form action="{{ route('cart.remove', ['product' => $item->id]) }}" method="POST">
+                                    <form action="{{ route('cart.remove', ['product' => $item->id]) }}" method="POST" onsubmit="return confirm('Are you sure you want to remove this item?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-outline-danger">Remove</button>
