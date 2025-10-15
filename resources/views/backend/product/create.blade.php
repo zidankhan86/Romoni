@@ -54,7 +54,7 @@
 
                 <!-- Short Description -->
                 <div class="col-md-12">
-                    <label class="form-label fw-semibold">Short Description</label>
+                    <label class="form-label fw-semibold">Benifits</label>
                     <textarea name="short_description" rows="3" class="form-control text-editor" placeholder="Write a short summary..." required></textarea>
                 </div>
 

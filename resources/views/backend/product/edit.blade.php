@@ -81,8 +81,9 @@
 
                 <!-- Short Description -->
                 <div class="col-md-12">
-                    <label class="form-label fw-semibold">Short Description</label>
-                    <textarea name="short_description" rows="3" {{ old('short_description', $product->short_description) }} class="form-control text-editor" placeholder="Write a short summary..." required></textarea>
+                    <label class="form-label fw-semibold">Benifits</label>
+                    <textarea name="short_description" rows="3" class="form-control text-editor" placeholder="Write a short summary..." required>{{ old('short_description', $product->short_description) }}</textarea>
+
                 </div>
 
                     <!-- Description -->
