@@ -223,7 +223,7 @@
                                         href="{{ route('product.details', $item->slug) }}">{{ $item->name }}</a></h5>
                                 <div class="d-flex justify-content-between mt-2 mb-2">
                                     <small style="color: var(--color-gray);"><i class="fas fa-clock"></i>
-                                        {{ $item->time }} min</small>
+                                        {{ $item->time }} mins</small>
                                 </div>
                                 <h5 class="text-dark">৳ {{ number_format($item->price, 2) }}</h5>
                                 <a href="{{ route('cart.add', $item->id) }}" class="btn btn-purple mt-auto w-100">Add to

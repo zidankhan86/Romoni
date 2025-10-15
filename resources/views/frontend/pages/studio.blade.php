@@ -150,44 +150,35 @@
                     $galleryItems = [
                         [
                             'image' =>
-                                'https://images.unsplash.com/photo-1752643720270-68796fe5f020?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                            'title' => 'Hair Styling',
+                                'https://shorturl.at/DRW1j',
+                            'title' => 'Makeover',
                         ],
                         [
                             'image' =>
-                                'https://images.unsplash.com/photo-1752610877644-c83e616d9fd3?q=80&w=685&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                            'title' => 'Manicure & Pedicure',
+                                'https://shorturl.at/CxT86',
+                            'title' => 'Henna Art',
                         ],
                         [
                             'image' =>
-                                'https://plus.unsplash.com/premium_photo-1661404164814-9d3c137097aa?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                            'title' => 'Professional Makeup',
+                                'https://shorturl.at/UC2Zt',
+                            'title' => 'Hair Care',
                         ],
                         [
                             'image' =>
-                                'https://images.unsplash.com/photo-1506003094589-53954a26283f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                            'title' => 'Spa Treatments',
+                                'https://rb.gy/bpxlr5',
+                            'title' => 'Bridal',
                         ],
                         [
                             'image' =>
-                                'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                            'title' => 'Facial Treatments',
+                                'https://shorturl.at/dC3N0',
+                            'title' => 'Body Care',
                         ],
                         [
                             'image' =>
-                                'https://plus.unsplash.com/premium_photo-1683133990522-4155deaacbbb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                            'title' => 'Nail Art',
+                            'https://shorturl.at/aDdQc',
+                            'title' => 'Hairstyles for Men',
                         ],
-                        [
-                            'image' =>
-                                'https://images.unsplash.com/photo-1506003094589-53954a26283f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                            'title' => 'Spa Treatments',
-                        ],
-                        [
-                            'image' =>
-                                'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                            'title' => 'Facial Treatments',
-                        ],
+                       
                     ];
                 @endphp
 
