@@ -79,7 +79,10 @@ Route::patch('/time-update/{productId}', [CartController::class, 'updateTime'])-
 Route::get('/checkout', [FrontendOrderController::class, 'checkout'])->name('checkout');
 Route::post('/checkout/process', [FrontendOrderController::class, 'processOrder'])->name('checkout.process');
 
+// USER PROFILE
 Route::get('/user-profile', [FrontendProfileController::class, 'profile'])->name('userProfile');
+Route::put('/user-profile-update/{id}', [FrontendProfileController::class, 'update'])->name('profile.update');
+Route::get('/user-order', [FrontendProfileController::class, 'myOrders'])->name('user.order');
 
 });
 
