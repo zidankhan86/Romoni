@@ -74,6 +74,7 @@ Route::patch('/cart/update/{productId}', [CartController::class, 'updateCart'])-
 Route::delete('/remove-from-cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
 Route::patch('/time-update/{productId}', [CartController::class, 'updateTime'])->name('cart.updateTime');
+Route::patch('cart/update-date/{id}', [CartController::class, 'updateDate'])->name('cart.updateDate');
 Route::get('/checkout', [FrontendOrderController::class, 'checkout'])->name('checkout');
 Route::post('/checkout/process', [FrontendOrderController::class, 'processOrder'])->name('checkout.process');
 
