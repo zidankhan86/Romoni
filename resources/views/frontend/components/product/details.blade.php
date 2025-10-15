@@ -144,27 +144,27 @@
                         <h3 class="mt-1">{{ $product->name }}</h3>
 
                         @php
-    $reviewCount = $product->reviews->count();
-    $averageRating = round($product->reviews->avg('rating'), 1);
-@endphp
+                            $reviewCount = $product->reviews->count();
+                            $averageRating = round($product->reviews->avg('rating'), 1);
+                        @endphp
 
-<!-- Rating -->
-<div class="d-flex align-items-center mb-2">
-    <div class="rating-stars me-2" style="font-size: 18px; color: #ffc107;">
-        @for ($i = 1; $i <= 5; $i++)
-            @if ($i <= floor($averageRating))
-                ★
-            @elseif ($averageRating - $i >= -0.5 && $averageRating - $i < 0)
-                ☆
-            @else
-                ☆
-            @endif
-        @endfor
-    </div>
-    <span class="text-muted">
-        {{ $reviewCount }} {{ Str::plural('Review', $reviewCount) }}
-    </span>
-</div>
+                        <!-- Rating -->
+                        <div class="d-flex align-items-center mb-2">
+                            <div class="rating-stars me-2" style="font-size: 18px; color: #ffc107;">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    @if ($i <= floor($averageRating))
+                                        ★
+                                    @elseif ($averageRating - $i >= -0.5 && $averageRating - $i < 0)
+                                        ☆
+                                    @else
+                                        ☆
+                                    @endif
+                                @endfor
+                            </div>
+                            <span class="text-muted">
+                                {{ $reviewCount }} {{ Str::plural('Review', $reviewCount) }}
+                            </span>
+                        </div>
 
                         <!-- Time & Orders -->
                         <div class="d-flex gap-3 mb-3">
