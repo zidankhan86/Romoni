@@ -79,7 +79,7 @@
 
         .rating-stars {
             color: #2D5F4F;
-            
+
         }
 
         .qty-btn {
@@ -179,7 +179,7 @@
             <ul class="nav nav-tabs" id="productTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="steps-tab" data-bs-toggle="tab" data-bs-target="#steps"
-                        type="button" role="tab" aria-controls="steps" aria-selected="true">Steps</button>
+                        type="button" role="tab" aria-controls="steps" aria-selected="true">Description</button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="benefits-tab" data-bs-toggle="tab" data-bs-target="#benefits"
@@ -187,21 +187,15 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="product-tab" data-bs-toggle="tab" data-bs-target="#product" type="button"
-                        role="tab" aria-controls="product" aria-selected="false">Product</button>
+                        role="tab" aria-controls="product" aria-selected="false">Review</button>
                 </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="things-tab" data-bs-toggle="tab" data-bs-target="#things" type="button"
-                        role="tab" aria-controls="things" aria-selected="false">Things To Know</button>
-                </li>
+
             </ul>
 
             <div class="tab-content p-3 border border-top-0 rounded-bottom" id="productTabContent">
                 <div class="tab-pane fade show active" id="steps" role="tabpanel" aria-labelledby="steps-tab">
                     <ul class="list-unstyled mb-0">
-                        <li class="mb-2">• Step 1: Prepare the surface</li>
-                        <li class="mb-2">• Step 2: Apply the product evenly</li>
-                        <li class="mb-2">• Step 3: Let it dry for 10 minutes</li>
-                        <li class="mb-2">• Step 4: Finish and clean up</li>
+                       {{$product->description}}
                     </ul>
                 </div>
                 <div class="tab-pane fade" id="benefits" role="tabpanel" aria-labelledby="benefits-tab">
@@ -217,14 +211,7 @@
                         all
                         necessary tools included.</p>
                 </div>
-                <div class="tab-pane fade" id="things" role="tabpanel" aria-labelledby="things-tab">
-                    <ul class="list-unstyled mb-0">
-                        <li class="mb-2">• Keep away from children</li>
-                        <li class="mb-2">• Store in a cool, dry place</li>
-                        <li class="mb-2">• Avoid direct sunlight</li>
-                        <li class="mb-2">• Use gloves while applying</li>
-                    </ul>
-                </div>
+
             </div>
         </div>
     </div>
