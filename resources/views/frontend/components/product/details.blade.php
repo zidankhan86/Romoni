@@ -247,22 +247,28 @@
                 @endphp
 
                 @if($hasPurchased && !$hasReviewed)
-                <form action="{{ route('product.review', $product->id) }}" method="POST" class="mt-3">
+               <form action="{{ route('product.review', $product->id) }}" method="POST" class="mt-3">
                     @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+
                     <div class="mb-3">
                         <label for="rating" class="form-label">Rating</label>
-                        <select name="rating" id="rating" class="form-select">
+                        <select name="rating" id="rating" class="form-select" required>
                             <option value="">Select Rating</option>
-                            @for($i=1; $i<=5; $i++) <option value="{{ $i }}">{{ $i }} Star{{ $i>1 ? 's' : '' }}</option>
-                                @endfor
+                            @for($i = 1; $i <= 5; $i++)
+                                <option value="{{ $i }}">{{ $i }} Star{{ $i > 1 ? 's' : '' }}</option>
+                            @endfor
                         </select>
                     </div>
+
                     <div class="mb-3">
                         <label for="comment" class="form-label">Comment</label>
-                        <textarea name="comment" id="comment" class="form-control" rows="3"></textarea>
+                        <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
                     </div>
+
                     <button type="submit" class="btn btn-primary">Submit Review</button>
                 </form>
+
                 @elseif(!$hasPurchased)
                 <p class="mt-3 text-muted">You must purchase this product before leaving a review.</p>
                 @else
