@@ -18,10 +18,13 @@ class OrderController extends Controller
     }
 
 
-       public function invoice(){
+    public function invoice($orderId)
+{
+    $order = Order::with('items')->findOrFail($orderId);
 
-        return view('backend.order.invoice');
-    }
+    return view('backend.order.invoice', compact('order'));
+}
+
 
     public function assignStaffForm($id)
 {

@@ -1,27 +1,26 @@
-
- @extends('backend.layout.app')
+@extends('backend.layout.app')
 @section('content')
 
 <div class="container mt-5">
 
-    <h2 style="text-align: center">Booking</h2>
+    <h2 style="text-align: center">Orders</h2>
 
     <div class="col-12 mt-5">
-    <div class="card">
-        <div class="table-responsive">
-            <table class="table table-vcenter table-mobile-md card-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Order ID</th>
-                        <th>Customer Name</th>
-                        <th>Email</th>
-                        <th>Total Price</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-vcenter table-mobile-md card-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>Email</th>
+                            <th>Total Price</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     @forelse($orders as $key => $order)
                         <tr>
                             <td>{{ $key + 1 }}</td>
@@ -35,10 +34,17 @@
                                 </span>
                             </td>
                             <td>
-                                 <a href="{{ route('orders.assign.form', $order->id) }}" class="btn btn-secondary btn-sm">
-        Assign Staff
-    </a>
-                                <a href="{{ route('invoice') }}" class="btn btn-info btn-sm">Invoice</a>
+                                {{-- List products --}}
+                                <ul class="mb-1">
+                                    @foreach($order->items as $item)
+                                        <li>{{ $item->product_name }} ({{ $item->quantity }})</li>
+                                    @endforeach
+                                </ul>
+
+                                <a href="{{ route('orders.assign.form', $order->id) }}" class="btn btn-secondary btn-sm">
+                                    Assign Staff
+                                </a>
+                                <a href="{{ route('invoice',$item->id) }}" class="btn btn-info btn-sm">Invoice</a>
                             </td>
                         </tr>
                     @empty
@@ -49,10 +55,11 @@
                         </tr>
                     @endforelse
                 </tbody>
-            </table>
+
+                </table>
+            </div>
         </div>
     </div>
-</div>
 
 </div>
 

@@ -155,7 +155,7 @@ Route::prefix('contact')->name('contact.')->group(function () {
 });
 
 Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('orderIndex');
-Route::get('admin/order/invoice', [OrderController::class, 'invoice'])->name('invoice');
+Route::get('admin/order/invoice/{orderId}', [OrderController::class, 'invoice'])->name('invoice');
 Route::get('/orders/{id}/assign', [OrderController::class, 'assignStaffForm'])->name('orders.assign.form');
 Route::post('/orders/{id}/assign', [OrderController::class, 'assignStaff'])->name('orders.assign');
 
