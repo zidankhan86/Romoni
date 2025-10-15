@@ -291,11 +291,8 @@
                         @forelse ($products as $item)
                             <div class="col">
                                 <div class="card h-100 service-card">
-                                    <img src="{{ url($item->image) }}" class="card-img-top quick-view-btn"
-                                        alt="{{ $item->name }}" style="cursor: pointer;" data-id="{{ $item->id }}"
-                                        data-name="{{ $item->name }}" data-price="{{ number_format($item->price, 2) }}"
-                                        data-image="{{ url($item->image) }}" data-description="{{ $item->description }}"
-                                        title="Quick View of {{ $item->name }}">
+                                   <a href="{{ route('product.details', $item->slug) }}"> <img src="{{ url($item->image) }}" class="card-img-top quick-view-btn" ></a>
+
 
                                     <div class="card-body d-flex flex-column">
                                         <h6 class="card-subtitle mb-1">
