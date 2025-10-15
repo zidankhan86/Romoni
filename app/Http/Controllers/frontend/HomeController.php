@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\Models\Order;
 use App\Models\Review;
 use App\Models\Product;
 use App\Models\Category;
@@ -105,22 +106,46 @@ class HomeController extends Controller
 
     }
 
-    public function storeReview(Request $request, $productId)
-{
-    $request->validate([
-        'rating' => 'required|integer|min:1|max:5',
-        'comment' => 'required|string|max:1000',
-    ]);
+   public function store(Request $request, Product $product)
+    {
+        $user = auth()->user();
 
-    Review::create([
-        'product_id' => $productId,
-        'user_id' => auth()->id(),
-        'rating' => $request->rating,
-        'comment' => $request->comment,
-    ]);
+        // 🔹 Validation
+        $request->validate([
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'required|string|max:1000',
+        ]);
 
-    return redirect()->back()->with('success', 'Review submitted successfully!');
-}
+        // 🔹 Check if user purchased the product
+        $hasPurchased = Order::where('user_id', $user->id)
+            ->whereHas('items', function ($query) use ($product) { // ✅ changed to 'items'
+                $query->where('product_id', $product->id);
+            })
+            ->exists();
+
+        if (!$hasPurchased) {
+            return back()->with('error', 'You can only review products you have purchased.');
+        }
+
+        // 🔹 Check if already reviewed
+        $alreadyReviewed = Review::where('user_id', $user->id)
+            ->where('product_id', $product->id)
+            ->exists();
+
+        if ($alreadyReviewed) {
+            return back()->with('error', 'You have already reviewed this product.');
+        }
+
+        // 🔹 Create review
+        Review::create([
+            'user_id' => $user->id,
+            'product_id' => $product->id,
+            'rating' => $request->rating,
+            'comment' => $request->comment,
+        ]);
+
+        return back()->with('success', 'Thank you for your review!');
+    }
 
 
 }
