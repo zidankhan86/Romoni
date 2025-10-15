@@ -22,7 +22,7 @@
                         <li class="nav-item mb-2">
                             <a href="{{ route('userProfile') }}"
                                 class="nav-link {{ request()->routeIs('userProfile') ? 'active text-primary fw-semibold' : 'text-secondary' }}">
-                                <i class="fa fa-shopping-bag me-2"></i> Profile
+                                <i class="fa fa-user me-2"></i> Profile
                             </a>
                         </li>
 
