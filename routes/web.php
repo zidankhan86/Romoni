@@ -48,8 +48,6 @@ Route::get('/product/page',[FrontendHomeController::class,'product'])->name('pro
 Route::get('/product/details/{slug}',[FrontendHomeController::class,'details'])->name('product.details');
 Route::get('/products/cart', [ProductController::class,'cart'])->name('cart');
 
-Route::get('/category',[CategoryController::class,'index'])->name('category');
-
 //Register
 Route::get('/login',[AuthController::class,'index'])->name('login');
 Route::post('/store',[AuthController::class,'store'])->name('store');
@@ -99,7 +97,7 @@ Route::post('/update/{id}', [CustomPageController::class,'update'])->name('page.
 });
 
 
-
+// CATEGORY
 Route::prefix('category')->name('category.')->group(function () {
     Route::get('/index', [CategoryController::class, 'index'])->name('index');
     Route::get('/create', [CategoryController::class, 'create'])->name('create');
@@ -109,7 +107,7 @@ Route::prefix('category')->name('category.')->group(function () {
     Route::get('/destroy/{id}', [CategoryController::class, 'delete'])->name('destroy');
 });
 
-
+// Stuff
 Route::prefix('staff')->name('staff.')->group(function () {
     Route::get('/index', [StuffController::class, 'index'])->name('index');
     Route::get('/create', [StuffController::class, 'create'])->name('create');
@@ -120,7 +118,7 @@ Route::prefix('staff')->name('staff.')->group(function () {
 });
 
 
-//Product
+//Products
 Route::prefix('product')->name('product.')->group(function () {
     Route::get('/create', [ProductController::class,'create'])->name('create');
     Route::post('/store', [ProductController::class,'store'])->name('store');
@@ -130,7 +128,7 @@ Route::prefix('product')->name('product.')->group(function () {
     Route::delete('/delete/{id}', [ProductController::class,'delete'])->name('destroy');
 });
 
-
+// Testimonials
 Route::prefix('testimonial')->name('testimonial.')->group(function () {
     Route::get('/create', [TestimonialController::class,'create'])->name('create');
     Route::post('/store', [TestimonialController::class,'store'])->name('store');
@@ -140,12 +138,13 @@ Route::prefix('testimonial')->name('testimonial.')->group(function () {
     Route::get('/delete/{id}', [TestimonialController::class,'destroy'])->name('destroy');
 });
 
-
+// Settings
 Route::prefix('settings')->name('settings.')->group(function () {
     Route::put('/update/{id}', [SettingsController::class,'update'])->name('update');
     Route::get('/edit', [SettingsController::class,'edit'])->name('edit');
 });
 
+// Settings Profile
 Route::prefix('user')->name('user.')->group(function () {
     Route::put('/update/{id}', [UserController::class,'update'])->name('update');
     Route::get('/list', [UserController::class,'index'])->name('list');
@@ -154,8 +153,6 @@ Route::prefix('user')->name('user.')->group(function () {
 Route::prefix('contact')->name('contact.')->group(function () {
     Route::get('/show-list', [ContactController::class,'showList'])->name('showList');
 });
-
-
 
 Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('orderIndex');
 Route::get('admin/order/invoice', [OrderController::class, 'invoice'])->name('invoice');

@@ -14,6 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         $data['categories'] = Category::get();
+
         return view('backend.category.index', $data);
     }
 
@@ -32,6 +33,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255|unique:categories,name',
             'status' => 'required|boolean',
+            'icon' => 'required'
         ]);
 
         $category = new Category();
@@ -55,6 +57,7 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|string|max:255|unique:categories,name,' . $id,
             'status' => 'required|boolean',
+            'icon' => 'required'
         ]);
 
         $category = Category::findOrFail($id);
@@ -68,14 +71,12 @@ class CategoryController extends Controller
     }
 
 
-    // Controller
+        public function delete($id)
+        {
+            $category = Category::findOrFail($id);
+            $category->delete();
 
-public function delete($id)
-{
-    $category = Category::findOrFail($id);
-    $category->delete();
-
-    return redirect()->route('category.index')->with('success', 'Category deleted successfully!');
-}
+            return redirect()->route('category.index')->with('success', 'Category deleted successfully!');
+        }
 
 }
