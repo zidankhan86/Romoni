@@ -106,7 +106,7 @@ class HomeController extends Controller
 
     }
 
-   public function store(Request $request, Product $product)
+   public function storeReview(Request $request, Product $product)
     {
         $user = auth()->user();
 
