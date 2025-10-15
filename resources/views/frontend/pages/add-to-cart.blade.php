@@ -98,7 +98,7 @@
                                         @csrf
                                         @method('PATCH')
                                         <select class="form-select form-select-sm w-auto mx-auto" name="quantity" onchange="this.form.submit()">
-                                            @for ($i = 1; $i <= 10; $i++)
+                                            @for ($i = 1; $i <= 3; $i++)
                                                 <option value="{{ $i }}" @if ($i == $item->quantity) selected @endif>{{ $i }}</option>
                                             @endfor
                                         </select>
@@ -194,7 +194,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         flatpickr('.flatpickr-input', {
             dateFormat: 'd-m-Y',
-            minDate: 'today',
+            minDate: '{{ \Carbon\Carbon::tomorrow()->format('d-m-Y') }}',
             maxDate: '{{ \Carbon\Carbon::today()->addDays(31)->format('d-m-Y') }}',
             onChange: function(selectedDates, dateStr, instance) {
                 instance.element.form.submit();
@@ -209,4 +209,5 @@
         });
     });
 </script>
+
 @endsection
