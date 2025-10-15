@@ -270,7 +270,7 @@
     <div class="container px-4 px-lg-5">
 
         <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ route('home') }}">
-            <img src="{{ asset('Priyoz Images.png') }}" style="height: 45px;" class="me-2" alt="Priyoz Logo">
+            <img src="{{ asset('img/priyoz.png') }}" style="height: 45px;" class="me-2" alt="Priyoz Logo">
         </a>
 
 
