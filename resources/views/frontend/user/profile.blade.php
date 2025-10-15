@@ -8,9 +8,11 @@
             <div class="card border-0 shadow-sm rounded-3">
                 <div class="card-body text-center">
                     <img src="{{ auth()->user()->image
-                        ? asset( auth()->user()->image)
+                        ? asset('uploads/' . auth()->user()->image)
                         : 'https://bootdey.com/img/Content/avatar/avatar3.png' }}"
-                        class="rounded-circle mb-3 shadow-sm" width="100" height="100" alt="User Image">
+                        class="rounded-circle mb-3 shadow-sm"
+                        width="100" height="100" alt="User Image">
+
 
                     <h5 class="fw-semibold mb-1">{{ auth()->user()->name ?? 'Guest User' }}</h5>
                     <p class="text-muted small mb-3">{{ auth()->user()->email ?? 'example@email.com' }}</p>
@@ -18,6 +20,12 @@
                     <hr>
 
                     <ul class="nav flex-column text-start">
+                         <li class="nav-item mb-2">
+                            <a href="{{ route('userProfile') }}"
+                               class="nav-link {{ request()->routeIs('userProfile') ? 'active text-primary fw-semibold' : 'text-secondary' }}">
+                                <i class="fa fa-shopping-bag me-2"></i> Profile
+                            </a>
+                        </li>
                         <li class="nav-item mb-2">
                             <a href="{{ route('user.order') }}"
                                class="nav-link {{ request()->routeIs('user.order') ? 'active text-primary fw-semibold' : 'text-secondary' }}">
@@ -80,7 +88,7 @@
 
                                 @if($user->image)
                                 <div class="mt-2">
-                                    <img src="{{ asset('storage/uploads/' . $user->image) }}" class="img-thumbnail rounded" width="80" height="80">
+                                    <img src="{{ asset('uploads/' . auth()->user()->image) }}" class="img-thumbnail rounded" width="80" height="80">
                                 </div>
                                 @endif
                             </div>
@@ -124,22 +132,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($orders as $index => $order)
-                                    <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>#{{ $order->id }}</td>
-                                        <td>{{ $order->created_at->format('Y-m-d') }}</td>
-                                        <td>${{ number_format($order->total_amount, 2) }}</td>
-                                        <td>
-                                            <span class="badge
-                                                @if($order->status == 'completed') bg-success
-                                                @elseif($order->status == 'pending') bg-warning text-dark
-                                                @else bg-secondary @endif">
-                                                {{ ucfirst($order->status) }}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                  @foreach($orders as $key => $order)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td><strong>#ORD{{ $order->id }}</strong></td>
+                                            <td>{{ $order->created_at->format('Y-m-d') }}</td>
+                                            <td>৳{{ number_format($order->total_price, 2) }}</td>
+                                            <td>
+                                                @if($order->status === 'pending')
+                                                    <span class="badge bg-warning text-dark">Pending</span>
+                                                @elseif($order->status === 'completed')
+                                                    <span class="badge bg-success">Completed</span>
+                                                @else
+                                                    <span class="badge bg-secondary">{{ ucfirst($order->status) }}</span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                <ul class="list-unstyled mb-0">
+                                                    @foreach($order->items as $item)
+                                                        <li>{{ $item->product_name }} <small class="text-muted">(x{{ $item->quantity }})</small></li>
+                                                    @endforeach
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                             </tbody>
                         </table>
                     @else

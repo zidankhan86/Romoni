@@ -14,15 +14,17 @@ class ProfileController extends Controller
     $user = auth()->user();
 
     // Get user orders
-    $orders = \App\Models\Order::where('user_id', $user->id)
-                ->orderBy('created_at', 'desc')
-                ->get();
+     $orders = Order::with('items')
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->take(4)
+            ->get();
 
     return view('frontend.user.profile', compact('user', 'orders'));
 }
 
 
-   public function update(Request $request, string $id)
+ public function update(Request $request, string $id)
 {
     $user = User::findOrFail($id);
 
@@ -35,9 +37,13 @@ class ProfileController extends Controller
     ]);
 
     $imageName = $user->image;
+
     if ($request->hasFile('image')) {
-        $imageName = time() . '.' . $request->file('image')->getClientOriginalExtension();
-        $request->file('image')->storeAs('uploads', $imageName, 'public');
+        $file = $request->file('image');
+        $imageName = time() . '.' . $file->getClientOriginalExtension();
+
+        // Move file to public/uploads
+        $file->move(public_path('uploads'), $imageName);
     }
 
     $data = [
@@ -56,6 +62,7 @@ class ProfileController extends Controller
 
     return redirect()->back()->with('success', 'Profile updated successfully!');
 }
+
 
  public function myOrders(){
 
