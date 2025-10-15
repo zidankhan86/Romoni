@@ -27,12 +27,13 @@
         <div class="col-12 text-center mb-5">
             <h1 class="display-4">Checkout</h1>
             @if (session('success'))
-                <div class="alert alert-info alert-dismissible fade show text-center" style="margin-bottom: 30px;">
+                <div class="alert alert-info alert-dismissible fade show text-center mb-4">
                     {{ session('success') }}
                 </div>
             @endif
         </div>
 
+        <!-- Billing Form -->
         <div class="col-lg-8">
             <div class="card shadow-sm">
                 <div class="card-body">
@@ -48,26 +49,14 @@
                                     <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
                                     <input type="email" name="email" class="form-control" value="{{ old('email') }}" required>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Street Address</label>
-                            <input type="text" name="street" class="form-control" value="{{ old('street') }}" required>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">Zip Code</label>
-                                    <input type="text" name="zipcode" class="form-control" value="{{ old('zipcode') }}" required>
-                                </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Phone</label>
@@ -75,31 +64,63 @@
                                     <div id="phoneError" class="text-danger mt-1" style="display:none;">Please enter a valid Bangladeshi phone number.</div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Street Address</label>
+                                    <input type="text" name="street" class="form-control" value="{{ old('street') }}" required>
+                                </div>
+                            </div>
+
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">Country</label>
-                                    <input type="text" name="country_id" class="form-control" value="{{ old('country_id') }}" required>
+                                    <select name="country" class="form-control" required>
+                                        <option value="Bangladesh" selected>Bangladesh</option>
+                                    </select>
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">State</label>
-                                    <input type="text" name="state_id" class="form-control" value="{{ old('state_id') }}" required>
+                                    <label class="form-label">City</label>
+                                    <select name="city" id="city" class="form-control" required>
+                                        <option value="">Select City</option>
+                                        <option value="Dhaka">Dhaka</option>
+
+                                    </select>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">City</label>
-                            <input type="text" name="city" class="form-control" value="{{ old('city') }}" required>
-                        </div>
+                            <!-- Area (Only for Dhaka) -->
+                            <div class="col-md-6" id="areaContainer" style="display: none;">
+                                <div class="mb-3">
+                                    <label class="form-label">Area</label>
+                                    <select id="areaSelect" name="area" class="form-control">
+                                        <option value="">Select Area</option>
+                                        <option value="Uttara">Uttara</option>
+                                        <option value="Banani">Banani</option>
+                                        <option value="Mirpur">Mirpur</option>
+                                        <option value="Gulshan">Gulshan</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Additional Note</label>
-                            <textarea name="note" class="form-control" rows="3">{{ old('note') }}</textarea>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Zip Code</label>
+                                    <input type="text" name="zipcode" id="zipcode" class="form-control" value="{{ old('zipcode') }}" required>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="state_id" class="form-control" value="{{ old('state_id') }}">
+
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Additional Note</label>
+                                    <textarea name="note" class="form-control" rows="3">{{ old('note') }}</textarea>
+                                </div>
+                            </div>
                         </div>
                 </div>
             </div>
@@ -131,20 +152,18 @@
                     <h5 class="mb-3">Payment Method</h5>
                     <div class="mb-3">
 
-                        <!-- SSLCommerz -->
                         <div class="payment-option d-flex align-items-center mb-2">
                             <input class="form-check-input" type="radio" name="payment_method" id="sslcommerz" value="sslcommerze" style="display: none;">
                             <label class="payment-label d-flex align-items-center w-100 p-3 border rounded" for="sslcommerz">
                                 <img src="{{ asset('ssl.png') }}" alt="SSLCommerz" class="me-2" style="height:30px;">
-                                <span class="payment-text">Pay with SSLCommerz</span>
+                                <span>Pay with SSLCommerz</span>
                             </label>
                         </div>
 
-                        <!-- COD -->
                         <div class="payment-option d-flex align-items-center">
                             <input class="form-check-input" type="radio" name="payment_method" id="cod" value="cod" style="display: none;">
                             <label class="payment-label d-flex align-items-center w-100 p-3 border rounded" for="cod">
-                                <span class="payment-text">Cash on Delivery</span>
+                                <span>Cash on Delivery</span>
                             </label>
                         </div>
                     </div>
@@ -160,6 +179,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 <!-- JS Validation -->
@@ -169,6 +189,10 @@
         const checkoutForm = document.getElementById('checkoutForm');
         const phoneInput = document.getElementById('phone');
         const phoneError = document.getElementById('phoneError');
+        const citySelect = document.getElementById('city');
+        const areaContainer = document.getElementById('areaContainer');
+        const areaSelect = document.getElementById('areaSelect');
+        const zipcodeInput = document.getElementById('zipcode');
 
         // Payment Option Selection
         paymentOptions.forEach(option => {
@@ -196,6 +220,29 @@
             } else {
                 phoneError.style.display = 'none';
             }
+        });
+
+        // Show area dropdown when Dhaka is selected
+        citySelect.addEventListener('change', function () {
+            if (citySelect.value === 'Dhaka') {
+                areaContainer.style.display = 'block';
+                zipcodeInput.value = ''; // clear previous zip
+            } else {
+                areaContainer.style.display = 'none';
+                areaSelect.value = '';
+                zipcodeInput.value = ''; // clear zip
+            }
+        });
+
+        // Auto-fill zip code based on area selection
+        areaSelect.addEventListener('change', function () {
+            const area = areaSelect.value;
+            let zip = '';
+            if (area === 'Uttara') zip = '1230';
+            else if (area === 'Banani') zip = '1216';
+            else if (area === 'Mirpur') zip = '1213';
+            else if (area === 'Gulshan') zip = '1212';
+            zipcodeInput.value = zip;
         });
     });
 </script>
