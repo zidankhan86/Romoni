@@ -86,7 +86,7 @@
     /* Modal Carousel Styles */
     #imageModal .carousel-item img {
         width: 100%;
-        height: 60vh;
+        height: 80vh;
         object-fit: cover;
     }
 
