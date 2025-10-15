@@ -5,6 +5,10 @@
 
     <h2 style="text-align: center">Orders</h2>
 
+    @if (session('success'))
+        <div class="alert alert-success text-center">{{ session('success') }}</div>
+    @endif
+
     <div class="col-12 mt-5">
         <div class="card">
             <div class="table-responsive">
@@ -29,9 +33,15 @@
                             <td>{{ $order->email }}</td>
                             <td>৳{{ number_format($order->total_price, 2) }}</td>
                             <td>
-                                <span class="badge {{ $order->status == 'completed' ? 'bg-success' : 'bg-warning' }}">
-                                    {{ ucfirst($order->status) }}
-                                </span>
+                                <form action="{{ route('orders.updateStatus', $order->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <select name="status" class="form-select form-select-sm" onchange="this.form.submit()">
+                                        <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                        <option value="approved" {{ $order->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                        <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                                    </select>
+                                </form>
                             </td>
                             <td>
                                 {{-- List products --}}
@@ -54,16 +64,12 @@
                             </td>
                         </tr>
                     @endforelse
-                </tbody>
-
+                    </tbody>
                 </table>
             </div>
         </div>
     </div>
 
 </div>
-
-</div>
-
 
 @endsection

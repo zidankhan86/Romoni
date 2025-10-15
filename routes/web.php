@@ -159,6 +159,8 @@ Route::get('admin/order/index', [OrderController::class, 'orderIndex'])->name('o
 Route::get('admin/order/invoice/{orderId}', [OrderController::class, 'invoice'])->name('invoice');
 Route::get('/orders/{id}/assign', [OrderController::class, 'assignStaffForm'])->name('orders.assign.form');
 Route::post('/orders/{id}/assign', [OrderController::class, 'assignStaff'])->name('orders.assign');
+Route::patch('/order/update-status/{id}', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+
 
 // Profile
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');

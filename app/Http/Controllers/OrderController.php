@@ -48,4 +48,19 @@ public function assignStaff(Request $request, $id)
 }
 
 
+public function updateStatus(Request $request, $id)
+{
+    $request->validate([
+        'status' => 'required|in:pending,approved,cancelled',
+    ]);
+
+    $order = Order::findOrFail($id);
+    $order->status = $request->status;
+    $order->save();
+
+    return redirect()->back()->with('success', 'Order status updated successfully!');
+}
+
+
+
 }
