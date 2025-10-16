@@ -48,7 +48,7 @@
                 <div class="mb-3 col-md-12">
                     <label class="form-label">Top Bar Text</label>
                     <input type="text" name="top_var_text" class="form-control"
-                           placeholder="Enter Text for Top Bar (e.g., Welcome to our salon!)"
+                           placeholder="Enter Text for Top Bar (e.g., Welcome to Priyoz!)"
                            value="{{ old('top_var_text', $setting->top_var_text) }}">
                 </div>
 

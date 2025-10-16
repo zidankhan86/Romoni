@@ -19,7 +19,7 @@ class SettingsTableSeeder extends Seeder
             'youtube_link'    => 'https://youtube.com/yourchannel',
             'phone'           => '+8801700000000',
             'copyright_text'  => '© 2025 Priyoz. All rights reserved.',
-            'top_var_text'    => 'Welcome to our beauty salon! Relax, refresh & renew.',
+            'top_var_text'    => 'Welcome to Priyoz...! Relax, refresh & chill...',
             'created_at'      => now(),
             'updated_at'      => now(),
         ]);

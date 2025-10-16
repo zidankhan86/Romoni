@@ -424,7 +424,7 @@
                     <div class="feature-icons">
                         <div class="icon-box">
                             <i class="fas fa-home"></i>
-                            <p>Ultimate Convenience, book anywhere within 5 minutes, and the same day, and next day</p>
+                            <p>Ultimate Convenience, book anywhere within next day</p>
                         </div>
                         <div class="icon-box">
                             <i class="fas fa-users"></i>
@@ -450,7 +450,7 @@
                             <div class="service-card position-relative">
                                 <img src="{{url('img/h.jpg')}}"
                                     alt="Body Care" class="img-fluid first-service">
-                                <h5 class="card-title-overlay">Body Care</h5>
+                                <h5 class="card-title-overlay">We Care Your Happiness</h5>
                             </div>
                         </div>
 
@@ -465,7 +465,7 @@
 
                         <div class="col-6 col-md-6 col-lg-6">
                             <div class="service-card position-relative">
-                                <img src="https://images.pexels.com/photos/3765119/pexels-photo-3765119.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=136&w=398"
+                                <img src="https://shorturl.at/03DMq"
                                     alt="Bridal" class="img-fluid other-service">
                                 <h5 class="card-title-overlay">Bridal</h5>
                             </div>
@@ -473,31 +473,31 @@
 
                         <div class="col-6 col-md-4 col-lg-6">
                             <div class="service-card position-relative">
-                                <img src="https://images.pexels.com/photos/4492045/pexels-photo-4492045.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=136&w=398"
+                                <img src="https://shorturl.at/rc1U2"
                                     alt="Packages" class="img-fluid other-service">
-                                <h5 class="card-title-overlay">Packages</h5>
+                                <h5 class="card-title-overlay">Body Care</h5>
                             </div>
                         </div>
 
                         <div class="col-6 col-md-4 col-lg-6">
                             <div class="service-card position-relative">
-                                <img src="https://images.pexels.com/photos/5069389/pexels-photo-5069389.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=136&w=398"
+                                <img src="https://shorturl.at/NWszC"
                                     alt="Hair Removal" class="img-fluid other-service">
-                                <h5 class="card-title-overlay">Hair Removal</h5>
+                                <h5 class="card-title-overlay">Hair Care</h5>
                             </div>
                         </div>
 
                         <div class="col-6 col-md-4 col-lg-6">
                             <div class="service-card position-relative">
-                                <img src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=136&w=398"
+                                <img src="https://shorturl.at/L23nQ"
                                     alt="Hairstyle" class="img-fluid other-service">
-                                <h5 class="card-title-overlay">Hairstyle</h5>
+                                <h5 class="card-title-overlay">Hairstyles for Men</h5>
                             </div>
                         </div>
 
                         <div class="col-6 col-md-4 col-lg-6">
                             <div class="service-card position-relative">
-                                <img src="https://images.pexels.com/photos/5732996/pexels-photo-5732996.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=136&w=398"
+                                <img src="https://shorturl.at/7ynaR"
                                     alt="Henna Art" class="img-fluid other-service">
                                 <h5 class="card-title-overlay">Henna Art</h5>
                             </div>

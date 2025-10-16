@@ -34,7 +34,7 @@
                 <div class="bg-dark py-5 d-flex align-items-center"
                     style="background-image: url('{{ asset('h3.jpg') }}'); background-size: cover; background-position: center; height: 80vh;">
                     <div class="container px-4 px-lg-5 my-5 text-center text-black">
-                        <h1 class="display-4 fw-bolder">Exclusive Offers</h1>
+                        <h1 class="display-4 fw-bolder">Exclusive Packages</h1>
                         <p class="lead fw-normal mb-4">Save More, Glow More</p>
                         <a href="{{route('product.page')}}" class="btn btn-dark btn-lg rounded-pill px-4 shadow-sm">Book Now</a>
                     </div>
