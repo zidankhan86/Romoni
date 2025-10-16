@@ -174,7 +174,7 @@
             </ol>
         </nav>
 
-        <h2>Priyo's Studio</h2>
+        <h2>Priyoz Studio</h2>
         <div id="backContainer" style="display: none;"></div>
 
         <div class="gallery-grid">
@@ -239,7 +239,7 @@ foreach ($galleryData as $title => $thumbUrl) {
         const h2 = document.querySelector('h2');
         const backContainer = document.getElementById('backContainer');
 
-        h2.textContent = "Priyo's Studio";
+        h2.textContent = "Priyoz Studio";
         backContainer.style.display = 'none';
         grid.innerHTML = '';
 

@@ -12,8 +12,8 @@
                                 <th>SL</th>
                                 <th>Name</th>
                                 <th>Phone</th>
+                                <th>Gender</th>  <!-- Added Gender Column -->
                                 <th>Joined</th>
-
                             </tr>
                         </thead>
                         <tbody>
@@ -29,23 +29,21 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td data-label="Title">
+                                <td data-label="Phone">
                                     <div>{{$clients->phone}}</div>
-
                                 </td>
-                                <td class="text-muted" data-label="Role">
+                                <td data-label="Gender">
+                                    <div>{{$clients->gender}}</div> <!-- Added Gender Data -->
+                                </td>
+                                <td class="text-muted" data-label="Joined">
                                     {{ $clients->created_at->format('d M Y') }}
                                 </td>
-
                             </tr>
                             @endforeach
-
-
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
