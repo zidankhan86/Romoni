@@ -119,16 +119,24 @@ public function assignStaff(Request $request, $id)
 
 public function updateStatus(Request $request, $id)
 {
+    $order = Order::findOrFail($id);
+
+    // Prevent updating if already completed
+    if ($order->status === 'completed') {
+        return redirect()->back()->with('error', 'Completed orders cannot be changed.');
+    }
+
+    // Validate status
     $request->validate([
-        'status' => 'required|in:pending,approved,cancelled',
+        'status' => 'required|in:pending,approved,cancelled,completed',
     ]);
 
-    $order = Order::findOrFail($id);
     $order->status = $request->status;
     $order->save();
 
     return redirect()->back()->with('success', 'Order status updated successfully!');
 }
+
 
 
 
