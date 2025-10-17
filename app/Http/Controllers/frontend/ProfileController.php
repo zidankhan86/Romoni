@@ -52,6 +52,7 @@ class ProfileController extends Controller
         'phone' => $request->phone,
         'role' => 'customer',
         'image' => $imageName,
+        'gender'  =>$request->gender
     ];
 
     if ($request->filled('password')) {

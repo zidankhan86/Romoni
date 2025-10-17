@@ -80,6 +80,20 @@
                                 @error('phone') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
+                           <!-- Gender -->
+                            <div class="col-md-6 mb-3">
+                                <label for="gender" class="form-label fw-semibold">Gender</label>
+                                <select name="gender" class="form-control @error('gender') is-invalid @enderror">
+                                    <option value="" disabled {{ (old('gender', $user->gender ?? '') == '') ? 'selected' : '' }}>Select your gender</option>
+                                    <option value="male" {{ (old('gender', $user->gender ?? '') == 'male') ? 'selected' : '' }}>Male</option>
+                                    <option value="female" {{ (old('gender', $user->gender ?? '') == 'female') ? 'selected' : '' }}>Female</option>
+                                </select>
+                                @error('gender')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+
                             <!-- Image -->
                             <div class="col-md-6 mb-3">
                                 <label for="image" class="form-label fw-semibold">Profile Image</label>

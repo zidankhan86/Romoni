@@ -84,7 +84,7 @@ class RegistrationController extends Controller
                 "name"    =>  $request->name,
                 "role"    =>  'admin',
                 "image"   => $imageName,
-               'gender'  =>$request->gender
+
             ]);
                 return redirect()->back()->withSuccess('Profile Update Success');
             }
