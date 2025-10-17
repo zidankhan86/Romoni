@@ -160,6 +160,7 @@ Route::get('admin/order/invoice/{orderId}', [OrderController::class, 'invoice'])
 Route::get('/orders/{id}/assign', [OrderController::class, 'assignStaffForm'])->name('orders.assign.form');
 Route::post('/orders/{id}/assign', [OrderController::class, 'assignStaff'])->name('orders.assign');
 Route::patch('/order/update-status/{id}', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+Route::get('/order/report', [OrderController::class, 'report'])->name('orders.report');
 
 
 // Profile
