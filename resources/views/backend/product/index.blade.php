@@ -3,7 +3,7 @@
 
 <div class="container mt-5">
 
-    <h2 style="text-align: center">Service</h2>
+    <h2 style="text-align: center">Manage Services</h2>
     <div style="text-align: right">
         <a href="{{ route('product.create') }}" class="btn btn-info" style="margin-right: 10px;">+ Add</a>
     </div>
@@ -35,11 +35,13 @@
                                </td>
                             <td>
                                 <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
-                                <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;"
+                                    onsubmit="return confirm('Are you sure you want to delete this product?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
+
                             </td>
                         </tr>
                     @empty
