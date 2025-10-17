@@ -68,7 +68,7 @@
                                 @foreach($orders as $key => $order)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td><strong>#ORD{{ $order->id }}</strong></td>
+                                    <td><strong>#PRY00{{ $order->id }}</strong></td>
                                     <td>{{ $order->created_at->format('Y-m-d') }}</td>
                                     <td>৳{{ number_format($order->total_price, 2) }}</td>
                                     <td>
