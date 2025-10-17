@@ -34,22 +34,20 @@
                             <td>৳{{ number_format($order->total_price, 2) }}</td>
                             <td>
 
-                                <form action="{{ route('orders.updateStatus', $order->id) }}" method="POST">
-                                    @csrf
-                                    @method('PATCH')
-                                    <select name="status" class="form-select form-select-sm"
-                                        onchange="this.form.submit()" {{ $order->status === 'completed' ? 'disabled' :
-                                        '' }}>
-                                        <option value="pending" {{ $order->status == 'pending' ? 'selected' : ''
-                                            }}>Pending</option>
-                                        <option value="approved" {{ $order->status == 'approved' ? 'selected' : ''
-                                            }}>Approved</option>
-                                        <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : ''
-                                            }}>Cancelled</option>
-                                        <option value="completed" {{ $order->status == 'completed' ? 'selected' : ''
-                                            }}>Completed</option>
-                                    </select>
-                                </form>
+                               <form action="{{ route('orders.updateStatus', $order->id) }}" method="POST" class="status-form-{{ $order->id }}">
+                                @csrf
+                                @method('PATCH')
+                                <select name="status" class="form-select form-select-sm" {{ $order->status === 'completed' ? 'disabled' : '' }}
+                                    onchange="confirmStatus(this, '{{ $order->id }}')">
+                                    <option value="pending" {{ $order->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                    <option value="approved" {{ $order->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                    <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+                                    <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>Completed</option>
+                                </select>
+                            </form>
+
+
+
                             </td>
 
 
@@ -82,5 +80,38 @@
     </div>
 
 </div>
+<script>
+function confirmStatus(select, id) {
+    const value = select.value;
+    let message = '';
 
+    switch(value) {
+        case 'pending':
+            message = `Are you sure you want to mark order #PRY00${id} as Pending?`;
+            break;
+        case 'approved':
+            message = `Are you sure you want to approve order #PRY00${id}?`;
+            break;
+        case 'cancelled':
+            message = `Are you sure you want to cancel order #PRY00${id}?`;
+            break;
+        case 'completed':
+            message = `Are you sure you want to mark order #PRY00${id} as Completed?`;
+            break;
+    }
+
+    if(confirm(message)) {
+        select.form.submit();
+    } else {
+        // Revert to previous value if cancelled
+        const options = select.options;
+        for(let i = 0; i < options.length; i++) {
+            if(options[i].defaultSelected) {
+                select.value = options[i].value;
+                break;
+            }
+        }
+    }
+}
+</script>
 @endsection
