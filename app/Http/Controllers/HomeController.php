@@ -18,6 +18,7 @@ class HomeController extends Controller
         $total_order = Order::count();
         $total_revenue = Order::sum('total_price');
         $total_clients = User::where('role','customer')->count();
-        return view('backend.pages.dashboard', compact('total_service', 'total_order','total_revenue','total_clients'));
+        $products = Product::latest()->take(15)->get();
+        return view('backend.pages.dashboard', compact('products','total_service', 'total_order','total_revenue','total_clients'));
     }
 }

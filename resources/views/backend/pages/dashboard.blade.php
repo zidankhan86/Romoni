@@ -1,9 +1,9 @@
 @extends('backend.layout.app')
 @section('content')
 
- @php
-     $products = DB::table('products')->get();
- @endphp
+
+
+
 
  <!-- Page body -->
  <div class="page-body">
@@ -121,11 +121,19 @@
                         <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
                         <!-- Delete Button -->
-                        <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                       <!-- Delete Button -->
+                            <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;" onsubmit="return confirmDelete()">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+
+                            <script>
+                            function confirmDelete() {
+                                return confirm("Are you sure you want to delete this product?");
+                            }
+                            </script>
+
                     </td>
                 </tr>
             @empty

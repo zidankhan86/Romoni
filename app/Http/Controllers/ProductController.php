@@ -215,7 +215,7 @@ class ProductController extends Controller
             // ✅ Delete the product itself
             $product->delete();
 
-            return redirect()->route('product.index')->with('success', '🗑️ Product deleted successfully!');
+            return redirect()->back()->with('success', '🗑️ Product deleted successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', '❌ Something went wrong: ' . $e->getMessage());
         }
