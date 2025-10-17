@@ -75,10 +75,13 @@
                             <th class="text-center">Subtotal</th>
                             <th class="text-center">Date & Time</th>
                             <th class="text-center">
-                                <form action="{{ route('cart.clear') }}" onsubmit="return confirm('Are you sure you want to clear the cart?');">
-                                    <button class="btn btn-sm btn-outline-danger" type="submit">Clear Cart</button>
-                                </form>
+                                @if ($cartContents->count() > 0)
+                                    <form action="{{ route('cart.clear') }}" onsubmit="return confirm('Are you sure you want to clear the cart?');">
+                                        <button class="btn btn-sm btn-outline-danger" type="submit">Clear Cart</button>
+                                    </form>
+                                @endif
                             </th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -166,13 +169,18 @@
         </h5>
     </div>
 
-    <!-- Actions -->
-    <div class="d-flex justify-content-between mb-5">
-        <a href="{{ route('home') }}" class="btn btn-outline-secondary">
-            <i class="bi bi-arrow-left"></i> Add More Services
-        </a>
+   <div class="d-flex justify-content-between mb-5">
+    <a href="{{ route('home') }}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Add More Services
+    </a>
+
+    @if ($cartContents->count() > 0)
         <a class="btn btn-success" href="{{ route('checkout') }}">Checkout</a>
-    </div>
+    @else
+        <button class="btn btn-secondary" disabled title="Please add items to your cart first">Checkout</button>
+    @endif
+</div>
+
 
     <!-- ⚠️ Emergency WhatsApp Support -->
     <div class="card border-warning mb-4">
