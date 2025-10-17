@@ -70,14 +70,15 @@
 <div class="mb-3">
     <label class="form-label">Gender</label>
     <select class="form-control @error('gender') is-invalid @enderror" name="gender">
-        <option value="" disabled selected>Select your gender</option>
-        <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
-        <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+        <option value="" disabled {{ (old('gender', $user->gender ?? '') == '') ? 'selected' : '' }}>Select your gender</option>
+        <option value="male" {{ (old('gender', $user->gender ?? '') == 'male') ? 'selected' : '' }}>Male</option>
+        <option value="female" {{ (old('gender', $user->gender ?? '') == 'female') ? 'selected' : '' }}>Female</option>
     </select>
     @error('gender')
         <div class="invalid-feedback">{{ $message }}</div>
     @enderror
 </div>
+
 
 <div class="mb-3">
     <label class="form-label">Select Profile Image</label>

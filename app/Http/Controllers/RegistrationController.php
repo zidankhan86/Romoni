@@ -55,7 +55,8 @@ class RegistrationController extends Controller
                     "name"     => $request->name,
                     "password" => bcrypt($request->password),
                     "role"     => 'customer',
-                    "image"    => $imageName
+                    "image"    => $imageName,
+                    'gender'  =>$request->gender
                 ]);
 
                 // Automatically log in the user
@@ -83,10 +84,8 @@ class RegistrationController extends Controller
                 "name"    =>  $request->name,
                 "role"    =>  'admin',
                 "image"   => $imageName,
+               'gender'  =>$request->gender
             ]);
-
-
-
                 return redirect()->back()->withSuccess('Profile Update Success');
             }
 
