@@ -26,13 +26,14 @@ class StuffController extends Controller
             'email' => 'nullable|email',
             'phone' => 'nullable|string|max:20',
             'photo' => 'nullable|image|max:2048',
+            'gender' => 'nullable'
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
-        $data = $request->only('name', 'email', 'phone', 'status');
+        $data = $request->only('name', 'email', 'phone', 'status','gender');
 
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
@@ -53,35 +54,42 @@ class StuffController extends Controller
         return view('backend.staff.edit', compact('staff'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $staff = Stuff::findOrFail($id);
+   public function update(Request $request, $id)
+{
+    $staff = Stuff::findOrFail($id);
 
-        $validator = Validator::make($request->all(), [
-            'name'  => 'required|string|max:255',
-            'email' => 'nullable|email',
-            'phone' => 'nullable|string|max:20',
-            'photo' => 'nullable|image|max:2048',
-        ]);
+    $validator = Validator::make($request->all(), [
+        'name'  => 'required|string|max:255',
+        'email' => 'nullable|email',
+        'phone' => 'nullable|string|max:20',
+        'photo' => 'nullable|image|max:2048',
+        'gender'=> 'nullable', // Correct validation
+        'status'=> 'required|in:0,1'
+    ]);
 
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
-        }
-
-        $data = $request->only('name', 'email', 'phone', 'status');
-
-        if ($request->hasFile('photo')) {
-            $photo = $request->file('photo');
-            $path = 'uploads/staff/';
-            $filename = time() . '.' . $photo->getClientOriginalExtension();
-            $photo->move(public_path($path), $filename);
-            $data['photo'] = $path . $filename;
-        }
-
-        $staff->update($data);
-
-        return redirect()->route('staff.index')->with('success', 'Staff updated successfully.');
+    if ($validator->fails()) {
+        return back()->withErrors($validator)->withInput();
     }
+
+    $data = $request->only('name', 'email', 'phone', 'status', 'gender');
+
+    // Only update photo if a new file is uploaded
+    if ($request->hasFile('photo')) {
+        $photo = $request->file('photo');
+        $path = 'uploads/staff/';
+        $filename = time() . '.' . $photo->getClientOriginalExtension();
+        $photo->move(public_path($path), $filename);
+        $data['photo'] = $path . $filename;
+    } else {
+        // Keep old image
+        $data['photo'] = $staff->photo;
+    }
+
+    $staff->update($data);
+
+    return redirect()->route('staff.index')->with('success', 'Staff updated successfully.');
+}
+
 
     public function destroy($id)
     {

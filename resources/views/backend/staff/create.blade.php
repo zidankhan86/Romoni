@@ -27,6 +27,19 @@
                     <input type="text" name="phone" class="form-control" placeholder="Enter phone number">
                 </div>
 
+                 <!-- Gender -->
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Gender</label>
+                    <select name="gender" class="form-control @error('gender') is-invalid @enderror" required>
+                        <option value="" disabled {{ (old('gender', $staff->gender ?? '') == '') ? 'selected' : '' }}>Select gender</option>
+                        <option value="male" {{ (old('gender', $staff->gender ?? '') == 'male') ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ (old('gender', $staff->gender ?? '') == 'female') ? 'selected' : '' }}>Female</option>
+                    </select>
+                    @error('gender')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <!-- Profile Photo -->
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">Profile Photo</label>

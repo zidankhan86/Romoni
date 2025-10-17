@@ -15,8 +15,8 @@
                         <th>#</th>
                         <th>Name</th>
                         <th>Photo</th>
-                        <th>Email</th>
-                        <th>Phone</th>
+                        <th>User info</th>
+                        <th>Gender</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -33,14 +33,18 @@
                                     <span class="text-muted">No photo</span>
                                 @endif
                             </td>
-                            <td>{{ $staff->email }}</td>
-                            <td>{{ $staff->phone }}</td>
+                            <td>{{ $staff->email }}
+                                <br>
+                                {{ $staff->phone }}
+                            </td>
+                           <td>{{ ucfirst($staff->gender) ?? 'N/A' }}</td>
+
                             <td>
                                 <span class="badge {{ $staff->status ? 'bg-success' : 'bg-danger' }}">
                                     {{ $staff->status ? 'Active' : 'Inactive' }}
                                 </span>
                             </td>
-                            
+
                             <td>
                                 <a href="{{ route('staff.edit', $staff->id) }}" class="btn btn-warning btn-sm">Edit</a>
                                 <form action="{{ route('staff.destroy', $staff->id) }}" method="POST" style="display:inline-block;">
