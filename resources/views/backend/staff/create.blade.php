@@ -27,6 +27,12 @@
                     <input type="text" name="phone" class="form-control" placeholder="Enter phone number">
                 </div>
 
+                <!-- Expert -->
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Expert At</label>
+                    <input type="text" name="expert" class="form-control" placeholder="Hair">
+                </div>
+
                  <!-- Gender -->
                 <div class="col-md-6">
                     <label class="form-label fw-semibold">Gender</label>

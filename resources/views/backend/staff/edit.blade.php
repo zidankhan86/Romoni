@@ -27,6 +27,12 @@
                     <input type="text" name="phone" value="{{ old('phone', $staff->phone) }}" class="form-control">
                 </div>
 
+                 <!-- Expert -->
+                <div class="col-md-6">
+                    <label class="form-label fw-semibold">Expert At</label>
+                    <input type="text" name="expert" value="{{ old('expert', $staff->expert) }}" class="form-control" placeholder="Hair">
+                </div>
+
                   <!-- Gender -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Gender</label>

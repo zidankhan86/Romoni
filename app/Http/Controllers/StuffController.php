@@ -26,14 +26,15 @@ class StuffController extends Controller
             'email' => 'nullable|email',
             'phone' => 'nullable|string|max:20',
             'photo' => 'nullable|image|max:2048',
-            'gender' => 'nullable'
+            'gender' => 'nullable',
+            'expert' =>'nullable',
         ]);
 
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
 
-        $data = $request->only('name', 'email', 'phone', 'status','gender');
+        $data = $request->only('name', 'email', 'phone', 'status','gender','expert');
 
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
@@ -64,7 +65,8 @@ class StuffController extends Controller
         'phone' => 'nullable|string|max:20',
         'photo' => 'nullable|image|max:2048',
         'gender'=> 'nullable', // Correct validation
-        'status'=> 'required|in:0,1'
+        'status'=> 'required|in:0,1',
+        'expert' =>'nullable',
     ]);
 
     if ($validator->fails()) {
