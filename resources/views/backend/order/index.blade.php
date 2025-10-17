@@ -3,7 +3,7 @@
 
 <div class="container mt-5">
 
-    <h2 style="text-align: center">Orders</h2>
+    <h2 style="text-align: center">Manage Orders</h2>
 
     @if (session('success'))
     <div class="alert alert-success text-center">{{ session('success') }}</div>
